@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* palette */
+    --primary-color: #FCB022;
+    --primary-color-hover: #f09c00;
+
+    --section-color-1: #FFFFFF;
+    --section-color-2: #F5F7FA;
+
+    /* Fonts */
+    --base-font: Arial, sans-serif;
+
+    /* wrapper */
+    --wrapper-desktop: 1152px;
+    --wrapper-laptops : 992px;
+    --wrapper-tablets : 768px;
+    --wrapper-phones : 640px;
+}
+
+
+/* ======================= */
+/* GENERAL SETTINGS */
+/* ======================= */
+body {
+    font-family: var(--base-font);
+    background-color: var(--primary-color);
+}
+
+header, main, footer {
+    margin: 0px auto;
+    width: var(--wrapper-desktop);
+}
+
+/* ======================= */
+/* HEADER */
+/* ======================= */
+header nav ul {
+    display: flex;
+    gap: 16px;
+    list-style-type: none;
+}
+
+header nav ul a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+header nav ul a:hover {
+    color: #ff0000;
+    text-decoration: underline;
+}

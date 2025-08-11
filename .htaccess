@@ -1,0 +1,14 @@
+# DirectoryIndex disabled
+# Active le moteur de réécriture d’URL d’Apache
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirige toutes les requêtes vers le dossier /public/
+    RewriteCond %{REQUEST_URI} !^/public/
+
+    # Redirige vers public/index.php en conservant le chemin
+    RewriteRule ^(.*)$ public/index.php [L]
+</IfModule>
+
+# Désactive l'affichage de l'index des dossiers si aucun index.* n’est trouvé
+Options -Indexes
