@@ -1,2 +1,2 @@
 # MonCMS
-Développement d'un CMS sans aucun FrameWork
+Développement d'un CMS sans aucun FrameWork PHP
