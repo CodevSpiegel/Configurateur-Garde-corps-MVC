@@ -26,7 +26,7 @@ return <<<HTML
     <meta name="twitter:image" content="https://www.monsite.com/images/php-mvc.jpg">
     <meta name="twitter:site" content="@MonCompteTwitter">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-    <!-- <link rel="stylesheet" href="{$site->const['PUBLIC_PATH']}assets/css/style.css"> -->
+    <link rel="stylesheet" href="{$site->const['PUBLIC_PATH']}assets/css/style.css">
 
     <!-- Balises meta supplémentaires utiles -->
     <!-- Empêche la mise en cache si besoin (déconseillé en production) -->
@@ -47,7 +47,7 @@ return <<<HTML
         <li><a href="/home/action-02">Home-Action 2</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/nimpxxxxx">Home-404</a></li>
-        <li><a href="/home/action-01/?test=<script>alert(`Si ça passe... Ca craint un max là !`)</script>">Home-404</a></li>
+        <li><a href="/home/action-01/?test=<script>alert(`Si ça passe... Ca craint un max là !`)</script>">Home-inject-JS</a></li>
     </ul>
 </nav>
 

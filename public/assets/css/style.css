@@ -26,10 +26,10 @@
 /* ======================= */
 /* GENERAL SETTINGS */
 /* ======================= */
-body {
+/* body {
     font-family: var(--base-font);
     background-color: var(--primary-color);
-}
+} */
 
 header, main, footer {
     margin: 0px auto;
@@ -39,7 +39,7 @@ header, main, footer {
 /* ======================= */
 /* HEADER */
 /* ======================= */
-header nav ul {
+/* header nav ul {
     display: flex;
     gap: 16px;
     list-style-type: none;
@@ -54,4 +54,4 @@ header nav ul a {
 header nav ul a:hover {
     color: #ff0000;
     text-decoration: underline;
-}
+} */

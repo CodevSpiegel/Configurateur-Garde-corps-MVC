@@ -8,7 +8,7 @@ class home_model {
         global $db;
 
         // Sélectionner un article
-        $db->query("SELECT title, sentence, date FROM articles WHERE id = :id");
+        $db->query("SELECT title, sentence, date FROM cms_articles WHERE id = :id");
         $db->bind(':id', $id);
         $article = $db->fetchOne();
 
@@ -26,7 +26,7 @@ class home_model {
         global $db;
 
         // Sélectionner plusieurs articles
-        $db->query("SELECT * FROM articles");
+        $db->query("SELECT * FROM cms_articles");
         $articles = $db->fetchAll();
 
         return $articles;

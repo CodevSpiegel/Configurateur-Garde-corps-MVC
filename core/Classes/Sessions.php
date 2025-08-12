@@ -20,11 +20,6 @@ declare(strict_types=1);
 // const GROUP_TEMP   = 3;
 // const GROUP_MEMBER = 4;
 
-// ---------------------------------------------------------------------------
-// Expiration des sessions (inactivité max en secondes)
-// ---------------------------------------------------------------------------
-const SESSION_TTL_SECONDS = 15; // 1 heure
-
 final class Session
 {
     // ---------------------------------------------------------------------
@@ -42,7 +37,7 @@ final class Session
     public string $ip_address      = '';  // IP client (best effort)
     public string $user_agent      = '';  // User-Agent "sanitisé"
     public string $location        = '';  // Si tu veux tracer la page
-    public array  $user            = [];  // Profil utilisateur courant (depuis nova_users)
+    public array  $user            = [];  // Profil utilisateur courant (depuis cms_users)
     private bool $sessionRowExists = false; // true si la ligne s_id existe en BDD
 
     /**
@@ -66,26 +61,27 @@ final class Session
             var_dump("Création ou récuperation d'une session !");
         }
 
-        // ID applicatif stable (différent du PHPSESSID) pour indexer nova_sessions.s_id
+        // ID applicatif stable (différent du PHPSESSID) pour indexer cms_sessions.s_id
         $_SESSION['id']   = $_SESSION['id']   ?? bin2hex(random_bytes(32));
         $this->session_id = (string) $_SESSION['id'];
 
-        var_dump("session_id = ".$this->session_id);
+        var_dump($this->session_id);
 
         // État par défaut côté "profil" : invité
         $this->user = [
-            'id'            => 0,
-            'login'         => '',
-            'password'      => '',
-            'ugroup'        => GROUP_GEST,
-            'firstname'     => '',
-            'lastname'      => '',
-            'email'         => '',
-            'lang'          => '',
-            'ipadress'      => $this->ip_address,
-            'last_visit'    => 0,
-            'last_activity' => 0,
+            'u_id'            => 0,
+            'u_login'         => '',
+            'u_password'      => '',
+            'u_group'        => GROUP_GEST,
+            'u_firstname'     => '',
+            'u_lastname'      => '',
+            'u_email'         => '',
+            'u_lang'          => '',
+            'u_ipadress'      => $this->ip_address,
+            'u_last_visit'    => 0,
+            'u_last_activity' => 0,
         ];
+
     }
 
     // ---------------------------------------------------------------------
@@ -106,7 +102,7 @@ final class Session
             // Session liée à un membre -> charger l'utilisateur
             $this->loadUser($this->session_user_id);
 
-            if (empty($this->user['id'])) {
+            if (empty($this->user['u_id'])) {
                 // L'utilisateur n'existe plus -> repasser invité
                 $this->unloadUser();
                 $this->updateGuestSession();
@@ -127,12 +123,12 @@ final class Session
             if (!empty($_SESSION['user_id']) && !empty($_SESSION['pass_hash'])) {
                 $this->loadUser((int) $_SESSION['user_id']);
 
-                if (empty($this->user['id'])) {
+                if (empty($this->user['u_id'])) {
                     $this->unloadUser();
                     $this->createGuestSession();
                 } else {
                     // Comparer le hash stocké (password déjà hashé en BDD) avec ce qu'on a en session
-                    if (hash_equals((string) $this->user['password'], (string) $_SESSION['pass_hash'])) {
+                    if (hash_equals((string) $this->user['u_password'], (string) $_SESSION['pass_hash'])) {
                         $this->createUserSession();
                     } else {
                         $this->unloadUser();
@@ -154,7 +150,7 @@ final class Session
     // =========================================================================
 
     /**
-     * Charge la ligne nova_sessions correspondant à $sessionId (si existe).
+     * Charge la ligne cms_sessions correspondant à $sessionId (si existe).
      */
     private function getSessionById(string $sessionId): void
     {
@@ -167,7 +163,7 @@ final class Session
 
         $this->db->query(
             'SELECT s_id, s_user_id, s_running_time
-             FROM nova_sessions
+             FROM cms_sessions
              WHERE s_id = :sid'
         );
         $this->db->bind(':sid', $sessionId);
@@ -196,7 +192,7 @@ final class Session
         $threshold = $this->time_now - SESSION_TTL_SECONDS;
 
         $this->db->query(
-            'DELETE FROM nova_sessions
+            'DELETE FROM cms_sessions
              WHERE s_running_time < :threshold'
         );
         $this->db->bind(':threshold', $threshold);
@@ -219,9 +215,9 @@ final class Session
         }
 
         $this->db->query(
-            'SELECT id, login, firstname, lastname, email, password, ugroup, lang, ipadress, last_visit, last_activity
-             FROM nova_users
-             WHERE id = :uid'
+            'SELECT u_id, u_login, u_firstname, u_lastname, u_email, u_password, u_group, u_lang, u_ipadress, u_last_visit, u_last_activity
+            FROM cms_users
+            WHERE u_id = :uid'
         );
         $this->db->bind(':uid', $userId);
         $row = $this->db->fetchOne();
@@ -241,17 +237,17 @@ final class Session
     {
         var_dump("Function : unloadUser()");
         $this->user = [
-            'id'            => 0,
-            'login'         => '',
-            'password'      => '',
-            'ugroup'        => GROUP_GEST,
-            'firstname'     => '',
-            'lastname'      => '',
-            'email'         => '',
-            'lang'          => '',
-            'ipadress'      => $this->ip_address,
-            'last_visit'    => 0,
-            'last_activity' => 0,
+            'u_id'            => 0,
+            'u_login'         => '',
+            'u_password'      => '',
+            'u_group'        => GROUP_GEST,
+            'u_firstname'     => '',
+            'u_lastname'      => '',
+            'u_email'         => '',
+            'u_lang'          => '',
+            'u_ipadress'      => $this->ip_address,
+            'u_last_visit'    => 0,
+            'u_last_activity' => 0,
         ];
 
         // On garde $_SESSION['id'] (token applicatif), on purge seulement l'auto-login
@@ -278,8 +274,16 @@ final class Session
         }
 
         $this->db->query(
-            'INSERT INTO nova_sessions (s_id, s_user_id, s_user_login, s_user_group, s_running_time, s_ip_adress, s_browser)
-             VALUES (:sid, :uid, :ulogin, :ugroup, :rt, :ip, :ua)'
+            'INSERT INTO cms_sessions
+            (s_id, s_user_id, s_user_login, s_user_group, s_running_time, s_ip_adress, s_browser)
+            VALUES (:sid, :uid, :ulogin, :ugroup, :rt, :ip, :ua)
+            ON DUPLICATE KEY UPDATE
+                s_user_id      = VALUES(s_user_id),
+                s_user_login   = VALUES(s_user_login),
+                s_user_group   = VALUES(s_user_group),
+                s_running_time = VALUES(s_running_time),
+                s_ip_adress    = VALUES(s_ip_adress),
+                s_browser      = VALUES(s_browser)'
         );
         $this->db->bind(':sid',    $this->session_id);
         $this->db->bind(':uid',    0);
@@ -308,7 +312,7 @@ final class Session
         }
 
         $this->db->query(
-            'UPDATE nova_sessions
+            'UPDATE cms_sessions
             SET s_user_id = :uid,
                 s_user_login = :ulogin,
                 s_user_group = :ugroup,
@@ -347,7 +351,7 @@ final class Session
     private function createUserSession(): void
     {
         var_dump("Function : createUserSession()");
-        if (empty($this->user['id'])) {
+        if (empty($this->user['u_id'])) {
             $this->createGuestSession();
             return;
         }
@@ -356,12 +360,12 @@ final class Session
         $threshold = $this->time_now - SESSION_TTL_SECONDS;
 
         $this->db->query(
-            'DELETE FROM nova_sessions
+            'DELETE FROM cms_sessions
              WHERE s_running_time < :threshold
                 OR s_user_id = :uid'
         );
         $this->db->bind(':threshold', $threshold);
-        $this->db->bind(':uid', (int)$this->user['id']);
+        $this->db->bind(':uid', (int)$this->user['u_id']);
         $this->db->execute();
 
         // 2) Nouveau token applicatif
@@ -370,38 +374,46 @@ final class Session
 
         // 3) Ajouter la session
         $this->db->query(
-            'INSERT INTO nova_sessions (s_id, s_user_id, s_user_login, s_user_group, s_running_time, s_ip_adress, s_browser)
-             VALUES (:sid, :uid, :ulogin, :ugroup, :rt, :ip, :ua)'
+            'INSERT INTO cms_sessions
+            (s_id, s_user_id, s_user_login, s_user_group, s_running_time, s_ip_adress, s_browser)
+            VALUES (:sid, :uid, :ulogin, :ugroup, :rt, :ip, :ua)
+            ON DUPLICATE KEY UPDATE
+                s_user_id      = VALUES(s_user_id),
+                s_user_login   = VALUES(s_user_login),
+                s_user_group   = VALUES(s_user_group),
+                s_running_time = VALUES(s_running_time),
+                s_ip_adress    = VALUES(s_ip_adress),
+                s_browser      = VALUES(s_browser)'
         );
         $this->db->bind(':sid',    $this->session_id);
-        $this->db->bind(':uid',    (int)$this->user['id']);
-        $this->db->bind(':ulogin', (string)$this->user['login']);
-        $this->db->bind(':ugroup', (int)$this->user['ugroup']);
+        $this->db->bind(':uid',    (int)$this->user['u_id']);
+        $this->db->bind(':ulogin', (string)$this->user['u_login']);
+        $this->db->bind(':ugroup', (int)$this->user['u_group']);
         $this->db->bind(':rt',     $this->time_now);
         $this->db->bind(':ip',     $this->ip_address);
         $this->db->bind(':ua',     $this->user_agent);
         $this->db->execute();
 
-        $this->session_user_id = (int)$this->user['id'];
+        $this->session_user_id = (int)$this->user['u_id'];
         $this->last_click      = $this->time_now;
         $this->sessionRowExists = true; // ✅
 
         // 4) Mettre à jour last_visit / last_activity toutes les 5 min
-        $lastActivity = (int)($this->user['last_activity'] ?? 0);
+        $lastActivity = (int)($this->user['u_last_activity'] ?? 0);
         if ($this->time_now - $lastActivity > 300) {
             $this->db->query(
-                'UPDATE nova_users
-                 SET last_visit = last_activity,
-                     last_activity = :now
+                'UPDATE cms_users
+                 SET u_last_visit = u_last_activity,
+                     u_last_activity = :now
                  WHERE id = :uid'
             );
             $this->db->bind(':now', $this->time_now);
-            $this->db->bind(':uid', (int)$this->user['id']);
+            $this->db->bind(':uid', (int)$this->user['u_id']);
             $this->db->execute();
 
             // Cohérence côté mémoire
-            $this->user['last_visit']    = $lastActivity;
-            $this->user['last_activity'] = $this->time_now;
+            $this->user['u_last_visit']    = $lastActivity;
+            $this->user['u_last_activity'] = $this->time_now;
         }
     }
 
@@ -416,14 +428,14 @@ final class Session
             return;
         }
 
-        if (empty($this->user['id'])) {
+        if (empty($this->user['u_id'])) {
             $this->unloadUser();
             $this->createGuestSession();
             return;
         }
 
         $this->db->query(
-            'UPDATE nova_sessions
+            'UPDATE cms_sessions
             SET s_user_id = :uid,
                 s_user_login = :ulogin,
                 s_user_group = :ugroup,
@@ -431,9 +443,9 @@ final class Session
             WHERE s_id = :sid'
         );
         $this->db->bind(':sid',    $this->session_id);
-        $this->db->bind(':uid',    (int)$this->user['id']);
-        $this->db->bind(':ulogin', (string)$this->user['login']);
-        $this->db->bind(':ugroup', (int)$this->user['ugroup']);
+        $this->db->bind(':uid',    (int)$this->user['u_id']);
+        $this->db->bind(':ulogin', (string)$this->user['u_login']);
+        $this->db->bind(':ugroup', (int)$this->user['u_group']);
         $this->db->bind(':rt',     $this->time_now);
         $this->db->execute();
 
@@ -443,7 +455,7 @@ final class Session
             return;
         }
 
-        $this->session_user_id  = (int)$this->user['id'];
+        $this->session_user_id  = (int)$this->user['u_id'];
         $this->last_click       = $this->time_now;
         $this->sessionRowExists = true;
     }
@@ -458,7 +470,7 @@ final class Session
         $sid = $botName . '_session';
 
         $this->db->query(
-            'INSERT INTO nova_sessions (s_id, s_user_id, s_user_login, s_user_group, s_running_time, s_ip_adress, s_browser)
+            'INSERT INTO cms_sessions (s_id, s_user_id, s_user_login, s_user_group, s_running_time, s_ip_adress, s_browser)
              VALUES (:sid, :uid, :ulogin, :ugroup, :rt, :ip, :ua)'
         );
         $this->db->bind(':sid',    $sid);
@@ -477,7 +489,7 @@ final class Session
         $sid = $botName . '_session';
 
         $this->db->query(
-            'UPDATE nova_sessions
+            'UPDATE cms_sessions
              SET s_user_id = :uid,
                  s_user_login = :ulogin,
                  s_user_group = :ugroup,

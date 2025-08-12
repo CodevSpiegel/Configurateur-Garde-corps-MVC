@@ -2,23 +2,7 @@
 
 // SESSIONS
 // ini_set('session.cookie_lifetime', false);
-session_start();
-
-// var_dump($_SESSION);
-
-// var_dump($_COOKIE['PHPSESSID']);
-
-
-
-
-
-
-
-
-
-
-
-
+session_start();;
 
 // Activer l’affichage des erreurs pour le développement
 ini_set('display_errors', 1);
@@ -31,6 +15,8 @@ define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 // - Sur Linux/Mac : "/"
 // On l’utilise pour écrire du code compatible multiplateforme
 
+// DÉFINITION DE LA CONSTANTE PUBLIC_PATH Pour images, fichiers etc (html)
+define("PUBLIC_PATH", substr($_SERVER['PHP_SELF'], 0, -9));
 
 // Constantes
 require_once ROOT."core/defines.php";
