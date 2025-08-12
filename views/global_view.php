@@ -25,7 +25,8 @@ return <<<HTML
     <meta name="twitter:description" content="Apprenez à créer un site PHP MVC pas à pas avec un routeur puissant et SEO-friendly.">
     <meta name="twitter:image" content="https://www.monsite.com/images/php-mvc.jpg">
     <meta name="twitter:site" content="@MonCompteTwitter">
-    <link rel="stylesheet" href="{$site->const['PUBLIC_PATH']}assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <!-- <link rel="stylesheet" href="{$site->const['PUBLIC_PATH']}assets/css/style.css"> -->
 
     <!-- Balises meta supplémentaires utiles -->
     <!-- Empêche la mise en cache si besoin (déconseillé en production) -->

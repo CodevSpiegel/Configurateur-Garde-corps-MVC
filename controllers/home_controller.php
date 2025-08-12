@@ -20,7 +20,7 @@ class home_controller {
 
         $this->action = $params[0] ?? false;
 
-        require_once ROOT."models/home_model.php";
+        // require_once ROOT."models/home_model.php";
 
         $this->html = $func->load_view('home_view');
 

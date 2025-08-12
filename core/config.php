@@ -15,18 +15,17 @@ $func = new FUNC;
 require_once ROOT."core/Classes/Display.php";
 $print = new Display();
 
-// Sessions
-// require_once ROOT."core/Classes/Session.php";
-// $sess = new Session();
-
 // DB Driver
 require_once ROOT."core/Classes/Db_driver.php";
-$db = new Db_driver;
+$db = new Db_driver();
+
+// Sessions
+require_once ROOT."core/Classes/Sessions.php";
+$sess = new Session($db);
 
 
 class site {
-    // public $member          = array();
-    public $input           = array();
+    public $user            = array();
     public $const           = array();
     // public $session_id      = "";
     // public $skin            = "";
@@ -40,9 +39,13 @@ class site {
 // Emballez le tout dans une super classe facile à transporter
 $site = new site();
 
-$site->input = $func->parse_incoming();
+//--------------------------------
+// Charger une session Utilisateur
+//--------------------------------
+$site->user = $sess->authorise();
+
+
 $site->const = get_defined_constants();
-// $site->member = $sess->authorise();
 // ================================================================
 $global_view = $func->load_view('global_view');
 

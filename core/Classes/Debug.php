@@ -34,4 +34,33 @@ class Debug
         $return =  $label . " : " . $this->getExecutionTime() . " secondes<br>";
         return $return;
     }
+
+
+    public function follow_script( string $string = '', $level = '' ) 
+    {
+		if ( DEBUG_SCRIPT ) 
+		{
+			if( $level == 1 )
+			{
+				$return = '<div>> '.$string.'</div>';
+			}
+			elseif( $level == 2 )
+			{
+				$return = '<div>> '.$string.'</div>';
+			}
+			elseif( $level == 'var' )
+			{
+				$return = "<div>> <span style='color:#007bff'>".$string."</span></div>";
+			}
+			else
+			{
+				$return = '<div>> '.$string.'</div>';
+			}
+
+			echo $return;
+		}
+    }
+
+
+
 }
