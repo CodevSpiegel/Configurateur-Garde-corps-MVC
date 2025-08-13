@@ -30,9 +30,9 @@ HTML;
 function row_article(array $data) {
 global $site;
 return <<<HTML
-    <h2>{$data['title']}</h2>
-    {$data['content']}
-    <div><i>Publié le {$data['date']}</i></div>
+    <h2>{$data['a_title']}</h2>
+    {$data['a_content']}
+    <div><i>Publié le {$data['a_created_at']}</i></div>
 
 HTML;
 }
