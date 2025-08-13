@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 13 août 2025 à 00:29
+-- Généré le : mer. 13 août 2025 à 21:05
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `cms_articles` (
 --
 
 INSERT INTO `cms_articles` (`a_id`, `a_title`, `a_content`, `a_author_id`, `a_status`, `a_slug`, `a_created_at`, `a_updated_at`, `a_category`) VALUES
-(1, 'Bienvenue sur mon_cms', '<p>Ceci est le premier article de test.</p>', 1, 1, 'bienvenue-sur-mon-cms', 1755043910, NULL, 'Général'),
-(2, 'Deuxième article', '<p>Encore un article de démonstration.</p>', 1, 0, 'deuxieme-article', 1755043910, NULL, 'Actu');
+(1, 'Bienvenue sur mon_cms', '<p>Ceci est le premier article de test.</p>', 1, 1, 'bienvenue-sur-mon-cms', 1750043910, NULL, 'Général'),
+(2, 'Deuxième article', '<p>Encore un article de démonstration.</p>', 1, 0, 'deuxieme-article', 1755023910, NULL, 'Actu');
 
 -- --------------------------------------------------------
 
@@ -76,88 +76,23 @@ CREATE TABLE IF NOT EXISTS `cms_page_views` (
   KEY `idx_sid` (`pv_s_id`),
   KEY `idx_user` (`pv_user_id`),
   KEY `idx_path_time` (`pv_path`,`pv_time`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Journal des pages vues avec groupe utilisateur';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Journal des pages vues avec groupe utilisateur';
 
 --
 -- Déchargement des données de la table `cms_page_views`
 --
 
 INSERT INTO `cms_page_views` (`pv_id`, `pv_time`, `pv_s_id`, `pv_user_id`, `pv_user_group`, `pv_path`, `pv_method`, `pv_referer`, `pv_ip`, `pv_user_agent`) VALUES
-(1, 1755037439, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(2, 1755037440, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(3, 1755037580, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(4, 1755037581, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(5, 1755037586, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/about', 'GET', 'http://moncms/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(6, 1755037647, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home', 'GET', 'http://moncms/about', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(7, 1755037650, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(8, 1755037652, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(9, 1755037658, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(10, 1755037939, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(11, 1755037940, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(12, 1755037942, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/nimpxxxxx', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(13, 1755038152, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/admin_stats.php', 'GET', '', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(14, 1755038750, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home', 'GET', 'http://moncms/admin_stats.php', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(15, 1755038751, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/home', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(16, 1755038752, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(17, 1755038753, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(18, 1755042005, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(19, 1755042007, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(20, 1755042044, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(21, 1755042171, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(22, 1755042172, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(23, 1755042173, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/about', 'GET', 'http://moncms/home', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(24, 1755042229, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(25, 1755042230, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/login', 'GET', 'http://moncms/home', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(26, 1755042279, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/login', 'GET', 'http://moncms/home', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(27, 1755042297, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/login', 'GET', 'http://moncms/login', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(28, 1755042299, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home', 'GET', 'http://moncms/login', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(29, 1755042300, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/about', 'GET', 'http://moncms/home', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(30, 1755042303, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/login', 'GET', 'http://moncms/home', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(31, 1755042400, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/login', 'GET', 'http://moncms/home', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(32, 1755042401, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/login', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(33, 1755042402, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(34, 1755042403, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(35, 1755042404, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(36, 1755042406, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/nimpxxxxx', 'GET', 'http://moncms/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(37, 1755042408, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(38, 1755042409, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(39, 1755042410, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(40, 1755043182, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(41, 1755043182, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(42, 1755043183, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(43, 1755043184, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(44, 1755043237, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(45, 1755043238, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(46, 1755043239, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(47, 1755043240, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(48, 1755043344, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(49, 1755043345, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(50, 1755043346, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(51, 1755043346, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(52, 1755043450, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(53, 1755043452, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(54, 1755043453, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(55, 1755043454, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(56, 1755043913, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(57, 1755044042, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(58, 1755044043, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(59, 1755044043, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(60, 1755044071, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(61, 1755044558, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(62, 1755044559, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(63, 1755044560, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(64, 1755044563, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(65, 1755044570, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/articles', 'GET', '', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(66, 1755044618, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/articles', 'GET', '', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(67, 1755044702, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/articles', 'GET', '', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(68, 1755044784, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(69, 1755044785, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(70, 1755044786, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(71, 1755044786, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(72, 1755044787, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/about', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(73, 1755044790, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/nimpxxxxx', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(74, 1755044793, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
-(75, 1755044797, '8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 2, '/', 'GET', 'http://moncms/home/action-01/?test=%3Cscript%3Ealert(`Si%20%C3%A7a%20passe...%20Ca%20craint%20un%20max%20l%C3%A0%20!`)%3C/script%3E', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36');
+(1, 1755115759, 'd68f3cc5a4d8cf7454cfcaca514f92221b0650fab709c517daefc734a7072d28', 0, 2, '/', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
+(2, 1755115780, 'd68f3cc5a4d8cf7454cfcaca514f92221b0650fab709c517daefc734a7072d28', 0, 2, '/home/action-01', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
+(3, 1755119058, 'd68f3cc5a4d8cf7454cfcaca514f92221b0650fab709c517daefc734a7072d28', 0, 2, '/', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
+(4, 1755119059, 'd68f3cc5a4d8cf7454cfcaca514f92221b0650fab709c517daefc734a7072d28', 0, 2, '/home/action-01', 'GET', 'http://moncms/', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
+(5, 1755119060, 'd68f3cc5a4d8cf7454cfcaca514f92221b0650fab709c517daefc734a7072d28', 0, 2, '/home/action-02', 'GET', 'http://moncms/home/action-01', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
+(6, 1755119062, 'd68f3cc5a4d8cf7454cfcaca514f92221b0650fab709c517daefc734a7072d28', 0, 2, '/about', 'GET', 'http://moncms/home/action-02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
+(7, 1755119063, 'd68f3cc5a4d8cf7454cfcaca514f92221b0650fab709c517daefc734a7072d28', 0, 2, '/home', 'GET', 'http://moncms/about', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
+(8, 1755119065, 'd68f3cc5a4d8cf7454cfcaca514f92221b0650fab709c517daefc734a7072d28', 0, 2, '/nimpxxxxx', 'GET', 'http://moncms/home', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
+(9, 1755119066, 'd68f3cc5a4d8cf7454cfcaca514f92221b0650fab709c517daefc734a7072d28', 0, 2, '/home', 'GET', 'http://moncms/nimpxxxxx', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36'),
+(10, 1755119067, 'd68f3cc5a4d8cf7454cfcaca514f92221b0650fab709c517daefc734a7072d28', 0, 2, '/', 'GET', 'http://moncms/home', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36');
 
 -- --------------------------------------------------------
 
@@ -184,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `cms_sessions` (
 --
 
 INSERT INTO `cms_sessions` (`s_id`, `s_user_id`, `s_user_login`, `s_user_group`, `s_running_time`, `s_ip_adress`, `s_browser`) VALUES
-('8d854e5f85b610a31b99c004149001279fa6f934402a844b14c8925b62f5cb21', 0, 'Guest', 2, 1755044797, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36');
+('d68f3cc5a4d8cf7454cfcaca514f92221b0650fab709c517daefc734a7072d28', 0, 'Guest', 2, 1755119067, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36');
 
 -- --------------------------------------------------------
 
@@ -196,8 +131,6 @@ DROP TABLE IF EXISTS `cms_users`;
 CREATE TABLE IF NOT EXISTS `cms_users` (
   `u_id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Identifiant unique utilisateur',
   `u_login` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Identifiant de connexion (pseudo ou username)',
-  `u_firstname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Prénom',
-  `u_lastname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Nom de famille',
   `u_email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Adresse email',
   `u_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Hash du mot de passe via password_hash()',
   `u_group` smallint UNSIGNED NOT NULL DEFAULT '0' COMMENT 'Groupe utilisateur (voir constantes GROUP_*)',
@@ -209,14 +142,111 @@ CREATE TABLE IF NOT EXISTS `cms_users` (
   UNIQUE KEY `uniq_u_login` (`u_login`),
   UNIQUE KEY `uniq_u_email` (`u_email`),
   KEY `idx_u_group` (`u_group`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Table des utilisateurs (cms_users)';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Table des utilisateurs (cms_users)';
 
 --
 -- Déchargement des données de la table `cms_users`
 --
 
-INSERT INTO `cms_users` (`u_id`, `u_login`, `u_firstname`, `u_lastname`, `u_email`, `u_password`, `u_group`, `u_lang`, `u_ipadress`, `u_last_visit`, `u_last_activity`) VALUES
-(1, 'admin', 'Super', 'Admin', 'admin@example.com', '$2y$10$PpMMLUWBDEtA1McjqFhSDuX3L8UOSJ2UXj5QtBEdwCc0l6.6Z9pPO', 27, 'fr', '', 0, 0);
+INSERT INTO `cms_users` (`u_id`, `u_login`, `u_email`, `u_password`, `u_group`, `u_lang`, `u_ipadress`, `u_last_visit`, `u_last_activity`) VALUES
+(1, 'admin', 'admin@example.com', '$2y$10$PpMMLUWBDEtA1McjqFhSDuX3L8UOSJ2UXj5QtBEdwCc0l6.6Z9pPO', 27, 'fr', '', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `cms_users_addresses`
+--
+
+DROP TABLE IF EXISTS `cms_users_addresses`;
+CREATE TABLE IF NOT EXISTS `cms_users_addresses` (
+  `add_id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID unique adresse',
+  `u_id` int UNSIGNED NOT NULL COMMENT 'FK vers moncms.cms_users.u_id',
+  `add_label` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Libellé : Maison, Travail…',
+  `add_recipient_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nom complet du destinataire',
+  `add_company` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Société (facultatif)',
+  `add_line1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Adresse ligne 1',
+  `add_line2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Adresse ligne 2',
+  `add_line3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Adresse ligne 3 (optionnel)',
+  `add_city` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Ville',
+  `add_state` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Région / État / Province',
+  `add_postal_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Code postal',
+  `add_country_code` char(2) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Code pays ISO 3166-1 alpha-2',
+  `add_phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Téléphone',
+  `add_delivery_instructions` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Instructions livreur',
+  `add_is_default` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1 = par défaut',
+  `add_is_active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = active',
+  `add_created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Création',
+  `add_updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'MAJ',
+  PRIMARY KEY (`add_id`),
+  KEY `idx_user` (`u_id`),
+  KEY `idx_user_default` (`u_id`,`add_is_default`),
+  KEY `idx_country` (`add_country_code`),
+  KEY `idx_city` (`add_city`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Adresses de livraison liées aux utilisateurs (1-N)';
+
+--
+-- Déchargement des données de la table `cms_users_addresses`
+--
+
+INSERT INTO `cms_users_addresses` (`add_id`, `u_id`, `add_label`, `add_recipient_name`, `add_company`, `add_line1`, `add_line2`, `add_line3`, `add_city`, `add_state`, `add_postal_code`, `add_country_code`, `add_phone`, `add_delivery_instructions`, `add_is_default`, `add_is_active`, `add_created_at`, `add_updated_at`) VALUES
+(1, 1, 'Maison', 'Admin Principal', NULL, '12 Rue de la Paix', NULL, NULL, 'Paris', 'Île-de-France', '75002', 'FR', '+33123456789', 'Sonner interphone 12', 1, 1, '2025-08-13 22:57:43', '2025-08-13 22:57:43'),
+(2, 1, 'Travail', 'Admin Principal', 'ACME SAS', '45 Av. des Champs-Élysées', 'Bât. A', 'Étage 3', 'Paris', 'Île-de-France', '75008', 'FR', '+33198765432', 'Accueil réceptionne', 0, 1, '2025-08-13 22:57:43', '2025-08-13 22:57:43');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `cms_users_meta`
+--
+
+DROP TABLE IF EXISTS `cms_users_meta`;
+CREATE TABLE IF NOT EXISTS `cms_users_meta` (
+  `u_meta_id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID unique meta',
+  `u_id` int UNSIGNED NOT NULL COMMENT 'FK vers moncms.cms_users.u_id',
+  `u_first_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Prénom',
+  `u_last_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Nom',
+  `u_display_name` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Nom affiché publiquement',
+  `u_avatar_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'URL ou chemin avatar',
+  `u_bio` text COLLATE utf8mb4_unicode_ci COMMENT 'Courte biographie',
+  `u_facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Lien Facebook',
+  `u_twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Lien Twitter',
+  `u_instagram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Lien Instagram',
+  `u_linkedin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Lien LinkedIn',
+  `u_pref_newsletter` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1=inscrit newsletter',
+  `u_pref_dark_mode` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1=mode sombre',
+  `u_default_shipping_addr_id` int UNSIGNED DEFAULT NULL COMMENT 'FK -> cms_users_addresses.add_id',
+  `u_default_billing_addr_id` int UNSIGNED DEFAULT NULL COMMENT 'FK -> cms_users_addresses.add_id',
+  `u_created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Date de création',
+  `u_updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Dernière mise à jour',
+  PRIMARY KEY (`u_meta_id`),
+  UNIQUE KEY `uniq_user_meta` (`u_id`),
+  KEY `idx_def_ship` (`u_default_shipping_addr_id`),
+  KEY `idx_def_bill` (`u_default_billing_addr_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Profil utilisateur + préférences. Pointeurs vers adresses par défaut.';
+
+--
+-- Déchargement des données de la table `cms_users_meta`
+--
+
+INSERT INTO `cms_users_meta` (`u_meta_id`, `u_id`, `u_first_name`, `u_last_name`, `u_display_name`, `u_avatar_url`, `u_bio`, `u_facebook`, `u_twitter`, `u_instagram`, `u_linkedin`, `u_pref_newsletter`, `u_pref_dark_mode`, `u_default_shipping_addr_id`, `u_default_billing_addr_id`, `u_created_at`, `u_updated_at`) VALUES
+(1, 1, 'Sébastien', 'Spiegel', 'Admin', '/uploads/avatars/admin.png', 'Super administrateur', NULL, NULL, NULL, NULL, 1, 0, 1, 2, '2025-08-13 22:57:43', '2025-08-13 23:00:02');
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `cms_users_addresses`
+--
+ALTER TABLE `cms_users_addresses`
+  ADD CONSTRAINT `fk_cms_users_addresses_user` FOREIGN KEY (`u_id`) REFERENCES `cms_users` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `cms_users_meta`
+--
+ALTER TABLE `cms_users_meta`
+  ADD CONSTRAINT `fk_meta_def_bill` FOREIGN KEY (`u_default_billing_addr_id`) REFERENCES `cms_users_addresses` (`add_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_meta_def_ship` FOREIGN KEY (`u_default_shipping_addr_id`) REFERENCES `cms_users_addresses` (`add_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_meta_user` FOREIGN KEY (`u_id`) REFERENCES `cms_users` (`u_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

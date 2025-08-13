@@ -73,8 +73,6 @@ final class Session
             'u_login'         => '',
             'u_password'      => '',
             'u_group'        => GROUP_GEST,
-            'u_firstname'     => '',
-            'u_lastname'      => '',
             'u_email'         => '',
             'u_lang'          => '',
             'u_ipadress'      => $this->ip_address,
@@ -215,7 +213,7 @@ final class Session
         }
 
         $this->db->query(
-            'SELECT u_id, u_login, u_firstname, u_lastname, u_email, u_password, u_group, u_lang, u_ipadress, u_last_visit, u_last_activity
+            'SELECT u_id, u_login, u_email, u_password, u_group, u_lang, u_ipadress, u_last_visit, u_last_activity
             FROM cms_users
             WHERE u_id = :uid'
         );
@@ -241,8 +239,6 @@ final class Session
             'u_login'         => '',
             'u_password'      => '',
             'u_group'        => GROUP_GEST,
-            'u_firstname'     => '',
-            'u_lastname'      => '',
             'u_email'         => '',
             'u_lang'          => '',
             'u_ipadress'      => $this->ip_address,
