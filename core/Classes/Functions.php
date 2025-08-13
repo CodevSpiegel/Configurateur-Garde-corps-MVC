@@ -40,42 +40,85 @@ class FUNC {
 
 
     /**
-     * date_fr();
-     * Formate une date/timestamp en français selon un style unique.
+     * ===========================================================
+     *   📅 FONCTION : date_fr_universelle()
+     * ===========================================================
+     *  Objectif :
+     *    Formater une date, un timestamp ou un objet DateTime
+     *    en français, avec ou sans heure/secondes, en style court
+     *    ou long, avec gestion d’"Aujourd'hui" et "Hier".
+     * 
+     * -----------------------------------------------------------
+     *  Paramètres :
+     * -----------------------------------------------------------
+     *  @param int|DateTimeInterface|string $moment
+     *      - Timestamp Unix (int)
+     *      - Objet DateTime / DateTimeImmutable
+     *      - Chaîne de date parsable (ex: "2025-08-13 15:42:07")
      *
-     * Styles disponibles :
-     *  - "court"              => 13/08/2025
-     *  - "court+heure"        => 13/08/2025 15:42
-     *  - "court+heure+sec"    => 13/08/2025 15:42:07
-     *  - "long"               => Mercredi 13 Août 2025
-     *  - "long+heure"         => Mercredi 13 Août 2025 15:42
-     *  - "long+heure+sec"     => Mercredi 13 Août 2025 15:42:07
+     *  @param string $style
+     *      Définit le format d'affichage :
+     *        "court"            => 13/08/2025
+     *        "court+heure"      => 13/08/2025 15:42
+     *        "court+heure+sec"  => 13/08/2025 15:42:07
+     *        "long"             => Mercredi 13 Août 2025
+     *        "long+heure"       => Mercredi 13 Août 2025 15:42
+     *        "long+heure+sec"   => Mercredi 13 Août 2025 15:42:07
      *
-     * Options :
-     *  - $remplacerRelatif : si TRUE, remplace la date du jour par "Aujourd'hui"
-     *                        et la veille par "Hier" (en conservant l'heure si demandée).
-     *  - $timezone         : ex. "Europe/Paris". Utilisé pour format & comparaison (Aujourd'hui/Hier).
+     *  @param bool $remplacerRelatif
+     *      TRUE  => remplace la date du jour par "Aujourd'hui"
+     *               et la veille par "Hier" (en conservant l'heure si demandée).
+     *      FALSE => toujours afficher la date complète.
      *
-     * @param int|DateTimeInterface|string $moment           Timestamp, DateTime, ou chaîne parsable ("2025-08-13 15:42:07")
-     * @param string                       $style            Voir styles ci-dessus
-     * @param bool                         $remplacerRelatif TRUE => "Aujourd'hui"/"Hier" lorsque applicable
-     * @param string|null                  $timezone         IANA TZ (ex: "Europe/Paris"). Null => date_default_timezone_get()
-     * @return string
+     *  @param string|null $timezone
+     *      Fuseau horaire IANA (ex: "Europe/Paris").
+     *      Null => fuseau par défaut de PHP (date_default_timezone_get()).
+     *
+     * -----------------------------------------------------------
+     *  Retour :
+     * -----------------------------------------------------------
+     *  @return string
+     *      La date formatée en français selon le style choisi.
+     *
+     * -----------------------------------------------------------
+     *  Compatibilité :
+     * -----------------------------------------------------------
+     *  - PHP 8.1+
+     *  - Utilise IntlDateFormatter si disponible (gère les accents et locales)
+     *  - Fallback manuel si extension intl absente
+     *
+     * -----------------------------------------------------------
+     *  Exemples :
+     * -----------------------------------------------------------
+     *  echo date_fr_universelle(time(), 'court');
+     *      // "13/08/2025"
+     *
+     *  echo date_fr_universelle(time(), 'court+heure');
+     *      // "Aujourd'hui 15:42"
+     *
+     *  echo date_fr_universelle(time(), 'court+heure+sec');
+     *      // "Aujourd'hui 15:42:07"
+     *
+     *  echo date_fr_universelle(time(), 'long');
+     *      // "Mercredi 13 Août 2025"
+     *
+     *  echo date_fr_universelle(time(), 'long+heure');
+     *      // "Mercredi 13 Août 2025 15:42"
+     *
+     *  echo date_fr_universelle('2025-12-25', 'long+heure+sec');
+     *      // "Jeudi 25 Décembre 2025 00:00:00"
+     *
+     * -----------------------------------------------------------
+     *  Astuce :
+     * -----------------------------------------------------------
+     *  - Utilise "long" pour des affichages lisibles pour l’utilisateur.
+     *  - Utilise "court" pour les listes, tableaux, logs.
+     *  - Active $remplacerRelatif pour un rendu plus humain ("Aujourd'hui"/"Hier").
+     * ===========================================================
      */
 
-    // =======================
-    // EXEMPLES D’UTILISATION
-    // =======================
-    // echo date_fr_universelle(time(), 'court');                 // 13/08/2025
-    // echo date_fr_universelle(time(), 'court+heure');           // Aujourd'hui 15:42
-    // echo date_fr_universelle(time(), 'court+heure+sec');       // Aujourd'hui 15:42:07
-    // echo date_fr_universelle(time(), 'long');                  // Mercredi 13 Août 2025
-    // echo date_fr_universelle(time(), 'long+heure');            // Mercredi 13 Août 2025 15:42
-    // echo date_fr_universelle(time(), 'long+heure+sec');        // Mercredi 13 Août 2025 15:42:07
-    // echo date_fr_universelle('2025-12-25 08:00:03','long+heure+sec');
-    // echo date_fr_universelle('2025-12-25','long', true, 'Europe/Paris');
 
-    function date_fr(
+    function date_fr_universelle(
         int|DateTimeInterface|string $moment,
         string $style = 'long',
         bool $remplacerRelatif = true,
