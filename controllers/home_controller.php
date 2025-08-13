@@ -97,7 +97,7 @@ class home_controller {
 
         if (!empty($articles)) {
             foreach ($articles as $article) :
-                $article['date_fr'] = $func->date_fr($article['a_created_at'], 1);
+                $article['date_fr'] = $func->date_fr($article['a_created_at'], 'long+heure');
                 $this->output .= $this->html->row_article($article);
             endforeach;
         } else {
