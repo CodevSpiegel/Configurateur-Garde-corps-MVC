@@ -40,7 +40,6 @@ class home_controller {
         // Injecte des services globaux exposés par le bootstrap
         global $func, $print;
 
-
         // Afficher les paramètres pour test
         // var_dump($params);
 
@@ -98,6 +97,7 @@ class home_controller {
 
         if (!empty($articles)) {
             foreach ($articles as $article) :
+                $article['date_fr'] = $func->date_fr($article['a_created_at'], 1);
                 $this->output .= $this->html->row_article($article);
             endforeach;
         } else {

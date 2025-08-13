@@ -32,7 +32,7 @@ global $site;
 return <<<HTML
     <h2>{$data['a_title']}</h2>
     {$data['a_content']}
-    <div><i>Publié le {$data['a_created_at']}</i></div>
+    <div><i>Publié {$data['date_fr']}</i></div>
 
 HTML;
 }
