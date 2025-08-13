@@ -1,5 +1,18 @@
 <?php
 
+// Tracer les pages visitées
+if( TRACE_PAGES_VIEWS ) 
+{
+    $requestedPath  = $_SERVER['REQUEST_URI'] ?? '/';
+    $httpMethod     = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+    $referer        = $_SERVER['HTTP_REFERER'] ?? '';
+
+    $sess->trackPageView($requestedPath, $httpMethod, $referer);
+
+    // Purge : tâche CRON qui supprime les logs au-delà de X jours :
+    // DELETE FROM cms_page_views WHERE pv_time < UNIX_TIMESTAMP() - 90*24*3600; -- garde 90 jours
+}
+
 // ---------------------------------------------------------------------------
 // 2. RÉCUPÉRATION ET ANALYSE DE L'URL DEMANDÉE
 // ---------------------------------------------------------------------------

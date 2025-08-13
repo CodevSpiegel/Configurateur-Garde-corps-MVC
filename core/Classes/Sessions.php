@@ -65,7 +65,7 @@ final class Session
         $_SESSION['id']   = $_SESSION['id']   ?? bin2hex(random_bytes(32));
         $this->session_id = (string) $_SESSION['id'];
 
-        var_dump($this->session_id);
+        // var_dump($this->session_id);
 
         // État par défaut côté "profil" : invité
         $this->user = [
@@ -93,7 +93,7 @@ final class Session
      */
     public function authorise(): array
     {
-        var_dump("Function : Authorise()");
+        // var_dump("Function : Authorise()");
         // 1) Lire la session en BDD si elle existe
         $this->getSessionById($this->session_id);
 
@@ -154,7 +154,7 @@ final class Session
      */
     private function getSessionById(string $sessionId): void
     {
-        var_dump("Function : getSessionById()");
+        // var_dump("Function : getSessionById()");
         if ($sessionId === '') {
             $this->session_user_id = 0;
             $this->sessionRowExists = false;
@@ -179,7 +179,7 @@ final class Session
             $this->session_id      = $sessionId;
             $this->session_user_id = 0;
             $this->sessionRowExists = false;   // ❌ aucune ligne en BDD
-            var_dump("Aucune ligne -> on conserve le token applicatif mais sans user lié");
+            // var_dump("Aucune ligne -> on conserve le token applicatif mais sans user lié");
         }
     }
 
@@ -188,7 +188,7 @@ final class Session
      */
     private function deleteDefunctSessions(): void
     {
-        var_dump("Function : deleteDefunctSessions()");
+        // var_dump("Function : deleteDefunctSessions()");
         $threshold = $this->time_now - SESSION_TTL_SECONDS;
 
         $this->db->query(
@@ -208,7 +208,7 @@ final class Session
      */
     private function loadUser(int $userId): void
     {
-        var_dump("Function : loadUser()");
+        // var_dump("Function : loadUser()");
         if ($userId <= 0) {
             $this->unloadUser();
             return;
@@ -235,7 +235,7 @@ final class Session
      */
     private function unloadUser(): void
     {
-        var_dump("Function : unloadUser()");
+        // var_dump("Function : unloadUser()");
         $this->user = [
             'u_id'            => 0,
             'u_login'         => '',
@@ -263,7 +263,7 @@ final class Session
      */
     private function createGuestSession(): void
     {
-        var_dump("Function : createGuestSession()");
+        // var_dump("Function : createGuestSession()");
         // Toujours commencer par nettoyer les sessions périmées
         $this->deleteDefunctSessions();
 
@@ -305,7 +305,7 @@ final class Session
      */
     private function updateGuestSession(): void
     {
-        var_dump("Function : updateGuestSession()");
+        // var_dump("Function : updateGuestSession()");
         if ($this->session_id === '' || $this->session_id !== (string)($_SESSION['id'] ?? '')) {
             $this->createGuestSession();
             return;
@@ -350,7 +350,7 @@ final class Session
      */
     private function createUserSession(): void
     {
-        var_dump("Function : createUserSession()");
+        // var_dump("Function : createUserSession()");
         if (empty($this->user['u_id'])) {
             $this->createGuestSession();
             return;
@@ -422,7 +422,7 @@ final class Session
      */
     private function updateUserSession(): void
     {
-        var_dump("Function : updateUserSession()");
+        // var_dump("Function : updateUserSession()");
         if ($this->session_id === '') {
             $this->createUserSession();
             return;
@@ -466,7 +466,7 @@ final class Session
 
     private function createBotSession(string $botName): void
     {
-        var_dump("Function : createBotSession()");
+        // var_dump("Function : createBotSession()");
         $sid = $botName . '_session';
 
         $this->db->query(
@@ -485,7 +485,7 @@ final class Session
 
     private function updateBotSession(string $botName): void
     {
-        var_dump("Function : updateBotSession()");
+        // var_dump("Function : updateBotSession()");
         $sid = $botName . '_session';
 
         $this->db->query(
@@ -503,6 +503,48 @@ final class Session
         $this->db->bind(':rt',     $this->time_now);
         $this->db->execute();
     }
+
+
+    /**
+     * Enregistre une page vue dans cms_page_views avec l'ID et le groupe de l'utilisateur.
+     * @param string $path   Chemin/route demandé (ex: $_SERVER['REQUEST_URI'])
+     * @param string $method Méthode HTTP (GET/POST/...)
+     * @param string $referer Referer si dispo
+     */
+    public function trackPageView(string $path, string $method = 'GET', string $referer = ''): void
+    {
+        // Sécurité et limite de longueur pour éviter les débordements
+        $safePath    = mb_substr($path, 0, 255);
+        $safeMethod  = mb_substr($method, 0, 10);
+        $safeReferer = mb_substr($referer ?? '', 0, 255);
+
+        // Limiter la taille de l'UA
+        $ua = $this->user_agent;
+        if (mb_strlen($ua) > 255) {
+            $ua = mb_substr($ua, 0, 252) . '...';
+        }
+
+        // Insertion dans la base
+        $this->db->query(
+            'INSERT INTO cms_page_views
+            (pv_time, pv_s_id, pv_user_id, pv_user_group, pv_path, pv_method, pv_referer, pv_ip, pv_user_agent)
+            VALUES (:t, :sid, :uid, :ugroup, :path, :method, :referer, :ip, :ua)'
+        );
+        $this->db->bind(':t',       $this->time_now);
+        $this->db->bind(':sid',     $this->session_id);
+        $this->db->bind(':uid',     (int)($this->user['u_id'] ?? 0));
+        $this->db->bind(':ugroup',  (int)($this->user['u_group'] ?? GROUP_GEST));
+        $this->db->bind(':path',    $safePath);
+        $this->db->bind(':method',  $safeMethod);
+        $this->db->bind(':referer', $safeReferer);
+        $this->db->bind(':ip',      $this->ip_address);
+        $this->db->bind(':ua',      $ua);
+        $this->db->execute();
+
+        // Sauvegarde du chemin dans l'objet (optionnel)
+        $this->location = $safePath;
+    }
+
 
     // =========================================================================
     // UTILITAIRES

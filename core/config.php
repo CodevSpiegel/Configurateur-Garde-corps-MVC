@@ -44,10 +44,20 @@ $site = new site();
 //--------------------------------
 $site->user = $sess->authorise();
 
-
 $site->const = get_defined_constants();
 // ================================================================
 $global_view = $func->load_view('global_view');
+
+
+// if(TRACE_PAGES_VIEWS) {
+//     // Tracer la page (une seule ligne par requête)
+//     $requestedPath  = $_SERVER['REQUEST_URI'] ?? '/';
+//     $httpMethod     = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+//     $referer        = $_SERVER['HTTP_REFERER'] ?? '';
+
+//     $sess->trackPageView($requestedPath, $httpMethod, $referer);
+// }
+
 
 
 // ---------------------------------------------------------------------------

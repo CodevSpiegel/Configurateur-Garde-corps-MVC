@@ -35,3 +35,5 @@ const GROUP_MEMBER = 4;
 // Expiration des sessions (inactivité max en secondes)
 // ---------------------------------------------------------------------------
 const SESSION_TTL_SECONDS = 3600; // 1 heure
+
+const TRACE_PAGES_VIEWS = true;
