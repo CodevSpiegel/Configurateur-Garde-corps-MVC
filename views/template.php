@@ -6,6 +6,7 @@
 <body>
 <header>
 <?= $content['HEADER'] ?>
+<?= $content['BREADCRUMB'] ?>
 </header>
 <main>
 <?= $content['MAIN'] ?>

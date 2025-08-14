@@ -42,14 +42,28 @@ global $site;
 return <<<HTML
 <nav>
     <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="/">Accueil</a></li>
         <li><a href="/home/action-01">Home-Action 1</a></li>
         <li><a href="/home/action-02">Home-Action 2</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/nimpxxxxx">Home-404</a></li>
-        <li><a href="/home/action-01/?test=<script>alert(`Si ça passe... Ca craint un max là !`)</script>">Home-inject-JS</a></li>
+        <li><a href="/shop">Boutique</a></li>
+        <li>
+            <a href="#">Catégories</a>
+            <ul>
+                <li>Inox brossé</li>
+                <li>Inox poli miroir</li>
+                <li>Verre + Inox</li>
+            </ul>
+        </li>
     </ul>
 </nav>
+
+HTML;
+}
+
+function site_breadcrumb() {
+global $site;
+return <<<HTML
+<div id="breadcrumb">> Fil d'ariane...</div>
 
 HTML;
 }

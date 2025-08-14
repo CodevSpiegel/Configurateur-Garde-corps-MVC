@@ -28,6 +28,7 @@ class Display {
 
 		// HEADER
 		$output_array['HEADER'] = $global_view->site_header();
+		$output_array['BREADCRUMB'] = $global_view->site_breadcrumb();
 
 		// MAIN
 		$output_array['MAIN'] = $this->to_print;
