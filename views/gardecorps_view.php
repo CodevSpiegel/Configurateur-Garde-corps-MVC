@@ -47,9 +47,10 @@ return <<<HTML
 HTML;
 }
 
-function script() {
+function script($csrf) {
 global $site;
 return <<<HTML
+<script>window.CSRF_TOKEN = htmlspecialchars({$csrf}, ENT_QUOTES, 'UTF-8')</script>
 <script src="{$site->const['PUBLIC_PATH']}assets/js/gardecorps/app.js" type="module"></script>
 <script src="{$site->const['PUBLIC_PATH']}assets/js/gardecorps/bootstrap.js" type="module"></script>
 

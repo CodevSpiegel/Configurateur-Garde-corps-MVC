@@ -94,7 +94,10 @@ class gardecorps_controller {
 
         $this->page_title = $site->const['WEBSITE_NAME'] ." - Gardes-corps";
         $this->page_description = "Description de la page Home";
-        $this->script = $this->html->script();
+
+        $csrf = func::csrf_token();
+
+        $this->script = $this->html->script($csrf);
         $this->css = $this->html->css();
 
         // -- Construit la page via la vue
