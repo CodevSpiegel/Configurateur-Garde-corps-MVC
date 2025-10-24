@@ -96,6 +96,11 @@ class gardecorps_controller {
         $this->page_description = "Description de la page Home";
 
         $csrf = func::csrf_token();
+        $csrf = htmlspecialchars($csrf, ENT_QUOTES, 'UTF-8');
+
+        // $data = "window.CSRF_TOKEN = \"{$csrf}\"";
+
+        // var_dump($data);
 
         $this->script = $this->html->script($csrf);
         $this->css = $this->html->css();
