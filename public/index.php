@@ -1,8 +1,7 @@
 <?php
-
 // SESSIONS
 // ini_set('session.cookie_lifetime', false);
-session_start();;
+session_start();
 
 // Activer l’affichage des erreurs pour le développement
 ini_set('display_errors', 1);

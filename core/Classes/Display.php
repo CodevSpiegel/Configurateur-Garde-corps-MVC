@@ -28,15 +28,21 @@ class Display {
 
 		// HEADER
 		$output_array['HEADER'] = $global_view->site_header();
-		$output_array['BREADCRUMB'] = $global_view->site_breadcrumb();
+
+		// ADD_CSS
+		$output_array['ADD_CSS'] = $output_array['ADD_CSS'] ?? "";
 
 		// MAIN
 		$output_array['MAIN'] = $this->to_print;
 
 		// FOOTER
 		$output_array['FOOTER'] = $global_view->site_footer();
-		$output_array['DEBUG'] = "";
 
+
+		// SCRIPTS
+		$output_array['SCRIPT'] = $output_array['SCRIPT'] ?? "";
+
+		$output_array['DEBUG'] = "";
 		if( DEBUG_TIME_EXECUTION ) {
 			// Code à mesurer
 			// usleep(500000); // Attente de 0,5 seconde (500 ms)

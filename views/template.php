@@ -2,18 +2,19 @@
 <html lang="<?= WEBSITE_LANGUAGE ?>">
 <head>
 <?= $content['HEAD'] ?>
+<?= $content['ADD_CSS'] ?>
 </head>
 <body>
-<header>
+<header class="wrapper">
 <?= $content['HEADER'] ?>
-<?= $content['BREADCRUMB'] ?>
 </header>
-<main>
+<main class="wrapper">
 <?= $content['MAIN'] ?>
 </main>
-<footer>
+<footer class="wrapper">
 <?= $content['FOOTER'] ?>
-<?= $content['DEBUG'] ?>
 </footer>
+<?= $content['SCRIPT'] ?>
+<?= $content['DEBUG'] ?>
 </body>
 </html>

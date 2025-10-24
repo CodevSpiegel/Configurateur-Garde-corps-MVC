@@ -1,9 +1,9 @@
 <?php
 // Website informations
 const WEBSITE_TITLE = "Titre du site";
-const WEBSITE_NAME = "Mon CMS Project";
-const WEBSITE_URL = "http://moncms";
-const WEBSITE_DESCRIPTION = "CMS propulsé par Sébastien Spiegel (2025)";
+const WEBSITE_NAME = "CFG";
+const WEBSITE_URL = "http://cfgweb";
+const WEBSITE_DESCRIPTION = "Propulsé par Sébastien Spiegel (2025)";
 const WEBSITE_KEYWORDS = "";
 const WEBSITE_LANGUAGE = "fr";
 const WEBSITE_AUTHOR = "Sébastien SPIEGEL";
@@ -17,7 +17,7 @@ const WEBSITE_FACEBOOK_IMAGE = "";
 
 // DataBase informations
 const DATABASE_HOST = "localhost";
-const DATABASE_NAME = "moncms";
+const DATABASE_NAME = "cfgweb";
 const DATABASE_USER = "root";
 const DATABASE_PASSWORD = "";
 const DATABASE_CHARSET = "utf8";

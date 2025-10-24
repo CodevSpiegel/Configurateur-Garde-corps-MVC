@@ -37,7 +37,7 @@ final class Session
     public string $ip_address      = '';  // IP client (best effort)
     public string $user_agent      = '';  // User-Agent "sanitisé"
     public string $location        = '';  // Si tu veux tracer la page
-    public array  $user            = [];  // Profil utilisateur courant (depuis cms_users)
+    public array  $user            = [];  // Profil utilisateur courant (depuis user_users)
     private bool $sessionRowExists = false; // true si la ligne s_id existe en BDD
 
     /**
@@ -61,7 +61,7 @@ final class Session
             var_dump("Création ou récuperation d'une session !");
         }
 
-        // ID applicatif stable (différent du PHPSESSID) pour indexer cms_sessions.s_id
+        // ID applicatif stable (différent du PHPSESSID) pour indexer user_sessions.s_id
         $_SESSION['id']   = $_SESSION['id']   ?? bin2hex(random_bytes(32));
         $this->session_id = (string) $_SESSION['id'];
 
@@ -139,7 +139,7 @@ final class Session
         }
 
         // 4) Retourner le profil final
-        var_dump($this->user);
+        // var_dump($this->user);
         return $this->user;
     }
 
@@ -148,7 +148,7 @@ final class Session
     // =========================================================================
 
     /**
-     * Charge la ligne cms_sessions correspondant à $sessionId (si existe).
+     * Charge la ligne user_sessions correspondant à $sessionId (si existe).
      */
     private function getSessionById(string $sessionId): void
     {
@@ -161,7 +161,7 @@ final class Session
 
         $this->db->query(
             'SELECT s_id, s_user_id, s_running_time
-             FROM cms_sessions
+             FROM user_sessions
              WHERE s_id = :sid'
         );
         $this->db->bind(':sid', $sessionId);
@@ -190,7 +190,7 @@ final class Session
         $threshold = $this->time_now - SESSION_TTL_SECONDS;
 
         $this->db->query(
-            'DELETE FROM cms_sessions
+            'DELETE FROM user_sessions
              WHERE s_running_time < :threshold'
         );
         $this->db->bind(':threshold', $threshold);
@@ -214,7 +214,7 @@ final class Session
 
         $this->db->query(
             'SELECT u_id, u_login, u_email, u_password, u_group, u_lang, u_ipadress, u_last_visit, u_last_activity
-            FROM cms_users
+            FROM user_users
             WHERE u_id = :uid'
         );
         $this->db->bind(':uid', $userId);
@@ -270,7 +270,7 @@ final class Session
         }
 
         $this->db->query(
-            'INSERT INTO cms_sessions
+            'INSERT INTO user_sessions
             (s_id, s_user_id, s_user_login, s_user_group, s_running_time, s_ip_adress, s_browser)
             VALUES (:sid, :uid, :ulogin, :ugroup, :rt, :ip, :ua)
             ON DUPLICATE KEY UPDATE
@@ -308,7 +308,7 @@ final class Session
         }
 
         $this->db->query(
-            'UPDATE cms_sessions
+            'UPDATE user_sessions
             SET s_user_id = :uid,
                 s_user_login = :ulogin,
                 s_user_group = :ugroup,
@@ -356,7 +356,7 @@ final class Session
         $threshold = $this->time_now - SESSION_TTL_SECONDS;
 
         $this->db->query(
-            'DELETE FROM cms_sessions
+            'DELETE FROM user_sessions
              WHERE s_running_time < :threshold
                 OR s_user_id = :uid'
         );
@@ -370,7 +370,7 @@ final class Session
 
         // 3) Ajouter la session
         $this->db->query(
-            'INSERT INTO cms_sessions
+            'INSERT INTO user_sessions
             (s_id, s_user_id, s_user_login, s_user_group, s_running_time, s_ip_adress, s_browser)
             VALUES (:sid, :uid, :ulogin, :ugroup, :rt, :ip, :ua)
             ON DUPLICATE KEY UPDATE
@@ -398,7 +398,7 @@ final class Session
         $lastActivity = (int)($this->user['u_last_activity'] ?? 0);
         if ($this->time_now - $lastActivity > 300) {
             $this->db->query(
-                'UPDATE cms_users
+                'UPDATE user_users
                  SET u_last_visit = u_last_activity,
                      u_last_activity = :now
                  WHERE id = :uid'
@@ -431,7 +431,7 @@ final class Session
         }
 
         $this->db->query(
-            'UPDATE cms_sessions
+            'UPDATE user_sessions
             SET s_user_id = :uid,
                 s_user_login = :ulogin,
                 s_user_group = :ugroup,
@@ -455,92 +455,6 @@ final class Session
         $this->last_click       = $this->time_now;
         $this->sessionRowExists = true;
     }
-
-    // =========================================================================
-    // SESSIONS BOT (optionnel pour tracer les crawlers)
-    // =========================================================================
-
-    private function createBotSession(string $botName): void
-    {
-        // var_dump("Function : createBotSession()");
-        $sid = $botName . '_session';
-
-        $this->db->query(
-            'INSERT INTO cms_sessions (s_id, s_user_id, s_user_login, s_user_group, s_running_time, s_ip_adress, s_browser)
-             VALUES (:sid, :uid, :ulogin, :ugroup, :rt, :ip, :ua)'
-        );
-        $this->db->bind(':sid',    $sid);
-        $this->db->bind(':uid',    0);
-        $this->db->bind(':ulogin', $botName);
-        $this->db->bind(':ugroup', GROUP_BOT);
-        $this->db->bind(':rt',     $this->time_now);
-        $this->db->bind(':ip',     $this->ip_address);
-        $this->db->bind(':ua',     $this->user_agent);
-        $this->db->execute();
-    }
-
-    private function updateBotSession(string $botName): void
-    {
-        // var_dump("Function : updateBotSession()");
-        $sid = $botName . '_session';
-
-        $this->db->query(
-            'UPDATE cms_sessions
-             SET s_user_id = :uid,
-                 s_user_login = :ulogin,
-                 s_user_group = :ugroup,
-                 s_running_time = :rt
-             WHERE s_id = :sid'
-        );
-        $this->db->bind(':sid',    $sid);
-        $this->db->bind(':uid',    0);
-        $this->db->bind(':ulogin', $botName);
-        $this->db->bind(':ugroup', GROUP_BOT);
-        $this->db->bind(':rt',     $this->time_now);
-        $this->db->execute();
-    }
-
-
-    /**
-     * Enregistre une page vue dans cms_page_views avec l'ID et le groupe de l'utilisateur.
-     * @param string $path   Chemin/route demandé (ex: $_SERVER['REQUEST_URI'])
-     * @param string $method Méthode HTTP (GET/POST/...)
-     * @param string $referer Referer si dispo
-     */
-    public function trackPageView(string $path, string $method = 'GET', string $referer = ''): void
-    {
-        // Sécurité et limite de longueur pour éviter les débordements
-        $safePath    = mb_substr($path, 0, 255);
-        $safeMethod  = mb_substr($method, 0, 10);
-        $safeReferer = mb_substr($referer ?? '', 0, 255);
-
-        // Limiter la taille de l'UA
-        $ua = $this->user_agent;
-        if (mb_strlen($ua) > 255) {
-            $ua = mb_substr($ua, 0, 252) . '...';
-        }
-
-        // Insertion dans la base
-        $this->db->query(
-            'INSERT INTO cms_page_views
-            (pv_time, pv_s_id, pv_user_id, pv_user_group, pv_path, pv_method, pv_referer, pv_ip, pv_user_agent)
-            VALUES (:t, :sid, :uid, :ugroup, :path, :method, :referer, :ip, :ua)'
-        );
-        $this->db->bind(':t',       $this->time_now);
-        $this->db->bind(':sid',     $this->session_id);
-        $this->db->bind(':uid',     (int)($this->user['u_id'] ?? 0));
-        $this->db->bind(':ugroup',  (int)($this->user['u_group'] ?? GROUP_GEST));
-        $this->db->bind(':path',    $safePath);
-        $this->db->bind(':method',  $safeMethod);
-        $this->db->bind(':referer', $safeReferer);
-        $this->db->bind(':ip',      $this->ip_address);
-        $this->db->bind(':ua',      $ua);
-        $this->db->execute();
-
-        // Sauvegarde du chemin dans l'objet (optionnel)
-        $this->location = $safePath;
-    }
-
 
     // =========================================================================
     // UTILITAIRES

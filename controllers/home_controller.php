@@ -89,20 +89,10 @@ class home_controller {
         $this->page_title = $site->const['WEBSITE_NAME'] ." - Show Page";
         $this->page_description = "Description de la page Home";
 
-        $req = new home_model();
-        $articles = $req->select_all_articles();
-
         // -- Construit la page via la vue
         $this->output = $this->html->start();
 
-        if (!empty($articles)) {
-            foreach ($articles as $article) :
-                $article['date_fr'] = $func->date_fr_universelle($article['a_created_at'], 'long+heure');
-                $this->output .= $this->html->row_article($article);
-            endforeach;
-        } else {
-            $this->output .= $this->html->row("Aucun article trouvé.");
-        }
+        $this->output .= $this->html->row("Aucun article trouvé.");
 
         $this->output .= $this->html->end();
     }
@@ -110,8 +100,10 @@ class home_controller {
 
     public function show_section_1() {
 
+        $timeNow = time();
+
         $this->output = $this->html->start();
-        $this->output .= $this->html->row("Action 1");
+        $this->output .= $this->html->row($timeNow);
         $this->output .= $this->html->end();
 
     }

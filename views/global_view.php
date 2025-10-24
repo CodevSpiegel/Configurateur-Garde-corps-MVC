@@ -25,7 +25,7 @@ return <<<HTML
     <meta name="twitter:description" content="Apprenez à créer un site PHP MVC pas à pas avec un routeur puissant et SEO-friendly.">
     <meta name="twitter:image" content="https://www.monsite.com/images/php-mvc.jpg">
     <meta name="twitter:site" content="@MonCompteTwitter">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"> -->
     <link rel="stylesheet" href="{$site->const['PUBLIC_PATH']}assets/css/style.css">
 
     <!-- Balises meta supplémentaires utiles -->
@@ -41,20 +41,19 @@ function site_header() {
 global $site;
 return <<<HTML
 <nav>
-    <ul>
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/home/action-01">Home-Action 1</a></li>
-        <li><a href="/home/action-02">Home-Action 2</a></li>
-        <li><a href="/shop">Boutique</a></li>
-        <li>
-            <a href="#">Catégories</a>
-            <ul>
-                <li>Inox brossé</li>
-                <li>Inox poli miroir</li>
-                <li>Verre + Inox</li>
-            </ul>
-        </li>
-    </ul>
+    <div>SqualDev</div>
+    <div class="menus">
+        <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/home/action-01">Home-Action 1</a></li>
+            <li><a href="/home/action-02">Home-Action 2</a></li>
+            <li><a href="/gardecorps">Garde-corps</a></li>
+        </ul>
+    </div>
+    <div class="account">
+        <a href="/register"><button class="button-secondary">Sign up</button></a>
+        <a href="/login"><button class="button-primary">Login</button></a>
+    </div>
 </nav>
 
 HTML;
@@ -72,7 +71,14 @@ HTML;
 function site_footer() {
 global $site;
 return <<<HTML
-    Global->Footer
+
+HTML;
+}
+
+function site_javascript($js) {
+global $site;
+return <<<HTML
+{$js}
 
 HTML;
 }
@@ -84,10 +90,12 @@ return <<<HTML
 <style>
     .debug {
         display: flex;
+        justify-content: center;
+        padding-top: 24px;
         color: #ff0000;
     }
 </style>
-<div class="debug">$datas</div>
+<div class="wrapper debug">$datas</div>
 
 HTML;
 }
