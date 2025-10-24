@@ -21,8 +21,8 @@
 
 class Db_driver {
 
-    /** @var PDO $dbh  Handler PDO (connexion) */
-    private $dbh;
+    /** @var PDO $pdo  Handler PDO (connexion) */
+    private $pdo;
 
     /** @var PDOStatement|null $stmt Dernière requête préparée */
     private $stmt;
@@ -54,11 +54,11 @@ class Db_driver {
         ];
 
         try {
-            $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
+            $this->pdo = new PDO($dsn, $this->user, $this->pass, $options);
 
             // Optionnel : si tu veux aligner STRICT_MODE, time zone, etc., fais-le ici.
-            // $this->dbh->query("SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION'");
-            // $this->dbh->query("SET time_zone = '+00:00'");
+            // $this->pdo->query("SET sql_mode = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION'");
+            // $this->pdo->query("SET time_zone = '+00:00'");
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
             // En prod, log plutôt que d'afficher
@@ -73,16 +73,16 @@ class Db_driver {
     /**
      * Retourne l’instance PDO (accès natif pour tes modèles).
      */
-    public function pdo(): PDO {
-        return $this->dbh;
+    public function getConnection(): PDO {
+        return $this->pdo;
     }
 
     /**
      * Démarre une transaction.
      */
     public function begin(): void {
-        if (!$this->dbh->inTransaction()) {
-            $this->dbh->beginTransaction();
+        if (!$this->pdo->inTransaction()) {
+            $this->pdo->beginTransaction();
         }
     }
 
@@ -90,8 +90,8 @@ class Db_driver {
      * Valide (commit) la transaction en cours.
      */
     public function commit(): void {
-        if ($this->dbh->inTransaction()) {
-            $this->dbh->commit();
+        if ($this->pdo->inTransaction()) {
+            $this->pdo->commit();
         }
     }
 
@@ -99,8 +99,8 @@ class Db_driver {
      * Annule (rollback) la transaction en cours.
      */
     public function rollBack(): void {
-        if ($this->dbh->inTransaction()) {
-            $this->dbh->rollBack();
+        if ($this->pdo->inTransaction()) {
+            $this->pdo->rollBack();
         }
     }
 
@@ -108,7 +108,7 @@ class Db_driver {
      * Indique si on est en transaction.
      */
     public function inTransaction(): bool {
-        return $this->dbh->inTransaction();
+        return $this->pdo->inTransaction();
     }
 
     // ---------------------------------------------------------------------
@@ -119,7 +119,7 @@ class Db_driver {
      * Prépare une requête SQL.
      */
     public function query(string $sql): void {
-        $this->stmt = $this->dbh->prepare($sql);
+        $this->stmt = $this->pdo->prepare($sql);
     }
 
     /**
@@ -183,7 +183,7 @@ class Db_driver {
      * Dernier ID auto-incrément inséré.
      */
     public function lastInsertId(): string {
-        return $this->dbh->lastInsertId();
+        return $this->pdo->lastInsertId();
     }
 
     // ---------------------------------------------------------------------
