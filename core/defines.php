@@ -20,7 +20,7 @@ const DATABASE_HOST = "localhost";
 const DATABASE_NAME = "cfgweb";
 const DATABASE_USER = "root";
 const DATABASE_PASSWORD = "";
-const DATABASE_CHARSET = "utf8";
+const DATABASE_CHARSET = "utf8mb4";
 
 const DEBUG_TIME_EXECUTION = true;
 const DEBUG_SCRIPT = true;

@@ -2,6 +2,33 @@
 
 class FUNC {
 
+
+    /**
+     * Génère (si besoin) et retourne un token CSRF stocké en session.
+     * On expose ce token côté vue (meta ou JS) pour l’envoyer via header.
+     */
+    public static function csrf_token(): string
+    {
+        if (empty($_SESSION['csrf_token'])) {
+            // random_bytes -> chaîne aléatoire cryptographiquement sûre
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        return $_SESSION['csrf_token'];
+    }
+
+    /**
+     * Vérifie le token CSRF reçu depuis le client (header ou post field).
+     * @param string|null $tokenFromClient
+     * @return bool
+     */
+    public static function csrf_verify(?string $tokenFromClient): bool
+    {
+        if (empty($_SESSION['csrf_token'])) return false;
+
+        // hash_equals : protection timing-attack
+        return $tokenFromClient !== null && hash_equals($_SESSION['csrf_token'], $tokenFromClient);
+    }
+
     /*---------------------*/
 	// Redirect
 	/*---------------------*/
@@ -37,7 +64,6 @@ class FUNC {
 
 		return new $name;
 	}
-
 
     /**
      * ===========================================================
