@@ -20,32 +20,39 @@ L’administrateur peut ensuite **gérer ces devis depuis l’interface Admin** 
 
 ## 🧩 Architecture du projet
 
+
 Gardecorps_v3.0/
 │
 ├── app/
 │ ├── controllers/ → Logique métier (Home, Configurateur, Admin, Admindevis…)
 │ ├── models/ → Accès à la base de données (Devis, Category, Tip…)
-│ ├── views/ → Vues HTML (layouts, admin, configurateur…)
-│ └── core/ → Cœur du framework (Router, Controller, Database…)
+│ ├── views/
+│ │ ├── layout/ → Templates partagés (header, footer…)
+│ │ ├── admin/ → Pages du back-office (dashboard, catégories, astuces…)
+│ │ └── Admindevis/ → Vue principale du module Admin Devis
+│ │ └── Admindevis.php
+│ └── core/ → Cœur du mini-framework MVC (Router, Controller, Database…)
 │
 ├── public/
 │ ├── assets/
 │ │ ├── css/ → Feuilles de style globales
-│ │ ├── js/
-│ │ │ ├── configurateur/
-│ │ │ │ ├── core/ → Scripts génériques (renderers.js, fields.js…)
-│ │ │ │ └── datasets/
-│ │ │ │ ├── cables/
-│ │ │ │ ├── barres/
-│ │ │ │ ├── verre/
-│ │ │ │ └── verre-a-profile/
-│ │ │ └── bootstrap.js, app.js…
-│ │ └── images/ → Images d’aperçus et icônes
+│ │ ├── images/ → Images d’aperçus et icônes
+│ │ └── js/
+│ │ ├── configurateur/
+│ │ │ ├── core/ → Fichiers JS génériques (renderers.js, fields.js, utils.js…)
+│ │ │ └── datasets/ → Jeux d’étapes (steps.js) pour chaque type de garde-corps
+│ │ │ ├── cables/
+│ │ │ ├── barres/
+│ │ │ ├── verre/
+│ │ │ └── verre-a-profile/
+│ │ ├── bootstrap.js
+│ │ └── app.js
 │ ├── index.php → Point d’entrée unique du site
-│ └── .htaccess → Réécriture d’URL (URL propres)
+│ └── .htaccess → Réécriture d’URL (URLs propres)
 │
-├── config/ → Scripts SQL, connexion base de données, etc.
-└── README.md → Ce fichier
+├── config/ → Fichiers SQL et paramètres de connexion
+├── CHANGELOG.md → Historique des versions
+└── README.md → Documentation du projet
 
 ---
 
