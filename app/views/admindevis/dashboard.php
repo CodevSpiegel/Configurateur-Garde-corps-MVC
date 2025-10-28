@@ -11,11 +11,6 @@
                 <th>Date</th>
                 <th>Modèle</th>
                 <th>Type</th>
-                <th>Finition</th>
-                <th>Pose</th>
-                <th>Ancrage</th>
-                <th>Forme</th>
-                <th>Verre</th>
                 <th></th>
             </tr>
         </thead>
@@ -25,11 +20,6 @@
                 <td><?= $d['create_date'] ?></td>
                 <td><code><?= htmlspecialchars($d['model_label']) ?></code></td>
                 <td><code><?= htmlspecialchars($d['type_label']) ?></code></td>
-                <td><code><?= htmlspecialchars($d['finition_label'] ?? '...') ?></code></td>
-                <td><code><?= htmlspecialchars($d['pose_label'] ?? '...') ?></code></td>
-                <td><code><?= htmlspecialchars($d['ancrage_label'] ?? '...') ?></code></td>
-                <td><code><?= htmlspecialchars($d['forme_label'] ?? '...') ?></code></td>
-                <td><code><?= htmlspecialchars($d['verre_label'] ?? '...') ?></code></td>
                 <td class="actions">
                 <a class="btn" href="<?= BASE_URL ?>admindevis/devis/show/<?= (int)$d['id'] ?>">Détails</a>
                 <form method="post" action="<?= BASE_URL ?>admindevis/devis/delete/<?= (int)$d['id'] ?>" onsubmit="return confirm('Supprimer ce devis ?');">

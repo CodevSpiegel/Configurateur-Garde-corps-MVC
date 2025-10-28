@@ -18,9 +18,10 @@ $title = $title ?? 'Configurateur';
     <div class="container row">
         <a class="brand" href="<?= BASE_URL ?>">Configurateur</a>
         <nav class="main-nav" aria-label="Principale">
-            <a href="<?= BASE_URL ?>">Presentation</a>
+            <a href="<?= BASE_URL ?>">Accueil</a>
             <a href="<?= BASE_URL ?>configurateur">Devis Garde-corps</a>
-            <a href="<?= BASE_URL ?>admindevis">Administration</a>
+            <a href="<?= BASE_URL ?>admin">Admin</a>
+            <a href="<?= BASE_URL ?>admindevis">Admin Devis</a>
         </nav>
         
     </div>
