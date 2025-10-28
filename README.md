@@ -49,9 +49,6 @@ Gardecorps_v3.0/
 │ │ └── app.js
 │ ├── index.php → Point d’entrée unique du site
 │ └── .htaccess → Réécriture d’URL (URLs propres)
-│
-├── config/ → Fichiers SQL et paramètres de connexion
-├── CHANGELOG.md → Historique des versions
 └── README.md → Documentation du projet
 
 ---
