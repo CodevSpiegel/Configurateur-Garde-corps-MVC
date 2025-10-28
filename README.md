@@ -54,7 +54,7 @@ Principales tables :
 - `cfg_devis` — enregistre les devis du configurateur  
 - `cfg_types`, `cfg_finitions`, `cfg_poses`, `cfg_formes`, `cfg_verres`, `cfg_ancrages` — tables de référence  
 - `cfg_models` — modèles principaux (ex : câbles, barres, verre)  
-- `users`, `sessions` — gestion utilisateurs (évolutif)
+- `users`, `user_sessions`, `user_groups` — gestion utilisateurs (évolutif)
 
 ---
 
@@ -62,8 +62,8 @@ Principales tables :
 
 1. Placer le dossier du projet dans `C:\wamp64\www\`  
    (ou équivalent sur ton serveur local)
-2. Créer une base de données `configurateur` (ou ton nom choisi)
-3. Importer le fichier SQL (`configurateur.sql`)
+2. Créer une base de données `gardecorps` (ou ton nom choisi)
+3. Importer le fichier SQL (`gardecorps.sql`)
 4. Configurer la connexion dans `app/core/Database.php`
 5. Démarrer WAMP puis ouvrir :  
    👉 [http://localhost/Gardecorps_v3.0/public](http://localhost/Gardecorps_v3.0/public)
