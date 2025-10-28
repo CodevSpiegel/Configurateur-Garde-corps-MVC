@@ -41,7 +41,6 @@ L’administrateur peut ensuite **gérer ces devis depuis l’interface Admin** 
 - Enregistrement du devis en BDD (valeurs “value”)
 
 ### 🔑 Espace administrateur
-- Gestion des catégories et astuces (AdminController)
 - Gestion des devis (AdmindevisController)
   - Liste complète avec labels (type, finition, pose, verre…)
   - Détail, édition et suppression
