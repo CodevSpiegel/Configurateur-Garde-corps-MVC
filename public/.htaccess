@@ -1,0 +1,92 @@
+# ============================================================================
+# 📄 public/.htaccess
+# ============================================================================
+# ✨ OBJECTIF :
+# Ce fichier permet d’avoir des **URL propres et lisibles** dans ton site MVC.
+#
+# Exemple :
+#   ❌ Sans .htaccess → http://localhost/mon_mvc/public/index.php?url=home/index
+#   ✅ Avec .htaccess → http://localhost/mon_mvc/public/home/index
+#
+# Le but est de rediriger **toutes les requêtes** vers index.php
+# sauf si le fichier demandé existe réellement (ex: une image, un script, un CSS).
+# ============================================================================
+
+
+# ----------------------------------------------------------------------------
+# 🚫 Désactivation de "Multiviews"
+# ----------------------------------------------------------------------------
+# Par défaut, Apache peut "deviner" un fichier en ignorant son extension
+# (ex: appeler /home peut charger home.php). 
+# Cela cause souvent des erreurs ou des collisions.
+# On désactive donc cette option pour plus de contrôle.
+Options -Multiviews
+
+
+# ----------------------------------------------------------------------------
+# ✅ Vérifie que le module de réécriture est activé
+# ----------------------------------------------------------------------------
+# Le module mod_rewrite doit être activé dans Apache pour que les URL propres
+# fonctionnent. Sinon, rien ne sera réécrit.
+<IfModule mod_rewrite.c>
+
+    # ------------------------------------------------------
+    # 🔧 Activation du moteur de réécriture d’URL
+    # ------------------------------------------------------
+    RewriteEngine On
+
+
+    # ------------------------------------------------------
+    # 🧭 Chemin de base (utile si ton site est dans un sous-dossier)
+    # ------------------------------------------------------
+    # Exemple :
+    #   Si ton projet est accessible via :
+    #     http://localhost/mon_mvc/public/
+    #   Alors décommente la ligne ci-dessous et adapte :
+    #     RewriteBase /mon_mvc/public/
+    #
+    # Par défaut, si ton projet est à la racine de ton serveur (www/public),
+    # tu peux laisser la ligne commentée.
+    #
+    # RewriteBase /
+
+
+    # ------------------------------------------------------
+    # 🚷 Conditions : ne pas réécrire les fichiers ou dossiers réels
+    # ------------------------------------------------------
+    # Ces lignes disent à Apache :
+    # "Si le chemin demandé correspond à un fichier (-f)
+    #  OU à un dossier (-d), ne fais rien (ne redirige pas)."
+    #
+    # Exemple : /assets/css/style.css → doit être servi tel quel.
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]   # [L] = Last rule (arrête ici)
+
+
+    # ------------------------------------------------------
+    # 🚀 Redirection générale : tout le reste vers index.php
+    # ------------------------------------------------------
+    # Si la ressource n’existe pas, Apache redirige vers index.php.
+    #
+    # Exemple :
+    #   URL : /article/show/5
+    #   ⤷ Apache ne trouve pas de dossier /article
+    #   ⤷ Il redirige donc la requête vers index.php
+    #
+    # L’option [QSA] ("Query String Append") conserve les paramètres GET,
+    # par exemple ?page=2 → reste attaché à la requête.
+    RewriteRule ^ index.php [L,QSA]
+
+</IfModule>
+
+
+# ============================================================================
+# 🧠 Résumé :
+# ----------------------------------------------------------------------------
+# 1️⃣ On désactive Multiviews → pas d’ambiguïtés avec les fichiers PHP.
+# 2️⃣ On active mod_rewrite → moteur de redirection d’Apache.
+# 3️⃣ On ignore les fichiers/dossiers réels (images, CSS, JS...).
+# 4️⃣ On redirige toutes les autres requêtes vers index.php,
+#    qui se chargera d’appeler le bon contrôleur/action.
+# ============================================================================
