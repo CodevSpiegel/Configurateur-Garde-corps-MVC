@@ -1,18 +1,29 @@
-<?php $title = "Devis — " . htmlspecialchars($devis['type_id']); ?>
+<?php 
+    $title = "Liste des Devis"; 
+?>
 <section>
-  <h1><?= htmlspecialchars($devis['type_id']) ?></h1>
-  <p class="muted"><?= htmlspecialchars($category['description'] ?? '') ?></p>
+    <h1>Administration</h1>
 
-  <?php if (empty($tips)): ?>
-    <p>Aucune astuce pour le moment.</p>
-  <?php else: ?>
-    <div class="grid grid-3">
-      <?php foreach ($tips as $t): ?>
-        <article class="card">
-          <h3><a href="<?= BASE_URL ?>tip/show/<?= (int)$t['id'] ?>"><?= htmlspecialchars($t['title']) ?></a></h3>
-          <p class="muted"><?= htmlspecialchars($t['summary'] ?? '') ?></p>
-        </article>
-      <?php endforeach; ?>
+    <div class="grid grid-2">
+    <div>
+        <h2>Details du Devis #<?= $row['id'] ?></h2>
+        <!-- <p><a class="btn" href="<?= BASE_URL ?>admindevis/devis/create">+ Nouveau devis</a></p> -->
+        <table class="table">
+        <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Email</th>
+                <th>Inscription</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><?= htmlspecialchars($row['user_login'] ?? 'Visiteur') ?></td>
+                <td><?= htmlspecialchars($row['user_email'] ?? 'N/C') ?></td>
+                <td><?= htmlspecialchars($func->formatDateFr($row['user_registered'], 'heure') ?? 'N/C') ?></td>
+            </tr>
+        </tbody>
+        </table>
     </div>
-  <?php endif; ?>
+    </div>
 </section>

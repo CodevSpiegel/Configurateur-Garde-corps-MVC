@@ -7,7 +7,24 @@
 class Devis extends Model
 {
 
-    public function all(): array {
+    public function list(): array {
+        $stmt = $this->db->query("SELECT
+            d.id,
+            d.user_id,
+            d.create_date,
+            u.user_login,
+            u.user_email,
+            u.user_registered,
+            s.label_status
+
+        FROM cfg_devis d
+        LEFT JOIN cfg_status    s  ON d.id_status   = s.id
+        LEFT JOIN users         u  ON d.user_id = u.id
+        ORDER BY d.create_date DESC");
+        return $stmt->fetchAll();
+    }
+
+    public function show($id): array {
         $stmt = $this->db->query("SELECT
             d.id,
             d.user_id,
@@ -30,7 +47,12 @@ class Devis extends Model
             d.longueur_c,
             d.hauteur,
             d.angle,
-            d.create_date
+            d.create_date,
+            d.update_date,
+            u.user_login,
+            u.user_email,
+            u.user_registered,
+            s.label_status
 
         FROM cfg_devis d
         LEFT JOIN cfg_types     t  ON d.type_id     = t.id
@@ -40,9 +62,12 @@ class Devis extends Model
         LEFT JOIN cfg_ancrages  a  ON d.ancrage_id  = a.id
         LEFT JOIN cfg_formes    fo ON d.forme_id    = fo.id
         LEFT JOIN cfg_verres    v  ON d.verre_id    = v.id
-        ORDER BY d.create_date DESC");
-        return $stmt->fetchAll();
+        LEFT JOIN cfg_status    s  ON d.id_status   = s.id
+        LEFT JOIN users         u  ON d.user_id = u.id
+        WHERE d.id = $id");
+        return $stmt->fetch();
     }
+
 
 
     public function find(int $id): ?array {

@@ -213,6 +213,12 @@ code {
     align-items: center;
 }
 
+/* New CSS */
+.rowDetails {
+    display: flex;
+    gap: 32px;
+}
+
 @media (max-width: 760px) {
     .main-nav {
         display: none; /* simple pour démo */

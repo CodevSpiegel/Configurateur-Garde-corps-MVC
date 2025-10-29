@@ -153,4 +153,5 @@ class Controller {
         //   2️⃣ il correspond exactement à celui envoyé (sécurité hash_equals)
         return isset($_SESSION['csrf']) && hash_equals($_SESSION['csrf'], $token);
     }
+
 }
