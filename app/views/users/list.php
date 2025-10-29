@@ -1,11 +1,11 @@
 <?php 
-    $title = "Liste des Devis"; 
+    $title = "Liste des Utilisateurs"; 
 ?>
 <section>
     <h1>Administration</h1>
     <div class="grid">
     <div>
-        <h2>Liste des Devis</h2>
+        <h2>Liste des Utilisateurs</h2>
         <!-- <p><a class="btn" href="<?= BASE_URL ?>admindevis/devis/create">+ Nouveau devis</a></p> -->
         <table class="table">
         <thead>
@@ -19,16 +19,16 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($row as $r): ?>
+            <?php foreach ($devis as $d): ?>
             <tr>
-                <td><?= $r['id'] ?></td>
-                <td><?= $func->formatDateFr($r['create_date'], 'heure') ?></td>
-                <td><?= htmlspecialchars($r['user_login'] ?? 'Visiteur') ?></td>
-                <td><?= htmlspecialchars($r['user_email'] ?? 'N/C') ?></td>
-                <td><code><?= htmlspecialchars($r['label_status']) ?></code></td>
+                <td><?= $d['id'] ?></td>
+                <td><?= $func->formatDateFr($d['create_date'], 'heure') ?></td>
+                <td><?= htmlspecialchars($d['user_login'] ?? 'Visiteur') ?></td>
+                <td><?= htmlspecialchars($d['user_email'] ?? 'N/C') ?></td>
+                <td><code><?= htmlspecialchars($d['label_status']) ?></code></td>
                 <td class="actions">
-                <a class="btn" href="<?= BASE_URL ?>admindevis/devis/show/<?= (int)$r['id'] ?>">Consulter</a>
-                <form method="post" action="<?= BASE_URL ?>admindevis/devis/delete/<?= (int)$r['id'] ?>" onsubmit="return confirm('Supprimer ce devis ?');">
+                <a class="btn" href="<?= BASE_URL ?>admindevis/devis/show/<?= (int)$d['id'] ?>">Détails</a>
+                <form method="post" action="<?= BASE_URL ?>admindevis/devis/delete/<?= (int)$d['id'] ?>" onsubmit="return confirm('Supprimer ce devis ?');">
                     <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
                     <button type="submit" class="btn danger">Supprimer</button>
                 </form>

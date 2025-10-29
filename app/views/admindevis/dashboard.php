@@ -8,15 +8,18 @@
         <table class="table">
         <thead>
             <tr>
-                <th>Pages</th>
+                <th>Menu</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><a href="<?= BASE_URL ?>admindevis/users/list">Liste des Utilisateurs</a></td>
+                <td><a href="<?= BASE_URL ?>admindevis/users/list">> Utilisateurs</a></td>
             </tr>
             <tr>
-                <td><a href="<?= BASE_URL ?>admindevis/devis/list">Liste des Devis</a></td>
+                <td><a href="<?= BASE_URL ?>admindevis/devis/list">> Devis</a></td>
+            </tr>
+            <tr>
+                <td><a href="<?= BASE_URL ?>admindevis/setup">> Réglages</a></td>
             </tr>
         </tbody>
         </table>

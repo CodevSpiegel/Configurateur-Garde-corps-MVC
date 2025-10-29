@@ -24,6 +24,13 @@
             </tr>
         </tbody>
         </table>
+        <table class="table">
+        <tbody>
+            <tr>
+                <td><a class="btn" href="<?= BASE_URL ?>admindevis/devis/update/<?= (int)$row['id'] ?>">Modifier</a></td>
+            </tr>
+        </tbody>
+        </table>
     </div>
     </div>
 </section>

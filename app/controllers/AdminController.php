@@ -13,7 +13,6 @@ require_once __DIR__ . '/../models/Tip.php';
 class AdminController extends Controller {
 
   public function index() {
-    var_dump("admin 01");
     $cats = (new Category())->all();
     $tips = (new Tip())->latest(10);
     $csrf = $this->csrfToken();
@@ -22,7 +21,6 @@ class AdminController extends Controller {
 
   // ---------- Categories ----------
   public function category($action='index', $id=null) {
-    var_dump("02");
     $cat = new Category();
     if ($action === 'create') {
       if ($this->isPost()) {
