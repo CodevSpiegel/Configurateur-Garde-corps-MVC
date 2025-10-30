@@ -134,49 +134,15 @@ class Devis extends Model
 
 
     public function update( int $id,
-                            int $type_id,
-                            int $finition_id,
-                            int $pose_id,
-                            int $ancrage_id,
-                            int $forme_id,
-                            int $verre_id,
-                            int $longueur_a,
-                            int $longueur_b,
-                            int $longueur_c,
-                            int $hauteur,
-                            int $angle,
-                            int $quantity,
                             int $id_status,
                             int $update_date ): bool {
-        $stmt = $this->db->prepare("UPDATE cfg_devis SET type_id = ?,
-                                                         finition_id = ?,
-                                                         pose_id = ?,
-                                                         ancrage_id = ?,
-                                                         forme_id = ?,
-                                                         verre_id = ?,
-                                                         longueur_a = ?,
-                                                         longueur_b = ?,
-                                                         longueur_c = ?,
-                                                         hauteur = ?,
-                                                         angle = ?,
-                                                         quantity = ?,
-                                                         id_status = ?,
+        $stmt = $this->db->prepare("UPDATE cfg_devis SET id_status = ?,
                                                          update_date = ?
                                     WHERE id=?");
-        return $stmt->execute([ $type_id,
-                                $finition_id,
-                                $pose_id,
-                                $ancrage_id,
-                                $forme_id,
-                                $verre_id,
-                                $longueur_a,
-                                $longueur_b,
-                                $longueur_c,
-                                $hauteur,
-                                $angle,
-                                $quantity,
-                                $id_status,
-                                $update_date ]);
+
+        return $stmt->execute([ $id_status,
+                                $update_date,
+                                $id ]);
     }
 
     public function delete(int $id): bool {

@@ -27,7 +27,7 @@
                 <td><?= htmlspecialchars($r['user_email'] ?? 'N/C') ?></td>
                 <td><code><?= htmlspecialchars($r['label_status']) ?></code></td>
                 <td class="actions">
-                <a class="btn" href="<?= BASE_URL ?>admindevis/devis/show/<?= (int)$r['id'] ?>">Gerer</a>
+                <a class="btn valid" href="<?= BASE_URL ?>admindevis/devis/show/<?= (int)$r['id'] ?>">Gerer</a>
                 <form method="post" action="<?= BASE_URL ?>admindevis/devis/delete/<?= (int)$r['id'] ?>" onsubmit="return confirm('Supprimer ce devis ?');">
                     <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
                     <button type="submit" class="btn danger">Supprimer</button>
