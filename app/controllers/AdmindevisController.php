@@ -17,6 +17,23 @@ class AdmindevisController extends Controller {
         $this->view('admindevis/dashboard');
     }
 
+    // Supprime récursivement les valeurs nulles/vides ---
+    private function filterNullsDeep(array $arr): array {
+        // ⚠️ On garde 0 et "0" (valeurs légitimes), on enlève seulement NULL et ""
+        $out = [];
+        foreach ($arr as $k => $v) {
+            if (is_array($v)) {
+                $sub = $this->filterNullsDeep($v);
+                if ($sub !== []) $out[$k] = $sub;
+            } else {
+                if ($v !== null && $v !== '') {
+                    $out[$k] = $v;
+                }
+            }
+        }
+        return $out;
+    }
+
     // ---------- Devis ----------
     public function devis($action = 'index', $id = null) {
 

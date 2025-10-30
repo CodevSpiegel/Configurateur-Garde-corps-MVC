@@ -22,12 +22,12 @@
             <?php foreach ($row as $r): ?>
             <tr>
                 <td><?= $r['id'] ?></td>
-                <td><?= $func->formatDateFr($r['create_date'], 'heure') ?></td>
+                <td><?= $func->formatDateFr($r['create_date'], 'relative') ?></td>
                 <td><?= htmlspecialchars($r['user_login'] ?? 'Visiteur') ?></td>
                 <td><?= htmlspecialchars($r['user_email'] ?? 'N/C') ?></td>
                 <td><code><?= htmlspecialchars($r['label_status']) ?></code></td>
                 <td class="actions">
-                <a class="btn" href="<?= BASE_URL ?>admindevis/devis/show/<?= (int)$r['id'] ?>">Consulter</a>
+                <a class="btn" href="<?= BASE_URL ?>admindevis/devis/show/<?= (int)$r['id'] ?>">Gerer</a>
                 <form method="post" action="<?= BASE_URL ?>admindevis/devis/delete/<?= (int)$r['id'] ?>" onsubmit="return confirm('Supprimer ce devis ?');">
                     <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
                     <button type="submit" class="btn danger">Supprimer</button>

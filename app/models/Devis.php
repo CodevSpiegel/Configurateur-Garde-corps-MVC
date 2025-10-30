@@ -34,7 +34,7 @@ class Devis extends Model
             d.ancrage_id,
             d.forme_id,
             d.verre_id,
-            t.model_id AS id_model_via_type,
+            t.model_id         AS id_model_via_type,
             m.label_model      AS model_label,
             t.label_type       AS type_label,
             f.label_finition   AS finition_label,
@@ -52,6 +52,7 @@ class Devis extends Model
             u.user_login,
             u.user_email,
             u.user_registered,
+            s.id                AS id_status,
             s.label_status
 
         FROM cfg_devis d

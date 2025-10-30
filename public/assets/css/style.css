@@ -213,11 +213,34 @@ code {
     align-items: center;
 }
 
-/* New CSS */
+/* Details CSS */
+.details {
+    padding: 32px 0;
+}
+.detailsBlock {
+    
+}
 .rowDetails {
+    padding: .5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+
+.labelDetails {
+    font-weight: 600;
+}
+
+.valueDetails {
+    color: blue;
+}
+
+.actionDetails {
     display: flex;
+    justify-content: center;
     gap: 32px;
 }
+
 
 @media (max-width: 760px) {
     .main-nav {
