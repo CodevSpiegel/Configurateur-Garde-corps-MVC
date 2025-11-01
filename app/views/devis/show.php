@@ -74,16 +74,14 @@ HTML; } else { $angle = ""; }
         <div class="detailsBlock">
             <form method="post" class="form" action="<?= BASE_URL ?>admindevis/devis/edit/<?= (int)$row['id'] ?>">
             <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
+            <input type="hidden" name="return" value="<?= BASE_URL ?>admindevis/devis/list?page=<?= (int)($fromPage ?? 1) ?>">
             <div class="rowDetails">
                 <div class="labelDetails">Statut :</div>
                 <div class="valueDetails">
                     <select name="id_status" id="id_status">
-                        <option <?php if($row['id_status'] == 1) echo "selected" ?> value="1">En attente</option>
-                        <option <?php if($row['id_status'] == 2) echo "selected" ?> value="2">En cours</option>
-                        <option <?php if($row['id_status'] == 3) echo "selected" ?> value="3">Accepté</option>
-                        <option <?php if($row['id_status'] == 4) echo "selected" ?> value="4">Refusé</option>
-                        <option <?php if($row['id_status'] == 5) echo "selected" ?> value="5">Annulé</option>
-                        <option <?php if($row['id_status'] == 6) echo "selected" ?> value="6">Terminé</option>
+                        <?php foreach ($status as $s): ?>
+                        <option <?php if($row['id_status'] == $s['id']) echo "selected" ?> value="<?= $s['id'] ?>"><?= $s['label_status'] ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
             </div>
@@ -97,7 +95,7 @@ HTML; } else { $angle = ""; }
             </div>
             <div class="rowDetails">
                 <div class="labelDetails">Utilisateur :</div>
-                <div class="valueDetails"><?= htmlspecialchars($row['user_login'] ?? 'Visiteur') ?></div>
+                <div class="valueDetails"><?= htmlspecialchars(ucfirst($row['user_login']) ?? 'Visiteur') ?></div>
             </div>
             <div class="rowDetails">
                 <div class="labelDetails">Email :</div>
@@ -139,7 +137,7 @@ HTML; } else { $angle = ""; }
         </div>
     </div>
     <div class="actionDetails">
-        <a class="btn" href="<?= BASE_URL ?>admindevis/devis/list">Retour</a>
+        <a class="btn" href="<?= BASE_URL ?>admindevis/devis/list?page=<?= (int)($fromPage ?? 1) ?>">Retour</a>
         <!-- <a class="btn" href="<?= BASE_URL ?>admindevis/devis/form/<?= (int)$row['id'] ?>">Valider</a> -->
         <button type="submit" class="btn valid">Enregistrer</button>
         </form>

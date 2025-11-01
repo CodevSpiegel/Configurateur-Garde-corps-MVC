@@ -1,34 +1,35 @@
 <?php 
-    $title = "Liste des Utilisateurs"; 
+    $title = "Liste des Utilisateurs";
+
+    /** @var array $rows @var int $page @var int $pages @var int $total */
 ?>
 <section>
     <h1>Administration</h1>
     <div class="grid">
     <div>
-        <h2>Liste des Utilisateurs</h2>
-        <!-- <p><a class="btn" href="<?= BASE_URL ?>admindevis/devis/create">+ Nouveau devis</a></p> -->
+        <h2>Liste des Utilisateurs (<?= (int)$total ?>)</h2>
         <table class="table">
         <thead>
             <tr>
-                <th>Reférence</th>
-                <th>Date de création</th>
+                <th>ID</th>
                 <th>Utilisateur</th>
                 <th>Email</th>
-                <th>Status</th>
+                <th>Groupe</th>
+                <th>Insciption</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($devis as $d): ?>
+            <?php foreach ($users as $u): ?>
             <tr>
-                <td><?= $d['id'] ?></td>
-                <td><?= $func->formatDateFr($d['create_date'], 'heure') ?></td>
-                <td><?= htmlspecialchars($d['user_login'] ?? 'Visiteur') ?></td>
-                <td><?= htmlspecialchars($d['user_email'] ?? 'N/C') ?></td>
-                <td><code><?= htmlspecialchars($d['label_status']) ?></code></td>
+                <td><?= (int) $u['id'] ?></td>
+                <td><?= htmlspecialchars(ucfirst($u['user_login']) ?? 'Visiteur') ?></td>
+                <td><?= htmlspecialchars($u['user_email'] ?? 'N/C') ?></td>
+                <td><code><?= htmlspecialchars($u['group_label']) ?></code></td>
+                <td><?= $func->formatDateFr($u['user_registered'], 'heure') ?></td>
                 <td class="actions">
-                <a class="btn" href="<?= BASE_URL ?>admindevis/devis/show/<?= (int)$d['id'] ?>">Détails</a>
-                <form method="post" action="<?= BASE_URL ?>admindevis/devis/delete/<?= (int)$d['id'] ?>" onsubmit="return confirm('Supprimer ce devis ?');">
+                <a href="<?= BASE_URL ?>admindevis/users/show/<?= (int)$u['id'] ?>?page=<?= (int)$page ?>"><button class="btn">Détails</button></a>
+                <form method="post" action="<?= BASE_URL ?>admindevis/users/delete/<?= (int)$u['id'] ?>" onsubmit="return confirm('Supprimer cet utilisateur ?');">
                     <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
                     <button type="submit" class="btn danger">Supprimer</button>
                 </form>
@@ -39,4 +40,15 @@
         </table>
     </div>
     </div>
+    <?php if (!empty($pages) && $pages > 1): ?>
+    <nav class="pagination">
+    <?php for ($p = 1; $p <= $pages; $p++): ?>
+        <?php if ($p === (int)$page): ?>
+        <strong><?= $p ?></strong>
+        <?php else: ?>
+        <a href="<?= BASE_URL ?>admindevis/users/list?page=<?= $p ?>"><?= $p ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+    </nav>
+    <?php endif; ?>
 </section>

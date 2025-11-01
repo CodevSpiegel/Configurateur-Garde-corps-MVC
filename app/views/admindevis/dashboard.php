@@ -13,13 +13,13 @@
         </thead>
         <tbody>
             <tr>
-                <td><a href="<?= BASE_URL ?>admindevis/users/list">> Utilisateurs</a></td>
+                <td><a href="<?= BASE_URL ?>admindevis/devis/list">Devis</a></td>
             </tr>
             <tr>
-                <td><a href="<?= BASE_URL ?>admindevis/devis/list">> Devis</a></td>
+                <td><a href="<?= BASE_URL ?>admindevis/users/list">Utilisateurs</a></td>
             </tr>
             <tr>
-                <td><a href="<?= BASE_URL ?>admindevis/setup">> Réglages</a></td>
+                <td><a href="<?= BASE_URL ?>admindevis/setup">Réglages</a></td>
             </tr>
         </tbody>
         </table>

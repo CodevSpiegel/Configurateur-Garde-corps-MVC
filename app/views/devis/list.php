@@ -6,7 +6,6 @@
     <div class="grid">
     <div>
         <h2>Liste des Devis</h2>
-        <!-- <p><a class="btn" href="<?= BASE_URL ?>admindevis/devis/create">+ Nouveau devis</a></p> -->
         <table class="table">
         <thead>
             <tr>
@@ -23,11 +22,11 @@
             <tr>
                 <td><?= $r['id'] ?></td>
                 <td><?= $func->formatDateFr($r['create_date'], 'relative') ?></td>
-                <td><?= htmlspecialchars($r['user_login'] ?? 'Visiteur') ?></td>
+                <td><?= htmlspecialchars(ucfirst($r['user_login']) ?? 'Visiteur') ?></td>
                 <td><?= htmlspecialchars($r['user_email'] ?? 'N/C') ?></td>
                 <td><code><?= htmlspecialchars($r['label_status']) ?></code></td>
                 <td class="actions">
-                <a class="btn valid" href="<?= BASE_URL ?>admindevis/devis/show/<?= (int)$r['id'] ?>">Gerer</a>
+                <a href="<?= BASE_URL ?>admindevis/devis/show/<?= (int)$r['id'] ?>?page=<?= (int)$page ?>"><button class="btn">Gerer</button></a>
                 <form method="post" action="<?= BASE_URL ?>admindevis/devis/delete/<?= (int)$r['id'] ?>" onsubmit="return confirm('Supprimer ce devis ?');">
                     <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
                     <button type="submit" class="btn danger">Supprimer</button>
@@ -39,4 +38,15 @@
         </table>
     </div>
     </div>
+    <?php if (!empty($pages) && $pages > 1): ?>
+    <nav class="pagination">
+    <?php for ($p = 1; $p <= $pages; $p++): ?>
+        <?php if ($p === (int)$page): ?>
+        <strong><?= $p ?></strong>
+        <?php else: ?>
+        <a href="<?= BASE_URL ?>admindevis/devis/list?page=<?= $p ?>"><?= $p ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+    </nav>
+    <?php endif; ?>
 </section>

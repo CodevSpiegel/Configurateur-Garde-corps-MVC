@@ -1,169 +1,110 @@
 <?php
 /**
- * app/models/Devis.php
- * Modèle ultra-simple utilisant la base Model (qui fournit $this->db via Database::getInstance())
- * Insert strict dans cfg_devis avec IDs + mesures, en respectant les types existants.
+ * app/models/Users.php
  */
-class Devis extends Model
+
+class Users extends Model
 {
 
     public function list(): array {
         $stmt = $this->db->query("SELECT
-            d.id,
-            d.user_id,
-            d.create_date,
+            u.id,
             u.user_login,
             u.user_email,
+            u.user_group_id,
             u.user_registered,
-            s.label_status
+            u.user_last_visit,
+            u.user_last_activity,
+            u.user_email,
+            g.id_group,
+            g.group_label
 
-        FROM cfg_devis d
-        LEFT JOIN cfg_status    s  ON d.id_status   = s.id
-        LEFT JOIN users         u  ON d.user_id = u.id
-        ORDER BY d.create_date DESC");
+        FROM users u
+        LEFT JOIN user_groups g ON u.user_group_id  = g.id_group
+        ORDER BY u.id ASC");
         return $stmt->fetchAll();
     }
 
-    // app/models/Devis.php
+    /** Compte total des utilisateurs (pour la pagination) */
     public function countAll(): int {
-        return (int)$this->db->query("SELECT COUNT(*) FROM cfg_devis")->fetchColumn();
+        return (int)$this->db->query("SELECT COUNT(*) FROM users")->fetchColumn();
     }
 
+    /**
+     * Liste paginée (10/pg par défaut)
+     * Retourne les colonnes utiles à l’admin (adapte si besoin)
+     */
     public function listPaginated(int $page = 1, int $perPage = 10): array {
         $offset = max(0, ($page - 1) * $perPage);
+
         $sql = "SELECT
-                d.id, d.create_date,
-                u.user_login, u.user_email,
-                s.label_status
-                FROM cfg_devis d
-                LEFT JOIN users  u ON d.user_id = u.id
-                LEFT JOIN cfg_status s ON d.id_status = s.id
-                ORDER BY d.id DESC
-                LIMIT :limit OFFSET :offset";
+            u.id,
+            u.user_login,
+            u.user_email,
+            u.user_group_id,
+            u.user_registered,
+            u.user_last_visit,
+            u.user_last_activity,
+            u.user_email,
+            g.id_group,
+            g.group_label
+
+        FROM users u
+        LEFT JOIN user_groups g ON u.user_group_id  = g.id_group
+        ORDER BY u.id ASC
+        LIMIT :limit OFFSET :offset";
+
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':limit',  $perPage, PDO::PARAM_INT);
         $stmt->bindValue(':offset', $offset,  PDO::PARAM_INT);
         $stmt->execute();
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /** Fiche d’un user par ID (paramétrée) */
     public function show(int $id): array {
-        $stmt = $this->db->query("SELECT
-            d.id,
-            d.user_id,
-            d.type_id,
-            d.finition_id,
-            d.pose_id,
-            d.ancrage_id,
-            d.forme_id,
-            d.verre_id,
-            t.model_id         AS id_model_via_type,
-            m.label_model      AS model_label,
-            t.label_type       AS type_label,
-            f.label_finition   AS finition_label,
-            p.label_pose       AS pose_label,
-            a.label_ancrage    AS ancrage_label,
-            fo.label_forme     AS forme_label,
-            v.label_verre      AS verre_label,
-            d.longueur_a,
-            d.longueur_b,
-            d.longueur_c,
-            d.hauteur,
-            d.angle,
-            d.create_date,
-            d.update_date,
+        $sql = "SELECT
+            u.id,
             u.user_login,
             u.user_email,
+            u.user_group_id,
             u.user_registered,
-            s.id                AS id_status,
-            s.label_status
+            u.user_last_visit,
+            u.user_last_activity,
+            u.user_email,
+            COUNT(d.id) AS nb_devis,
+            d.create_date,
+            g.id_group,
+            g.group_label
 
-        FROM cfg_devis d
-        LEFT JOIN cfg_types     t  ON d.type_id     = t.id
-        LEFT JOIN cfg_models    m  ON t.model_id    = m.id
-        LEFT JOIN cfg_finitions f  ON d.finition_id = f.id
-        LEFT JOIN cfg_poses     p  ON d.pose_id     = p.id
-        LEFT JOIN cfg_ancrages  a  ON d.ancrage_id  = a.id
-        LEFT JOIN cfg_formes    fo ON d.forme_id    = fo.id
-        LEFT JOIN cfg_verres    v  ON d.verre_id    = v.id
-        LEFT JOIN cfg_status    s  ON d.id_status   = s.id
-        LEFT JOIN users         u  ON d.user_id = u.id
-        WHERE d.id = $id");
-        return $stmt->fetch();
+        FROM users u
+        LEFT JOIN cfg_devis d ON u.id  = d.user_id
+        LEFT JOIN user_groups g ON u.user_group_id  = g.id_group
+        WHERE u.id = ?";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }
 
-    public function status(): array {
+        public function userGroups(): array {
         $stmt = $this->db->query("SELECT
-            id,
-            label_status,
-            slug_status
+            id_group,
+            group_label
 
-        FROM cfg_status
-        ORDER BY id ASC");
+        FROM user_groups
+        ORDER BY id_group ASC");
         return $stmt->fetchAll();
     }
 
 
 
     public function find(int $id): ?array {
-        $stmt = $this->db->prepare("SELECT * FROM cfg_devis WHERE id=?");
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE id=?");
         $stmt->execute([$id]);
         $row = $stmt->fetch();
         return $row ?: null;
-    }
-
-    public function create( int $user_id,
-                            int $type_id,
-                            int $finition_id,
-                            int $pose_id,
-                            int $ancrage_id,
-                            int $forme_id,
-                            int $verre_id,
-                            int $longueur_a,
-                            int $longueur_b,
-                            int $longueur_c,
-                            int $hauteur,
-                            int $angle,
-                            int $quantity,
-                            int $id_status,
-                            int $create_date,
-                            int $update_date
-                          ): int {
-        $stmt = $this->db->prepare("INSERT INTO cfg_devis ( user_id,
-                                                            type_id,
-                                                            finition_id,
-                                                            pose_id,
-                                                            ancrage_id,
-                                                            forme_id,
-                                                            verre_id,
-                                                            longueur_a,
-                                                            longueur_b,
-                                                            longueur_c,
-                                                            hauteur,
-                                                            angle,
-                                                            quantity,
-                                                            id_status,
-                                                            create_date,
-                                                            update_date )
-                                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->execute([$user_id,
-                        $type_id,
-                        $finition_id,
-                        $pose_id,
-                        $ancrage_id,
-                        $forme_id,
-                        $verre_id,
-                        $longueur_a,
-                        $longueur_b,
-                        $longueur_c,
-                        $hauteur,
-                        $angle,
-                        $quantity,
-                        $id_status,
-                        $create_date,
-                        $update_date]);
-
-        return (int)$this->db->lastInsertId();
     }
 
 
@@ -180,8 +121,14 @@ class Devis extends Model
     }
 
     public function delete(int $id): bool {
-        $stmt = $this->db->prepare("DELETE FROM cfg_devis WHERE id=?");
+        if ($id === 1) die();
+
+        $stmt = $this->db->prepare("DELETE FROM users WHERE id=?");
+        $stmt->execute([$id]);
+
+        $stmt = $this->db->prepare("DELETE FROM cfg_devis WHERE user_id=?");
         return $stmt->execute([$id]);
+
     }
 
     /**

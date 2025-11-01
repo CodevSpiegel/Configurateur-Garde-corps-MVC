@@ -19,6 +19,7 @@ $title = $title ?? 'Configurateur';
         <a class="brand" href="<?= BASE_URL ?>">Configurateur</a>
         <nav class="main-nav" aria-label="Principale">
             <a href="<?= BASE_URL ?>">Accueil</a>
+            <a href="<?= BASE_URL ?>presentation">Présentation</a>
             <a href="<?= BASE_URL ?>configurateur">Devis Garde-corps</a>
             <a href="<?= BASE_URL ?>admin">Admin</a>
             <a href="<?= BASE_URL ?>admindevis">Admin Devis</a>

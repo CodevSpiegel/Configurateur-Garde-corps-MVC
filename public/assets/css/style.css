@@ -168,15 +168,30 @@ code {
     color: var(--muted);
 }
 
+button {
+    color: #111827;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 4px 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #f3f4f6;
+}
+
 .btn {
     display: inline-block;
-    padding: .25rem .5rem;
-    border-radius: .5rem;
+    padding: 4px 8px;
+    border-radius: 8px;
     text-decoration: none;
-    background: #f3f4f6;
+    background-color: #f3f4f6;
     border: 1px solid #e5e7eb;
     color: #111827;
 }
+
+
 
 .btn:hover {
     background: #e5e7eb;
