@@ -325,7 +325,7 @@ export function renderNav({ containers, ctx }) {
               return '/' + base.replace(/^\/?/, '').replace(/\/?$/, '/') + path;
             }
 
-            const url = buildApiUrl('devis/create');
+            const url = buildApiUrl('configurateur/createDevis');
 
 
             const res = await fetch(url, {

@@ -1,9 +1,10 @@
 <?php
+
 /**
  * controllers/AdminController.php
- * CRUD basique pour catégories et astuces (sans auth).
  * Protégé par token CSRF minimal.
  */
+
 require_once __DIR__ . '/../core/Controller.php';
 require_once __DIR__ . '/../core/Model.php';
 require_once __DIR__ . '/../core/Database.php';
@@ -14,8 +15,41 @@ require_once __DIR__ . '/../models/Users.php';
 
 class AdminController extends Controller {
 
-    public function index() {
-        $this->view('admin/dashboard');
+    public function index(): void
+    {
+        // Données de la vue : titres + URLs (on calcule à partir de BASE_URL pour être robuste)
+        $cards = [
+            [
+                'title' => 'Gérer les devis',
+                'desc'  => 'Lister, afficher, supprimer…',
+                // ➜ La route pointe vers DevisController::devis('list')
+                'url'   => rtrim(BASE_URL, '/') . 'admin/devis/list'
+            ],
+            [
+                'title' => 'Gérer les utilisateurs',
+                'desc'  => 'Lister, afficher, supprimer…',
+                // ➜ La route pointe vers UsersController::users('list')
+                'url'   => rtrim(BASE_URL, '/') . 'admin/users/list'
+            ],
+            [
+                'title' => 'Réglages',
+                'desc'  => 'Paramètres de base (placeholder)',
+                // ➜ À relier plus tard vers un vrai controller (SettingsController, par ex.)
+                'url'   => rtrim(BASE_URL, '/') . '/admin/settings'
+            ],
+        ];
+
+        // Rendu de la vue : app/views/admin/dashboard.php
+        $this->view('admin/dashboard', ['cards' => $cards]);
+    }
+
+     /**
+     * (Optionnel) Placeholder pour /admin/settings
+     * Tu pourras remplacer par un vrai controller dédié plus tard.
+     */
+    public function settings(): void
+    {
+        $this->view('admin/settings', []);
     }
 
     // ---------- DEVIS ----------
@@ -39,7 +73,7 @@ class AdminController extends Controller {
                 $total = $dev->countAll();
 
                 // On récupère la liste des devis
-                $rows  = $dev->listPaginated($page, $perPage);
+                $rows  = $dev->list($page, $perPage);
                 $pages = (int)ceil($total / $perPage);
 
                 // On rend la vue liste (ex: app/views/devis/list.php)
@@ -130,9 +164,7 @@ class AdminController extends Controller {
             default:
                 return $this->view('admin/dashboard');
         }
-
     }
-
 
     // ---------- USERS ----------
     public function users( $action = 'index', $id = null ) {
@@ -155,7 +187,7 @@ class AdminController extends Controller {
                 $total = $user->countAll();
 
                 // On récupère la liste des utilisateurs
-                $row  = $user->listPaginated($page, $perPage);
+                $row  = $user->list($page, $perPage);
                 $pages = (int)ceil($total / $perPage);
 
                 // On rend la vue liste (ex: app/views/users/list.php)
@@ -246,6 +278,5 @@ class AdminController extends Controller {
             default:
                 return $this->view('admin/dashboard');
         }
-
     }
 }

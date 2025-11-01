@@ -7,26 +7,6 @@
 
 class Users extends Model
 {
-
-    public function list(): array {
-        $stmt = $this->db->query("SELECT
-            u.id,
-            u.user_login,
-            u.user_email,
-            u.user_group_id,
-            u.user_registered,
-            u.user_last_visit,
-            u.user_last_activity,
-            u.user_email,
-            g.id_group,
-            g.group_label
-
-        FROM users u
-        LEFT JOIN user_groups g ON u.user_group_id  = g.id_group
-        ORDER BY u.id ASC");
-        return $stmt->fetchAll();
-    }
-
     /** Compte total des utilisateurs (pour la pagination) */
     public function countAll(): int {
         return (int)$this->db->query("SELECT COUNT(*) FROM users")->fetchColumn();
@@ -34,9 +14,8 @@ class Users extends Model
 
     /**
      * Liste paginée (10/pg par défaut)
-     * Retourne les colonnes utiles à l’admin
      */
-    public function listPaginated( int $page = 1, int $perPage = 10 ): array {
+    public function list( int $page = 1, int $perPage = 10 ): array {
         $offset = max(0, ($page - 1) * $perPage);
         $sql = "SELECT
             u.id,

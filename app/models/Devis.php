@@ -8,24 +8,6 @@
 
 class Devis extends Model
 {
-
-    public function list(): array {
-        $stmt = $this->db->query("SELECT
-            d.id,
-            d.user_id,
-            d.create_date,
-            u.user_login,
-            u.user_email,
-            u.user_registered,
-            s.label_status
-
-        FROM cfg_devis d
-        LEFT JOIN cfg_status    s  ON d.id_status   = s.id
-        LEFT JOIN users         u  ON d.user_id = u.id
-        ORDER BY d.create_date DESC");
-        return $stmt->fetchAll();
-    }
-
     /** Compte total des devis (pour la pagination) */
     public function countAll(): int {
         return (int)$this->db->query("SELECT COUNT(*) FROM cfg_devis")->fetchColumn();
@@ -33,9 +15,8 @@ class Devis extends Model
 
     /**
      * Liste paginée (10/pg par défaut)
-     * Retourne les colonnes utiles à l’admin
      */
-    public function listPaginated( int $page = 1, int $perPage = 10 ): array {
+    public function list( int $page = 1, int $perPage = 10 ): array {
         $offset = max(0, ($page - 1) * $perPage);
         $sql = "SELECT
                 d.id, d.create_date,

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 01 nov. 2025 à 18:02
+-- Généré le : sam. 01 nov. 2025 à 19:37
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `cfg_devis` (
   KEY `cfg_devis_finition_id_foreign` (`finition_id`),
   KEY `cfg_devis_id_status_foreign` (`id_status`),
   KEY `cfg_devis_ancrage_id_foreign` (`ancrage_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `cfg_devis`
@@ -91,15 +91,20 @@ CREATE TABLE IF NOT EXISTS `cfg_devis` (
 INSERT INTO `cfg_devis` (`id`, `user_id`, `type_id`, `finition_id`, `forme_id`, `pose_id`, `ancrage_id`, `verre_id`, `longueur_a`, `longueur_b`, `longueur_c`, `hauteur`, `angle`, `quantity`, `id_status`, `create_date`, `update_date`) VALUES
 (32, 21, 15, 3, 5, 2, 3, 23, 125, 200, 189, 110, NULL, 1, 1, 1762018182, 1762018182),
 (23, 2, 1, 2, 2, 2, 2, NULL, 100, 420, NULL, 45, 36, 1, 5, 1761653190, 1761857460),
-(4, 11, 7, 1, 1, 1, 1, NULL, 100, NULL, NULL, 47, NULL, 1, 3, 1761514545, 1762018273),
-(7, 11, 30, 1, 1, 2, 2, NULL, 123, NULL, NULL, 85, NULL, 1, 4, 1761515656, 1761921221),
+(4, 11, 7, 1, 1, 1, 1, NULL, 100, NULL, NULL, 47, NULL, 1, 5, 1761514545, 1762020971),
+(7, 11, 30, 1, 1, 2, 2, NULL, 123, NULL, NULL, 85, NULL, 1, 1, 1761515656, 1762025441),
+(34, 15, 1, 2, 1, 3, 3, NULL, 127, NULL, NULL, 100, 27, 1, 1, 1762025174, 1762025174),
 (24, 1, 28, NULL, 2, NULL, 6, 9, 100, 100, NULL, 100, 45, 1, 6, 1761654347, 1761935729),
 (27, 2, 19, NULL, 5, NULL, 5, 19, 108, 120, 146, 82, NULL, 1, 1, 1762002991, 1762002991),
 (28, 5, 7, 2, 1, 3, 1, NULL, 123, NULL, NULL, 145, 46, 1, 1, 1762003018, 1762003018),
+(33, 2, 12, 2, 2, 2, 2, 5, 142, 123, NULL, 112, 48, 1, 1, 1762024820, 1762024820),
 (26, 7, 34, 2, 5, 2, 2, NULL, 158, 123, 158, 88, NULL, 1, 3, 1761759118, 1761998143),
 (30, 11, 28, NULL, 2, NULL, 1, 9, 158, 196, NULL, 100, 49, 1, 2, 1762003114, 1762012942),
-(31, 1, 6, 3, 1, 3, 3, NULL, 156, NULL, NULL, 110, 36, 1, 4, 1762003148, 1762019879),
-(29, 7, 34, 3, 1, 2, 2, NULL, 158, NULL, NULL, 77, NULL, 1, 1, 1762003053, 1762003053);
+(31, 1, 6, 3, 1, 3, 3, NULL, 156, NULL, NULL, 110, 36, 1, 3, 1762003148, 1762020944),
+(29, 7, 34, 3, 1, 2, 2, NULL, 158, NULL, NULL, 77, NULL, 1, 1, 1762003053, 1762003053),
+(35, 18, 6, 3, 1, 3, 1, NULL, 123, NULL, NULL, 144, 29, 1, 3, 1762025207, 1762025295),
+(36, 18, 30, 2, 2, 2, 3, NULL, 158, 145, NULL, 120, 59, 1, 1, 1762025377, 1762025377),
+(37, 5, 3, 2, 3, 2, 2, NULL, 125, 360, NULL, 122, NULL, 1, 4, 1762025583, 1762025624);
 
 -- --------------------------------------------------------
 
