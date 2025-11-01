@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 29 oct. 2025 à 17:49
+-- Généré le : sam. 01 nov. 2025 à 18:02
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -20,32 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `gardecorps`
 --
-
--- --------------------------------------------------------
-
---
--- Structure de la table `categories`
---
-
-DROP TABLE IF EXISTS `categories`;
-CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `slug` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `categories`
---
-
-INSERT INTO `categories` (`id`, `slug`, `name`, `description`, `created_at`) VALUES
-(1, 'html', 'HTML', 'Structure du document, sémantique, accessibilité', '2025-09-08 22:24:56'),
-(2, 'css', 'CSS', 'Mise en forme, layout moderne (Flexbox, Grid)', '2025-09-08 22:24:56'),
-(3, 'javascript', 'JavaScript', 'Langage du navigateur, DOM, fetch, asynchrone', '2025-09-08 22:24:56');
 
 -- --------------------------------------------------------
 
@@ -108,22 +82,24 @@ CREATE TABLE IF NOT EXISTS `cfg_devis` (
   KEY `cfg_devis_finition_id_foreign` (`finition_id`),
   KEY `cfg_devis_id_status_foreign` (`id_status`),
   KEY `cfg_devis_ancrage_id_foreign` (`ancrage_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `cfg_devis`
 --
 
 INSERT INTO `cfg_devis` (`id`, `user_id`, `type_id`, `finition_id`, `forme_id`, `pose_id`, `ancrage_id`, `verre_id`, `longueur_a`, `longueur_b`, `longueur_c`, `hauteur`, `angle`, `quantity`, `id_status`, `create_date`, `update_date`) VALUES
-(2, 5, 1, 1, 1, 1, 1, NULL, 110, NULL, NULL, 40, NULL, 1, 1, 1761513628, 1761513628),
-(23, 2, 1, 2, 2, 2, 2, NULL, 100, 420, NULL, 45, 36, 1, 1, 1761653190, 1761653190),
-(4, 17, 7, 1, 1, 1, 1, NULL, 100, NULL, NULL, 47, NULL, 1, 1, 1761514545, 1761514545),
-(7, 11, 30, 1, 1, 2, 2, NULL, 123, NULL, NULL, 85, NULL, 1, 1, 1761515656, 1761515656),
-(24, 1, 28, NULL, 2, NULL, 6, 9, 100, 100, NULL, 100, 45, 1, 1, 1761654347, 1761654347),
-(25, 19, 12, 2, 2, 2, 2, 5, 120, 100, NULL, 77, 49, 1, 1, 1761746696, 1761746696),
-(22, 13, 5, 2, 3, 2, 2, NULL, 150, 150, NULL, 80, NULL, 1, 1, 1761645782, 1761645782),
-(26, 7, 34, 2, 5, 2, 2, NULL, 158, 123, 158, 88, NULL, 1, 1, 1761759118, 1761759118),
-(20, 1, 36, 2, 4, 1, 2, NULL, 120, 121, 123, 77, NULL, 1, 1, 1761579378, 1761579378);
+(32, 21, 15, 3, 5, 2, 3, 23, 125, 200, 189, 110, NULL, 1, 1, 1762018182, 1762018182),
+(23, 2, 1, 2, 2, 2, 2, NULL, 100, 420, NULL, 45, 36, 1, 5, 1761653190, 1761857460),
+(4, 11, 7, 1, 1, 1, 1, NULL, 100, NULL, NULL, 47, NULL, 1, 3, 1761514545, 1762018273),
+(7, 11, 30, 1, 1, 2, 2, NULL, 123, NULL, NULL, 85, NULL, 1, 4, 1761515656, 1761921221),
+(24, 1, 28, NULL, 2, NULL, 6, 9, 100, 100, NULL, 100, 45, 1, 6, 1761654347, 1761935729),
+(27, 2, 19, NULL, 5, NULL, 5, 19, 108, 120, 146, 82, NULL, 1, 1, 1762002991, 1762002991),
+(28, 5, 7, 2, 1, 3, 1, NULL, 123, NULL, NULL, 145, 46, 1, 1, 1762003018, 1762003018),
+(26, 7, 34, 2, 5, 2, 2, NULL, 158, 123, 158, 88, NULL, 1, 3, 1761759118, 1761998143),
+(30, 11, 28, NULL, 2, NULL, 1, 9, 158, 196, NULL, 100, 49, 1, 2, 1762003114, 1762012942),
+(31, 1, 6, 3, 1, 3, 3, NULL, 156, NULL, NULL, 110, 36, 1, 4, 1762003148, 1762019879),
+(29, 7, 34, 3, 1, 2, 2, NULL, 158, NULL, NULL, 77, NULL, 1, 1, 1762003053, 1762003053);
 
 -- --------------------------------------------------------
 
@@ -368,36 +344,6 @@ INSERT INTO `cfg_verres` (`id`, `label_verre`, `slug_verre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tips`
---
-
-DROP TABLE IF EXISTS `tips`;
-CREATE TABLE IF NOT EXISTS `tips` (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `category_id` int UNSIGNED NOT NULL,
-  `title` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `summary` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `content` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `code` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `idx_tips_category` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `tips`
---
-
-INSERT INTO `tips` (`id`, `category_id`, `title`, `summary`, `content`, `code`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Balises sémantiques clés', 'Utiliser <main>, <section>, <article>, <aside>, <nav>, <header>, <footer>', 'Les balises sémantiques améliorent l’accessibilité et le SEO. Découpez vos pages en sections logiques et utilisez des <h1..h6> hiérarchisés.', '<main>\n  <article>\n    <h1>Titre</h1>\n    <p>Contenu...</p>\n  </article>\n</main>', '2025-09-08 22:24:57', NULL),
-(2, 2, 'Flexbox 1 minute', 'Axe principal, centrage facile', 'Flexbox simplifie l’alignement et la distribution dans un axe. Combinez avec gap pour l’espacement.', '.row { display:flex; align-items:center; justify-content:space-between; gap:1rem; }', '2025-09-08 22:24:57', NULL),
-(3, 2, 'Grid responsive', 'Grille fluide sans media-queries', 'CSS Grid avec minmax() et auto-fit permet des grilles responsives élégantes.', '.grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; }', '2025-09-08 22:24:57', NULL),
-(4, 3, 'Délégation d’événements', 'Écouter un parent plutôt que chaque enfant', 'Améliore les performances pour les listes dynamiques.', 'document.addEventListener(\"click\", e => { if(e.target.matches(\"[data-rm]\")) e.target.closest(\"li\").remove(); });', '2025-09-08 22:24:57', NULL);
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `users`
 --
 
@@ -424,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_group_id`, `user_registered`, `user_last_visit`, `user_last_activity`, `user_activation_key`) VALUES
 (1, 'Admin', 'squalbass27@gmail.com', 'password', 27, 1761219976, 1761220005, 1761220021, 'dfgdsfgs3d32132sdfhg315sdfh51'),
-(2, 'alex', 'alex@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759302900, 1760954700, 1761747600, '5b5db98ed68aa6222c8b3e6a1d70a7ec'),
+(2, 'alex', 'alex@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759302900, 1760954700, 1761747600, '5b5db98ed68aa6222c8b3e6a1d70a7ec'),
 (3, 'marie', 'marie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1759392000, 1761410400, 1761747720, '44d0010532dcd54f2ab5e3c81bfdba23'),
 (4, 'julien', 'julien@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759474200, 1761675600, 1761747900, '549e9f18d6d29c897e0ae94f9e9b7b75'),
 (5, 'claire', 'claire@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759563000, 1761495300, 1761748020, 'ac9dc742028f23102f0c62238407e307'),
@@ -432,16 +378,14 @@ INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_gr
 (7, 'sophie', 'sophie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759752000, 1761684000, 1761748260, 'd2153cbd3e1578cd442fbe1b3e1e4c32'),
 (8, 'lucas', 'lucas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759814100, 1761678000, 1761748380, 'f5cdab89741b65a39e415ad783666d2e'),
 (9, 'emma', 'emma@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759905000, 1761725400, 1761748440, '67cd2b294d89d25419fcffee2d1693b1'),
-(10, 'nicolas', 'nicolas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1759999500, 1761423000, 1761748560, '0c06b408e5e3e7afb64110b0a08d597a'),
+(10, 'nicolas', 'nicolas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759999500, 1761423000, 1761748560, '0c06b408e5e3e7afb64110b0a08d597a'),
 (11, 'lea', 'lea@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760082600, 1761729300, 1761748680, '2f214c0a76cc8d15d0bc6f07772a0d49'),
 (12, 'quentin', 'quentin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760166000, 1761649200, 1761748800, 'c1a5bdd1ac02f23dd240be1aab32da3f'),
-(13, 'chloe', 'chloe@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760275200, 1761739200, 1761748860, 'ce0466b49bf8596f9e2d5a76f3e00544'),
 (14, 'maxime', 'maxime@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1760348700, 1761559200, 1761748920, '9dce3de905077b61fc919263b89adaac'),
 (15, 'camille', 'camille@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760439600, 1761672600, 1761748980, '1f2b3a35fa9356a12fff3e67bbea6065'),
 (16, 'antoine', 'antoine@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760513100, 1761723600, 1761749040, '11a595f648ca5759a7ad128856f3b521'),
-(17, 'julie', 'julie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760604000, 1761497100, 1761749100, '0a40c89f518865be3795b3f434653766'),
+(17, 'julie', 'julie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1760604000, 1761497100, 1761749100, '0a40c89f518865be3795b3f434653766'),
 (18, 'paul', 'paul@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760679000, 1761657000, 1761749160, '3853c4818b995bb39ae9b7c81ef66ad2'),
-(19, 'ines', 'ines@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1760767800, 1761744000, 1761749220, 'f7b5dd54672e9e09e59b83430a45de3b'),
 (20, 'martin', 'martin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760857200, 1761647400, 1761749280, 'ec180343d421a21519326c15b8a28cd8'),
 (21, 'eva', 'eva@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760954400, 1761728400, 1761749340, '8a654f5280d9b5c89058307798c3f68c');
 
@@ -454,9 +398,23 @@ INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_gr
 DROP TABLE IF EXISTS `user_groups`;
 CREATE TABLE IF NOT EXISTS `user_groups` (
   `id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_group` smallint NOT NULL,
   `group_label` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_group` (`id_group`),
+  KEY `id_group_2` (`id_group`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `user_groups`
+--
+
+INSERT INTO `user_groups` (`id`, `id_group`, `group_label`) VALUES
+(1, 1, 'Visiteur'),
+(2, 2, 'En attente'),
+(3, 3, 'Membre'),
+(4, 4, 'Modérateur'),
+(5, 27, 'Administrateur');
 
 -- --------------------------------------------------------
 
@@ -474,25 +432,6 @@ CREATE TABLE IF NOT EXISTS `user_sessions` (
   PRIMARY KEY (`id`),
   KEY `user_sessions_s_user_id_foreign` (`s_user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `tips`
---
-ALTER TABLE `tips` ADD FULLTEXT KEY `ft_tips` (`title`,`summary`,`content`);
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `tips`
---
-ALTER TABLE `tips`
-  ADD CONSTRAINT `fk_tips_category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
