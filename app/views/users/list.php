@@ -28,8 +28,8 @@
                 <td><code><?= htmlspecialchars($u['group_label']) ?></code></td>
                 <td><?= $func->formatDateFr($u['user_registered'], 'heure') ?></td>
                 <td class="actions">
-                <a href="<?= BASE_URL ?>admindevis/users/show/<?= (int)$u['id'] ?>?page=<?= (int)$page ?>"><button class="btn">Détails</button></a>
-                <form method="post" action="<?= BASE_URL ?>admindevis/users/delete/<?= (int)$u['id'] ?>" onsubmit="return confirm('Supprimer cet utilisateur ?');">
+                <a href="<?= BASE_URL ?>admin/users/show/<?= (int)$u['id'] ?>?page=<?= (int)$page ?>"><button class="btn">Détails</button></a>
+                <form method="post" action="<?= BASE_URL ?>admin/users/delete/<?= (int)$u['id'] ?>" onsubmit="return confirm('Supprimer cet utilisateur ?');">
                     <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
                     <button type="submit" class="btn danger">Supprimer</button>
                 </form>
@@ -41,14 +41,16 @@
     </div>
     </div>
     <?php if (!empty($pages) && $pages > 1): ?>
-    <nav class="pagination">
-    <?php for ($p = 1; $p <= $pages; $p++): ?>
-        <?php if ($p === (int)$page): ?>
-        <strong><?= $p ?></strong>
-        <?php else: ?>
-        <a href="<?= BASE_URL ?>admindevis/users/list?page=<?= $p ?>"><?= $p ?></a>
-        <?php endif; ?>
-    <?php endfor; ?>
-    </nav>
+    <div class="pagination">
+        <ul>
+        <?php for ($p = 1; $p <= $pages; $p++): ?>
+            <?php if ($p === (int)$page): ?>
+            <li class="active"><?= $p ?></li>
+            <?php else: ?>
+            <a href="<?= BASE_URL ?>admin/users/list?page=<?= $p ?>"><li><?= $p ?></li></a>
+            <?php endif; ?>
+        <?php endfor; ?>
+        </ul>
+    </div>
     <?php endif; ?>
 </section>

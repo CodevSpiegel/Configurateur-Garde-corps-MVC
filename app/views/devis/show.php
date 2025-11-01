@@ -1,6 +1,11 @@
 <?php 
 $title = "Liste des Devis";
 
+if (!$row) {
+  echo "<p>Aucun Devis trouvé.</p>";
+  return;
+}
+
 $updateDate = $row['id_status'] === 1 ? "..." : $func->formatDateFr($row['update_date'], 'heure');
 
 if ( $row['finition_label'] !== NULL ) {
@@ -69,12 +74,12 @@ HTML; } else { $angle = ""; }
 ?>
 <section>
     <h1>Administration</h1>
-    <h2>Details du Devis #<?= (int)$row['id'] ?></h2>
+    <h2>Devis #<?= (int)$row['id'] ?></h2>
     <div class="grid grid-2 details">
         <div class="detailsBlock">
-            <form method="post" class="form" action="<?= BASE_URL ?>admindevis/devis/edit/<?= (int)$row['id'] ?>">
+            <form method="post" class="form" action="<?= BASE_URL ?>admin/devis/edit/<?= (int)$row['id'] ?>">
             <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
-            <input type="hidden" name="return" value="<?= BASE_URL ?>admindevis/devis/list?page=<?= (int)($fromPage ?? 1) ?>">
+            <input type="hidden" name="return" value="<?= BASE_URL ?>admin/devis/list?page=<?= (int)($fromPage ?? 1) ?>">
             <div class="rowDetails">
                 <div class="labelDetails">Statut :</div>
                 <div class="valueDetails">
@@ -137,10 +142,8 @@ HTML; } else { $angle = ""; }
         </div>
     </div>
     <div class="actionDetails">
-        <a class="btn" href="<?= BASE_URL ?>admindevis/devis/list?page=<?= (int)($fromPage ?? 1) ?>">Retour</a>
-        <!-- <a class="btn" href="<?= BASE_URL ?>admindevis/devis/form/<?= (int)$row['id'] ?>">Valider</a> -->
+        <a class="btn" href="<?= BASE_URL ?>admin/devis/list?page=<?= (int)($fromPage ?? 1) ?>">← Retour à la liste</a>
         <button type="submit" class="btn valid">Enregistrer</button>
         </form>
     </div>
-    
 </section>

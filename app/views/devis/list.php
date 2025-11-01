@@ -5,7 +5,7 @@
     <h1>Administration</h1>
     <div class="grid">
     <div>
-        <h2>Liste des Devis</h2>
+        <h2>Liste des Devis (<?= (int)$total ?>)</h2>
         <table class="table">
         <thead>
             <tr>
@@ -26,8 +26,8 @@
                 <td><?= htmlspecialchars($r['user_email'] ?? 'N/C') ?></td>
                 <td><code><?= htmlspecialchars($r['label_status']) ?></code></td>
                 <td class="actions">
-                <a href="<?= BASE_URL ?>admindevis/devis/show/<?= (int)$r['id'] ?>?page=<?= (int)$page ?>"><button class="btn">Gerer</button></a>
-                <form method="post" action="<?= BASE_URL ?>admindevis/devis/delete/<?= (int)$r['id'] ?>" onsubmit="return confirm('Supprimer ce devis ?');">
+                <a href="<?= BASE_URL ?>admin/devis/show/<?= (int)$r['id'] ?>?page=<?= (int)$page ?>"><button class="btn">Gerer</button></a>
+                <form method="post" action="<?= BASE_URL ?>admin/devis/delete/<?= (int)$r['id'] ?>" onsubmit="return confirm('Supprimer ce devis ?');">
                     <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
                     <button type="submit" class="btn danger">Supprimer</button>
                 </form>
@@ -39,14 +39,16 @@
     </div>
     </div>
     <?php if (!empty($pages) && $pages > 1): ?>
-    <nav class="pagination">
-    <?php for ($p = 1; $p <= $pages; $p++): ?>
-        <?php if ($p === (int)$page): ?>
-        <strong><?= $p ?></strong>
-        <?php else: ?>
-        <a href="<?= BASE_URL ?>admindevis/devis/list?page=<?= $p ?>"><?= $p ?></a>
-        <?php endif; ?>
-    <?php endfor; ?>
-    </nav>
+    <div class="pagination">
+        <ul>
+        <?php for ($p = 1; $p <= $pages; $p++): ?>
+            <?php if ($p === (int)$page): ?>
+            <li class="active"><?= $p ?></li>
+            <?php else: ?>
+            <a href="<?= BASE_URL ?>admin/devis/list?page=<?= $p ?>"><li><?= $p ?></li></a>
+            <?php endif; ?>
+        <?php endfor; ?>
+        </ul>
+    </div>
     <?php endif; ?>
 </section>

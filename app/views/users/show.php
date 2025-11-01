@@ -1,5 +1,5 @@
 <?php 
-$title = "Liste des Devis";
+$title = "Liste des Utilisateurs";
 
 // $updateDate = $row['id_status'] === 1 ? "..." : $func->formatDateFr($row['update_date'], 'heure');
 
@@ -15,8 +15,9 @@ if (!$row) {
     <h2>Utilisateur #<?= (int) $row['id'] ?></h2>
     <div class="grid grid-2 details">
         <div class="detailsBlock">
-            <form method="post" class="form" action="<?= BASE_URL ?>admindevis/users/edit/<?= (int)$row['id'] ?>">
+            <form method="post" class="form" action="<?= BASE_URL ?>admin/users/edit/<?= (int)$row['id'] ?>">
             <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
+            <input type="hidden" name="return" value="<?= BASE_URL ?>admin/users/list?page=<?= (int)($fromPage ?? 1) ?>">
             <div class="rowDetails">
                 <div class="labelDetails">Login :</div>
                 <div class="valueDetails"><?= htmlspecialchars(ucfirst($row['user_login']) ?? 'Visiteur') ?></div>
@@ -56,7 +57,7 @@ if (!$row) {
         </div>
     </div>
     <div class="actionDetails">
-        <a class="btn" href="<?= BASE_URL ?>admindevis/users/list?page=<?= (int)($fromPage ?? 1) ?>">← Retour à la liste</a>
+        <a class="btn" href="<?= BASE_URL ?>admin/users/list?page=<?= (int)($fromPage ?? 1) ?>">← Retour à la liste</a>
         <button type="submit" class="btn valid">Enregistrer</button>
         </form>
     </div>

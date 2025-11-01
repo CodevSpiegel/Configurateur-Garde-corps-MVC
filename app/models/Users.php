@@ -1,6 +1,8 @@
 <?php
+
 /**
  * app/models/Users.php
+ * * Modèle ultra-simple utilisant la base Model (qui fournit $this->db via Database::getInstance())
  */
 
 class Users extends Model
@@ -32,11 +34,10 @@ class Users extends Model
 
     /**
      * Liste paginée (10/pg par défaut)
-     * Retourne les colonnes utiles à l’admin (adapte si besoin)
+     * Retourne les colonnes utiles à l’admin
      */
-    public function listPaginated(int $page = 1, int $perPage = 10): array {
+    public function listPaginated( int $page = 1, int $perPage = 10 ): array {
         $offset = max(0, ($page - 1) * $perPage);
-
         $sql = "SELECT
             u.id,
             u.user_login,
@@ -88,17 +89,14 @@ class Users extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }
 
-        public function userGroups(): array {
+    public function userGroups(): array {
         $stmt = $this->db->query("SELECT
             id_group,
             group_label
-
         FROM user_groups
         ORDER BY id_group ASC");
         return $stmt->fetchAll();
     }
-
-
 
     public function find(int $id): ?array {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE id=?");
@@ -109,14 +107,11 @@ class Users extends Model
 
 
     public function update( int $id,
-                            int $id_status,
-                            int $update_date ): bool {
-        $stmt = $this->db->prepare("UPDATE cfg_devis SET id_status = ?,
-                                                         update_date = ?
-                                    WHERE id=?");
+                            int $id_group ): bool {
+        $stmt = $this->db->prepare("UPDATE users SET user_group_id = ?
+                                    WHERE id = ?");
 
-        return $stmt->execute([ $id_status,
-                                $update_date,
+        return $stmt->execute([ $id_group,
                                 $id ]);
     }
 
@@ -128,7 +123,6 @@ class Users extends Model
 
         $stmt = $this->db->prepare("DELETE FROM cfg_devis WHERE user_id=?");
         return $stmt->execute([$id]);
-
     }
 
     /**

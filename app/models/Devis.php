@@ -1,9 +1,11 @@
 <?php
+
 /**
  * app/models/Devis.php
  * Modèle ultra-simple utilisant la base Model (qui fournit $this->db via Database::getInstance())
  * Insert strict dans cfg_devis avec IDs + mesures, en respectant les types existants.
  */
+
 class Devis extends Model
 {
 
@@ -24,12 +26,16 @@ class Devis extends Model
         return $stmt->fetchAll();
     }
 
-    // app/models/Devis.php
+    /** Compte total des devis (pour la pagination) */
     public function countAll(): int {
         return (int)$this->db->query("SELECT COUNT(*) FROM cfg_devis")->fetchColumn();
     }
 
-    public function listPaginated(int $page = 1, int $perPage = 10): array {
+    /**
+     * Liste paginée (10/pg par défaut)
+     * Retourne les colonnes utiles à l’admin
+     */
+    public function listPaginated( int $page = 1, int $perPage = 10 ): array {
         $offset = max(0, ($page - 1) * $perPage);
         $sql = "SELECT
                 d.id, d.create_date,
@@ -48,7 +54,8 @@ class Devis extends Model
     }
 
     public function show(int $id): array {
-        $stmt = $this->db->query("SELECT
+
+        $sql = "SELECT
             d.id,
             d.user_id,
             d.type_id,
@@ -88,8 +95,11 @@ class Devis extends Model
         LEFT JOIN cfg_verres    v  ON d.verre_id    = v.id
         LEFT JOIN cfg_status    s  ON d.id_status   = s.id
         LEFT JOIN users         u  ON d.user_id = u.id
-        WHERE d.id = $id");
-        return $stmt->fetch();
+        WHERE d.id = ?";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }
 
     public function status(): array {
@@ -97,13 +107,10 @@ class Devis extends Model
             id,
             label_status,
             slug_status
-
         FROM cfg_status
         ORDER BY id ASC");
         return $stmt->fetchAll();
     }
-
-
 
     public function find(int $id): ?array {
         $stmt = $this->db->prepare("SELECT * FROM cfg_devis WHERE id=?");
@@ -112,67 +119,12 @@ class Devis extends Model
         return $row ?: null;
     }
 
-    public function create( int $user_id,
-                            int $type_id,
-                            int $finition_id,
-                            int $pose_id,
-                            int $ancrage_id,
-                            int $forme_id,
-                            int $verre_id,
-                            int $longueur_a,
-                            int $longueur_b,
-                            int $longueur_c,
-                            int $hauteur,
-                            int $angle,
-                            int $quantity,
-                            int $id_status,
-                            int $create_date,
-                            int $update_date
-                          ): int {
-        $stmt = $this->db->prepare("INSERT INTO cfg_devis ( user_id,
-                                                            type_id,
-                                                            finition_id,
-                                                            pose_id,
-                                                            ancrage_id,
-                                                            forme_id,
-                                                            verre_id,
-                                                            longueur_a,
-                                                            longueur_b,
-                                                            longueur_c,
-                                                            hauteur,
-                                                            angle,
-                                                            quantity,
-                                                            id_status,
-                                                            create_date,
-                                                            update_date )
-                                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->execute([$user_id,
-                        $type_id,
-                        $finition_id,
-                        $pose_id,
-                        $ancrage_id,
-                        $forme_id,
-                        $verre_id,
-                        $longueur_a,
-                        $longueur_b,
-                        $longueur_c,
-                        $hauteur,
-                        $angle,
-                        $quantity,
-                        $id_status,
-                        $create_date,
-                        $update_date]);
-
-        return (int)$this->db->lastInsertId();
-    }
-
-
     public function update( int $id,
                             int $id_status,
                             int $update_date ): bool {
         $stmt = $this->db->prepare("UPDATE cfg_devis SET id_status = ?,
                                                          update_date = ?
-                                    WHERE id=?");
+                                    WHERE id = ?");
 
         return $stmt->execute([ $id_status,
                                 $update_date,

@@ -264,6 +264,37 @@ button {
 }
 
 
+.pagination {
+    padding-top: 16px;
+}
+
+
+.pagination > ul {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    list-style: none;
+}
+
+.pagination a {
+    text-decoration: none;
+}
+
+.pagination li {
+  padding: 4px 8px;
+  border: 1px solid gray;
+  color: rgb(0, 0, 0);
+  margin: 0 4px;
+  border-radius: 4px;
+}
+
+.pagination .active {
+    color: rgb(255, 0, 0);
+}
+
+
+
+
 @media (max-width: 760px) {
     .main-nav {
         display: none; /* simple pour démo */
