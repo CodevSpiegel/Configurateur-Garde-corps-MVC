@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 01 nov. 2025 à 19:37
+-- Généré le : sam. 01 nov. 2025 à 21:33
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `cfg_devis` (
   KEY `cfg_devis_finition_id_foreign` (`finition_id`),
   KEY `cfg_devis_id_status_foreign` (`id_status`),
   KEY `cfg_devis_ancrage_id_foreign` (`ancrage_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `cfg_devis`
@@ -104,7 +104,12 @@ INSERT INTO `cfg_devis` (`id`, `user_id`, `type_id`, `finition_id`, `forme_id`, 
 (29, 7, 34, 3, 1, 2, 2, NULL, 158, NULL, NULL, 77, NULL, 1, 1, 1762003053, 1762003053),
 (35, 18, 6, 3, 1, 3, 1, NULL, 123, NULL, NULL, 144, 29, 1, 3, 1762025207, 1762025295),
 (36, 18, 30, 2, 2, 2, 3, NULL, 158, 145, NULL, 120, 59, 1, 1, 1762025377, 1762025377),
-(37, 5, 3, 2, 3, 2, 2, NULL, 125, 360, NULL, 122, NULL, 1, 4, 1762025583, 1762025624);
+(37, 5, 3, 2, 3, 2, 2, NULL, 125, 360, NULL, 122, NULL, 1, 4, 1762025583, 1762025624),
+(38, 2, 2, 2, 2, 1, 1, NULL, 126, 213, NULL, 114, 32, 1, 1, 1762027104, 1762027104),
+(39, 21, 1, 2, 1, 3, 3, NULL, 152, NULL, NULL, 100, 55, 1, 1, 1762030168, 1762030168),
+(40, 7, 25, NULL, 5, NULL, 6, 11, 123, 100, 159, 102, NULL, 1, 1, 1762032431, 1762032431),
+(41, 15, 15, 3, 2, 2, 2, 5, 203, 158, NULL, 110, 47, 1, 1, 1762032470, 1762032470),
+(42, 5, 27, NULL, 2, NULL, 6, 4, 145, 129, NULL, 140, 41, 1, 1, 1762032548, 1762032548);
 
 -- --------------------------------------------------------
 
@@ -386,13 +391,13 @@ INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_gr
 (10, 'nicolas', 'nicolas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759999500, 1761423000, 1761748560, '0c06b408e5e3e7afb64110b0a08d597a'),
 (11, 'lea', 'lea@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760082600, 1761729300, 1761748680, '2f214c0a76cc8d15d0bc6f07772a0d49'),
 (12, 'quentin', 'quentin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760166000, 1761649200, 1761748800, 'c1a5bdd1ac02f23dd240be1aab32da3f'),
-(14, 'maxime', 'maxime@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1760348700, 1761559200, 1761748920, '9dce3de905077b61fc919263b89adaac'),
+(14, 'maxime', 'maxime@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760348700, 1761559200, 1761748920, '9dce3de905077b61fc919263b89adaac'),
 (15, 'camille', 'camille@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760439600, 1761672600, 1761748980, '1f2b3a35fa9356a12fff3e67bbea6065'),
 (16, 'antoine', 'antoine@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760513100, 1761723600, 1761749040, '11a595f648ca5759a7ad128856f3b521'),
 (17, 'julie', 'julie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1760604000, 1761497100, 1761749100, '0a40c89f518865be3795b3f434653766'),
 (18, 'paul', 'paul@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760679000, 1761657000, 1761749160, '3853c4818b995bb39ae9b7c81ef66ad2'),
 (20, 'martin', 'martin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760857200, 1761647400, 1761749280, 'ec180343d421a21519326c15b8a28cd8'),
-(21, 'eva', 'eva@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760954400, 1761728400, 1761749340, '8a654f5280d9b5c89058307798c3f68c');
+(21, 'eva', 'eva@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 4, 1760954400, 1761728400, 1761749340, '8a654f5280d9b5c89058307798c3f68c');
 
 -- --------------------------------------------------------
 

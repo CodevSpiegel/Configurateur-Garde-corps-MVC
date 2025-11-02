@@ -97,10 +97,10 @@ class Users extends Model
     public function delete(int $id): bool {
         if ($id === 1) die();
 
-        $stmt = $this->db->prepare("DELETE FROM users WHERE id=?");
+        $stmt = $this->db->prepare("DELETE FROM users WHERE id = ?");
         $stmt->execute([$id]);
 
-        $stmt = $this->db->prepare("DELETE FROM cfg_devis WHERE user_id=?");
+        $stmt = $this->db->prepare("DELETE FROM cfg_devis WHERE user_id = ?");
         return $stmt->execute([$id]);
     }
 

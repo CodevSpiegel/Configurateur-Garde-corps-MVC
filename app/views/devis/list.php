@@ -22,7 +22,7 @@
             <tr>
                 <td><?= $r['id'] ?></td>
                 <td><?= $func->formatDateFr($r['create_date'], 'relative') ?></td>
-                <td><?= htmlspecialchars(ucfirst($r['user_login']) ?? 'Visiteur') ?></td>
+                <td><a href="<?= BASE_URL ?>admin/users/show/<?= (int) $r['user_id'] ?>"><?= htmlspecialchars(ucfirst($r['user_login']) ?? 'Visiteur') ?></a></td>
                 <td><?= htmlspecialchars($r['user_email'] ?? 'N/C') ?></td>
                 <td><code><?= htmlspecialchars($r['label_status']) ?></code></td>
                 <td class="actions">

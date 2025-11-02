@@ -19,7 +19,7 @@ class Devis extends Model
     public function list( int $page = 1, int $perPage = 10 ): array {
         $offset = max(0, ($page - 1) * $perPage);
         $sql = "SELECT
-                d.id, d.create_date,
+                d.id, d.user_id, d.create_date,
                 u.user_login, u.user_email,
                 s.label_status
                 FROM cfg_devis d
