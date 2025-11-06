@@ -49,11 +49,15 @@ define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
 
 // -------------------------------------------------------
-// 4️⃣ — Chargement des fichiers essentiels du framework
+// 4️⃣ — Chargement des fichiers essentiels du site
 // -------------------------------------------------------
-// Chemin vers le fichier de configuration principale
-// (ex: connexion à la BDD, constantes, etc.)
 require_once ROOT . 'app/config.php';
+require_once ROOT . 'app/core/Controller.php';
+require_once ROOT . 'app/core/Sessions.php';
+require_once ROOT . 'app/core/Model.php';
+require_once ROOT . 'app/core/Database.php';
+require_once ROOT . 'app/core/Functions.php';
+
 
 // Chemin vers la classe du routeur (moteur de navigation interne)
 require_once ROOT . 'app/core/Router.php';

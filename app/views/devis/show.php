@@ -100,7 +100,7 @@ HTML; } else { $angle = ""; }
             </div>
             <div class="rowDetails">
                 <div class="labelDetails">Utilisateur :</div>
-                <div class="valueDetails"><?= htmlspecialchars(ucfirst($row['user_login']) ?? 'Visiteur') ?></div>
+                <div class="valueDetails"><a href="<?= BASE_URL ?>admin/users/show/<?= (int) $row['user_id'] ?>"><?= htmlspecialchars(ucfirst($row['user_login']) ?? 'Visiteur') ?></div>
             </div>
             <div class="rowDetails">
                 <div class="labelDetails">Email :</div>

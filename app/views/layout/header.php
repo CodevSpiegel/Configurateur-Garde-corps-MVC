@@ -25,7 +25,7 @@ $u = $S->user();
             <a href="<?= BASE_URL ?>configurateur">Devis Garde-corps</a>
             <?php if ($u): ?>
             <a href="<?= BASE_URL ?>auth/profile">@<?= htmlspecialchars($u['user_login']) ?></a>
-            <?php if ($S->isAdmin()): ?><a href="<?= BASE_URL ?>admin">Admin</a><?php endif; ?>
+            <?php if ($S->isAdmin()): ?><a href="<?= BASE_URL ?>admin">Administration</a><?php endif; ?>
             <a href="<?= BASE_URL ?>auth/logout">Se déconnecter</a>
             <?php else: ?>
                 <a href="<?= BASE_URL ?>auth/login">Connexion</a>

@@ -13,7 +13,6 @@
  *   - La table `users` (voir migration SQL jointe)
  * -----------------------------------------------------------------------------
  */
-require_once __DIR__ . '/../core/Model.php';
 
 class Auth extends Model
 {

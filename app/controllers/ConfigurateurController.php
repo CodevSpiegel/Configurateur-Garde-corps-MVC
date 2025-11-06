@@ -8,12 +8,7 @@
  * -----------------------------------------------------------------------------
  */
 
-require_once ROOT . 'app/core/Controller.php';
-require_once ROOT . 'app/core/Sessions.php';
-require_once ROOT . 'app/core/Model.php';
-require_once ROOT . 'app/core/Database.php';
 require_once ROOT . 'app/models/Devis.php'; // ✅ on a besoin du modèle pour insérer
-
 
 class ConfigurateurController extends Controller {
 
