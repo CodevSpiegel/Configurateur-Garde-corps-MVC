@@ -12,7 +12,7 @@ $title='Changement d\'email';
   <h1>Changer mon email</h1>
   <?php if (!empty($error)): ?><p class="alert alert-danger"><?= htmlspecialchars($error) ?></p><?php endif; ?>
   <?php if (!empty($msg)): ?><p class="alert alert-success"><?= htmlspecialchars($msg) ?></p><?php endif; ?>
-  <form method="post" action="/auth/change-email" class="card p-3">
+  <form method="post" action="/auth/email" class="card p-3">
     <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
     <div class="mb-2">
       <label>Nouvel email</label>

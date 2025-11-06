@@ -9,7 +9,7 @@ $title='Présentation';
 
 ?>
 
-    <h1>Mini CMS (PHP Procédural)</h1>
+    <h1>Mini CMS (PHP - POO)</h1>
     <div class="newBlock">Ce projet inclut :</div>
     <div class="newBlock">
         <h3>Front-End</h3>
@@ -19,8 +19,7 @@ $title='Présentation';
             <li>Connexion / Déconnexion</li>
             <li>Mot de passe oublié / reset</li>
             <li>Espace utilisateur (changement email / mot de passe)</li>
-            <li>Panier des devis</li>
-            <li>Recherches & Paginations</li>
+            <li>Panier des devis (à venir)</li>
         </ul>
     </div>
     <div class="newBlock">
@@ -32,6 +31,7 @@ $title='Présentation';
             <li>Sessions persistantes en BDD (cookie + table <code>user_sessions</code>)</li>
             <li>Sécurité CSRF tokens sur tous les formulaires</li>
             <li>Gestion des utilisteurs & devis (CRUD Complet)</li>
+            <li>Recherches & Paginations</li>
             <li>Hachage des mots de passe (password_hash)</li>
             <li>Envois d'emails (Inscriptions, Devis)</li>
         </ul>

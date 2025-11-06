@@ -7,7 +7,6 @@
 
 require_once ROOT . 'app/models/Devis.php';
 require_once ROOT . 'app/models/Users.php';
-// require_once __DIR__ . '/../models/DevisTip.php';
 
 
 // 🧱 Sécurité : accès réservé aux administrateurs
