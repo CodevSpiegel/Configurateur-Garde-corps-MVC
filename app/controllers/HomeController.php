@@ -1,9 +1,9 @@
 <?php
 
-require_once __DIR__ . '/../core/Controller.php';
-require_once __DIR__ . '/../core/Model.php';
-require_once __DIR__ . '/../core/Database.php';
-require_once __DIR__ . '/../core/Functions.php';
+require_once ROOT . 'app/core/Controller.php';
+require_once ROOT . 'app/core/Model.php';
+require_once ROOT . 'app/core/Database.php';
+require_once ROOT . 'app/core/Functions.php';
 
 class HomeController extends Controller {
 

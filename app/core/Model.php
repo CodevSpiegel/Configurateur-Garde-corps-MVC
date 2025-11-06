@@ -18,7 +18,7 @@
  * ============================================================================
  */
 
-require_once __DIR__ . '/Database.php'; // ← nécessaire pour Database::getInstance()
+require_once ROOT . 'app/core/Database.php'; // ← nécessaire pour Database::getInstance()
 
  // 🔒 "abstract" signifie que cette classe ne peut pas être instanciée directement.
  // Elle sert uniquement de base pour d’autres classes modèles.

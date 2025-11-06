@@ -14,10 +14,12 @@
  * Utilise : Controller, Auth (modèle), Sessions (core).
  * -----------------------------------------------------------------------------
  */
-require_once __DIR__ . '/../core/Controller.php';
-require_once __DIR__ . '/../models/Auth.php';
-require_once __DIR__ . '/../core/Sessions.php';
-require_once __DIR__ . '/../core/Functions.php'; // pour helpers si besoin
+require_once ROOT . 'app/core/Controller.php';
+require_once ROOT . 'app/core/Sessions.php';
+require_once ROOT . 'app/models/Auth.php';
+require_once ROOT . 'app/core/Sessions.php';
+require_once ROOT . 'app/core/Functions.php'; // pour helpers si besoin
+
 
 class AuthController extends Controller
 {
@@ -144,7 +146,7 @@ class AuthController extends Controller
     }
 
     /** Changement d'email (demande confirmation à nouveau) */
-    public function changeEmail() {
+    public function email() {
         $this->session->requireAuth();
         $csrf = $this->csrfToken();
         $u = $this->session->user();

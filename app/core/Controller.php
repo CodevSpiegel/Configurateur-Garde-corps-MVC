@@ -43,13 +43,13 @@ class Controller {
         extract($data);
 
         // 🔹 Inclusion du header commun (mise en page globale)
-        include __DIR__ . '/../views/layout/header.php';
+        include ROOT . 'app/views/layout/header.php';
 
         // 🔹 Inclusion de la vue principale (contenu spécifique à la page)
-        include __DIR__ . '/../views/' . $view . '.php';
+        include ROOT . 'app/views/' . $view . '.php';
 
         // 🔹 Inclusion du footer commun
-        include __DIR__ . '/../views/layout/footer.php';
+        include ROOT . 'app/views/layout/footer.php';
     }
 
 

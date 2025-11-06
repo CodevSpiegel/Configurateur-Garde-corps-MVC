@@ -79,7 +79,7 @@ class Router {
 
         // --- Étape 3 : Localisation du fichier contrôleur ---
         // On construit le chemin complet du fichier PHP du contrôleur
-        $controllerFile = __DIR__ . '/../controllers/' . $controllerName . '.php';
+        $controllerFile = ROOT . 'app/controllers/' . $controllerName . '.php';
 
         // Si le fichier n’existe pas → Erreur 404
         if (!is_file($controllerFile)) {
@@ -126,7 +126,7 @@ class Router {
         $title = "404 — Page introuvable";
 
         // Inclusion du header (mise en page commune)
-        include __DIR__ . '/../views/layout/header.php';
+        include ROOT . 'app/views/layout/header.php';
 
         // Contenu principal du message d’erreur
         echo "<main style='text-align:center; padding:2em;'>";
@@ -136,6 +136,6 @@ class Router {
         echo "</main>";
 
         // Inclusion du footer
-        include __DIR__ . '/../views/layout/footer.php';
+        include ROOT . 'app/views/layout/footer.php';
     }
 }

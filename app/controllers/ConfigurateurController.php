@@ -8,12 +8,22 @@
  * -----------------------------------------------------------------------------
  */
 
-require_once __DIR__ . '/../core/Controller.php';
-require_once __DIR__ . '/../core/Model.php';
-require_once __DIR__ . '/../core/Database.php';
-require_once __DIR__ . '/../models/Devis.php'; // ✅ on a besoin du modèle pour insérer
+require_once ROOT . 'app/core/Controller.php';
+require_once ROOT . 'app/core/Sessions.php';
+require_once ROOT . 'app/core/Model.php';
+require_once ROOT . 'app/core/Database.php';
+require_once ROOT . 'app/models/Devis.php'; // ✅ on a besoin du modèle pour insérer
+
 
 class ConfigurateurController extends Controller {
+
+    private Sessions $session;
+
+    public function __construct()
+    {
+        $this->session = new Sessions();
+        $this->session->requireAuth();
+    }
 
     /**
      * Page d’accueil du configurateur (vue front avec le module JS)
@@ -77,7 +87,7 @@ class ConfigurateurController extends Controller {
         $ang   = $toTiny('angle');
 
         $quantity = $toTiny('quantity') ?? 1;
-        $userId   = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : 0;
+        $userId = $this->session->user()['id'] ?? 0;
         $now      = time();
 
         // 5) Validation souple (évite les undefined + accepte devis partiels)

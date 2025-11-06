@@ -5,13 +5,19 @@
  * Protégé par token CSRF minimal.
  */
 
-require_once __DIR__ . '/../core/Controller.php';
-require_once __DIR__ . '/../core/Model.php';
-require_once __DIR__ . '/../core/Database.php';
-require_once __DIR__ . '/../core/Functions.php';
-require_once __DIR__ . '/../models/Devis.php';
-require_once __DIR__ . '/../models/Users.php';
+require_once ROOT . 'app/core/Controller.php';
+require_once ROOT . 'app/core/Sessions.php';
+require_once ROOT . 'app/core/Model.php';
+require_once ROOT . 'app/core/Database.php';
+require_once ROOT . 'app/core/Functions.php';
+require_once ROOT . 'app/models/Devis.php';
+require_once ROOT . 'app//models/Users.php';
 // require_once __DIR__ . '/../models/DevisTip.php';
+
+
+// 🧱 Sécurité : accès réservé aux administrateurs
+$session = new Sessions();
+$session->requireAdmin();
 
 class AdminController extends Controller {
 

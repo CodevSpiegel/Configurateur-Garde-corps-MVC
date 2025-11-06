@@ -13,7 +13,7 @@
  * -----------------------------------------------------------------------------
  */
 
-require_once __DIR__ . '/Database.php';
+require_once ROOT . 'app/core/Database.php';
 
 class Sessions
 {
@@ -134,6 +134,27 @@ class Sessions
         $gid = (int)($u['user_group_id'] ?? 0);
         return in_array($gid, [4, 27], true);
     }
+
+    /**
+     * Exige que l'utilisateur soit administrateur.
+     * Si ce n'est pas le cas, redirige vers /auth/login ou /403.
+     */
+    // public function requireAdmin(): void {
+    //     if (!$this->isAdmin()) {
+    //         header('Location: /auth/login');
+    //         exit;
+    //     }
+    // }
+
+
+    public function requireAdmin(): void {
+        if (!$this->isAdmin()) {
+            header("HTTP/1.1 403 Forbidden");
+            require ROOT . 'app/views/errors/403.php';
+            exit;
+        }
+    }
+
 
     /** Exige une connexion sinon redirige vers /auth/login */
     public function requireAuth(): void {

@@ -37,16 +37,23 @@ declare(strict_types=1);
 session_start();
 
 
+// DÉFINITION DE LA CONSTANTE ROOT Pour fonctions d'inclusion php
+define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
+// DIRECTORY_SEPARATOR est une constante PHP
+// - Sur Windows : "\"
+// - Sur Linux/Mac : "/"
+// On l’utilise pour écrire du code compatible multiplateforme
+
 // -------------------------------------------------------
 // 3️⃣ — Chargement des fichiers essentiels du framework
 // -------------------------------------------------------
 
 // Chemin vers le fichier de configuration principale
 // (ex: connexion à la BDD, constantes, etc.)
-require_once __DIR__ . '/../app/config.php';
+require_once ROOT . 'app/config.php';
 
 // Chemin vers la classe du routeur (moteur de navigation interne)
-require_once __DIR__ . '/../app/core/Router.php';
+require_once ROOT . 'app/core/Router.php';
 
 
 // -------------------------------------------------------
