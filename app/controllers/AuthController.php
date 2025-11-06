@@ -1,7 +1,8 @@
 <?php
 /**
- * app/controllers/AuthController.php
- * -----------------------------------------------------------------------------
+ * ============================================================================
+ * app\controllers\AuthController.php
+ * ============================================================================
  * Contrôleur d'authentification (front) respectant la logique MVC existante :
  *  - /auth/login         (GET: form, POST: traitement)
  *  - /auth/register

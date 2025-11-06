@@ -1,7 +1,7 @@
 <?php
 /**
  * ============================================================================
- * core/Controller.php
+ * app\core\Controller.php
  * ============================================================================
  * ✨ CLASSE DE BASE POUR TOUS LES CONTRÔLEURS DU FRAMEWORK MVC ✨
  * 

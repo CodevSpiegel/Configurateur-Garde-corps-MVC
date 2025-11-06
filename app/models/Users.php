@@ -1,7 +1,9 @@
 <?php
 
 /**
- * app/models/Users.php
+ * ============================================================================
+ * app\models\Users.php
+ * ============================================================================
  * * Modèle ultra-simple utilisant la base Model (qui fournit $this->db via Database::getInstance())
  */
 

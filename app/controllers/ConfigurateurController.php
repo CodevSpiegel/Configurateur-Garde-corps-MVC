@@ -1,7 +1,8 @@
 <?php
 /**
- * controllers/ConfigurateurController.php
- * -----------------------------------------------------------------------------
+ * ============================================================================
+ * app\controllers\ConfigurateurController.php
+ * ============================================================================
  * Affichage du configurateur (index) + API POST /configurateur/create
  * pour enregistrer un devis en BDD via le modèle Devis.
  * On centralise ici la logique qui était précédemment dans DevisController::create().

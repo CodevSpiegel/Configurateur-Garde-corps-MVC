@@ -1,7 +1,8 @@
 <?php
 /**
- * core/Sessions.php
- * -----------------------------------------------------------------------------
+ * ============================================================================
+ * app\core\Sessions.php
+ * ============================================================================
  * Gestion centralisée des sessions "utilisateur" ET "admin" (cookies + BDD).
  * - Stocke un enregistrement dans la table user_sessions à chaque connexion.
  * - Pose un cookie signé côté client pour retrouver la session.

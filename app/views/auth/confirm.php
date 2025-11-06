@@ -1,4 +1,13 @@
-<?php $title='Confirmation'; ?>
+<?php
+/*
+ * ============================================================================
+ * app\views\auth\confirm.php
+ * ============================================================================
+ */
+
+$title='Confirmation';
+
+?>
 <main class="container">
   <h1>Confirmation d'email</h1>
   <?php if (!empty($ok)): ?>

@@ -1,7 +1,9 @@
 <?php
 
 /**
- * app/models/Devis.php
+ * ============================================================================
+ * app\models\Devis.php
+ * ============================================================================
  * Modèle ultra-simple utilisant la base Model (qui fournit $this->db via Database::getInstance())
  * Insert strict dans cfg_devis avec IDs + mesures, en respectant les types existants.
  */

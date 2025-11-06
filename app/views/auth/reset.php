@@ -1,4 +1,13 @@
-<?php $title='Nouveau mot de passe'; ?>
+<?php
+/*
+ * ============================================================================
+ * app\views\auth\reset.php
+ * ============================================================================
+ */
+
+$title='Nouveau mot de passe';
+
+?>
 <main class="container">
   <h1>Réinitialiser le mot de passe</h1>
   <?php if (!empty($error)): ?><p class="alert alert-danger"><?= htmlspecialchars($error) ?></p><?php endif; ?>

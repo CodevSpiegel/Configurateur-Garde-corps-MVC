@@ -1,7 +1,8 @@
 <?php
 /**
- * views/admin/dashboard.php
- * ---------------------------------------------------------------------------
+ * ============================================================================
+ * app\views\admin\dashboard.php
+ * ============================================================================
  * Dashboard minimal : 3 cartes cliquables.
  * Utilise BASE_URL pour générer des liens robustes.
  * Le layout header/footer est injecté automatiquement par Controller->view().

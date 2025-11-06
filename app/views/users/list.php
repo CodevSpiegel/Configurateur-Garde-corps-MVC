@@ -1,7 +1,12 @@
-<?php 
-    $title = "Liste des Utilisateurs";
+<?php
+/*
+ * ============================================================================
+ * app\views\users\list.php
+ * ============================================================================
+ */
 
-    /** @var array $rows @var int $page @var int $pages @var int $total */
+$title='Liste des Utilisateurs';
+
 ?>
 <section>
     <h1>Administration</h1>

@@ -1,5 +1,11 @@
-<?php 
-$title = "Liste des Devis";
+<?php
+/*
+ * ============================================================================
+ * app\views\devis\show.php
+ * ============================================================================
+ */
+
+$title = "Détail du Devis";
 
 if (!$row) {
   echo "<p>Aucun Devis trouvé.</p>";
@@ -7,69 +13,6 @@ if (!$row) {
 }
 
 $updateDate = $row['id_status'] === 1 ? "..." : $func->formatDateFr($row['update_date'], 'heure');
-
-if ( $row['finition_label'] !== NULL ) {
-$finition = <<<HTML
-            <div class="rowDetails">
-                <div class="labelDetails">Finition :</div>
-                <div class="valueDetails">{$row['finition_label']}</div>
-            </div>
-
-HTML; } else { $finition = ""; }
-
-if ( $row['pose_label'] !== NULL ) {
-$pose = <<<HTML
-            <div class="rowDetails">
-                <div class="labelDetails">Pose :</div>
-                <div class="valueDetails">{$row['pose_label']}</div>
-            </div>
-
-HTML; } else { $pose = ""; }
-
-if ( $row['verre_label'] !== NULL ) {
-$verre = <<<HTML
-            <div class="rowDetails">
-                <div class="labelDetails">Verre :</div>
-                <div class="valueDetails">{$row['verre_label']}</div>
-            </div>
-
-HTML; } else { $verre = ""; }
-
-if ( $row['longueur_a'] !== NULL ) {
-$longueur_a = <<<HTML
-            <div class="rowDetails">
-                <div class="labelDetails">Longueur A (cm) :</div>
-                <div class="valueDetails">{$row['longueur_a']}</div>
-            </div>
-
-HTML; } else { $longueur_a = ""; }
-
-if ( $row['longueur_b'] !== NULL ) {
-$longueur_b = <<<HTML
-            <div class="rowDetails">
-                <div class="labelDetails">Longueur B (cm) :</div>
-                <div class="valueDetails">{$row['longueur_b']}</div>
-            </div>
-
-HTML; } else { $longueur_b = ""; }
-
-if ( $row['longueur_c'] !== NULL ) {
-$longueur_c = <<<HTML
-            <div class="rowDetails">
-                <div class="labelDetails">Longueur C (cm) :</div>
-                <div class="valueDetails">{$row['longueur_c']}</div>
-            </div>
-
-HTML; } else { $longueur_c = ""; }
-
-if ( $row['angle'] !== NULL ) {
-$angle = <<<HTML
-            <div class="rowDetails">
-                <div class="labelDetails">Angle (°) :</div>
-                <div class="valueDetails">{$row['angle']}</div>
-            </div>
-
-HTML; } else { $angle = ""; }
 
 ?>
 <section>
@@ -100,7 +43,7 @@ HTML; } else { $angle = ""; }
             </div>
             <div class="rowDetails">
                 <div class="labelDetails">Utilisateur :</div>
-                <div class="valueDetails"><a href="<?= BASE_URL ?>admin/users/show/<?= (int) $row['user_id'] ?>"><?= htmlspecialchars(ucfirst($row['user_login']) ?? 'Visiteur') ?></div>
+                <div class="valueDetails"><a href="<?= BASE_URL ?>admin/users/show/<?= (int) $row['user_id'] ?>"><?= htmlspecialchars(ucfirst($row['user_login']) ?? 'Visiteur') ?></a></div>
             </div>
             <div class="rowDetails">
                 <div class="labelDetails">Email :</div>
@@ -120,8 +63,26 @@ HTML; } else { $angle = ""; }
                 <div class="labelDetails">Type :</div>
                 <div class="valueDetails"><?= htmlspecialchars($row['type_label']) ?></div>
             </div>
-<?= $finition ?>
-<?= $pose ?>
+<?php
+if ( $row['finition_label'] !== NULL ) {
+echo <<<HTML
+            <div class="rowDetails">
+                <div class="labelDetails">Finition :</div>
+                <div class="valueDetails">{$row['finition_label']}</div>
+            </div>
+
+HTML; }
+?>
+<?php
+if ( $row['pose_label'] !== NULL ) {
+echo <<<HTML
+            <div class="rowDetails">
+                <div class="labelDetails">Pose :</div>
+                <div class="valueDetails">{$row['pose_label']}</div>
+            </div>
+
+HTML; }
+?>
             <div class="rowDetails">
                 <div class="labelDetails">Ancrage :</div>
                 <div class="valueDetails"><?= htmlspecialchars($row['ancrage_label']) ?></div>
@@ -130,15 +91,60 @@ HTML; } else { $angle = ""; }
                 <div class="labelDetails">Forme :</div>
                 <div class="valueDetails"><?= htmlspecialchars($row['forme_label']) ?></div>
             </div>
-<?= $verre ?>
-<?= $longueur_a ?>
-<?= $longueur_b ?>
-<?= $longueur_c ?>
+<?php
+if ( $row['verre_label'] !== NULL ) {
+echo <<<HTML
+            <div class="rowDetails">
+                <div class="labelDetails">Verre :</div>
+                <div class="valueDetails">{$row['verre_label']}</div>
+            </div>
+
+HTML; }
+?>
+<?php
+if ( $row['longueur_a'] !== NULL ) {
+echo <<<HTML
+            <div class="rowDetails">
+                <div class="labelDetails">Longueur A (cm) :</div>
+                <div class="valueDetails">{$row['longueur_a']}</div>
+            </div>
+
+HTML; }
+?>
+<?php
+if ( $row['longueur_b'] !== NULL ) {
+echo <<<HTML
+            <div class="rowDetails">
+                <div class="labelDetails">Longueur B (cm) :</div>
+                <div class="valueDetails">{$row['longueur_b']}</div>
+            </div>
+
+HTML; }
+?>
+<?php
+if ( $row['longueur_c'] !== NULL ) {
+echo <<<HTML
+            <div class="rowDetails">
+                <div class="labelDetails">Longueur C (cm) :</div>
+                <div class="valueDetails">{$row['longueur_c']}</div>
+            </div>
+
+HTML; }
+?>
             <div class="rowDetails">
                 <div class="labelDetails">Hauteur (cm) :</div>
                 <div class="valueDetails"><?= htmlspecialchars($row['hauteur']) ?></div>
             </div>
-<?= $angle ?>
+<?php
+if ( $row['angle'] !== NULL ) {
+echo <<<HTML
+            <div class="rowDetails">
+                <div class="labelDetails">Angle (°) :</div>
+                <div class="valueDetails">{$row['angle']}</div>
+            </div>
+
+HTML; }
+?>
         </div>
     </div>
     <div class="actionDetails">

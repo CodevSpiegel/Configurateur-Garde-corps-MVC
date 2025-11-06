@@ -1,8 +1,8 @@
 <?php
-
 /**
- * controllers/AdminController.php
- * Protégé par token CSRF minimal.
+ * ============================================================================
+ * app\controllers\AdminController.php
+ * ============================================================================
  */
 
 require_once ROOT . 'app/models/Devis.php';

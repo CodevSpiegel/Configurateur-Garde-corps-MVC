@@ -1,7 +1,8 @@
 <?php
 /**
- * app/models/Auth.php
- * -----------------------------------------------------------------------------
+ * ============================================================================
+ * app\models\Auth.php
+ * ============================================================================
  * Couche d'accès pour l'authentification :
  * - Enregistrement (avec token de confirmation e-mail)
  * - Connexion (login via email OU login)

@@ -1,5 +1,11 @@
-<?php 
-$title = "Liste des Utilisateurs";
+<?php
+/*
+ * ============================================================================
+ * app\views\users\show.php
+ * ============================================================================
+ */
+
+$title = "Détail de l\'utilisateurs";
 
 // $updateDate = $row['id_status'] === 1 ? "..." : $func->formatDateFr($row['update_date'], 'heure');
 

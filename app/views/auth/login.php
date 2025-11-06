@@ -1,4 +1,13 @@
-<?php $title='Connexion'; ?>
+<?php
+/*
+ * ============================================================================
+ * app\views\auth\login.php
+ * ============================================================================
+ */
+
+$title='Connexion';
+
+?>
 <main class="container">
   <h1>Connexion</h1>
   <?php if (!empty($error)): ?><p class="alert alert-danger"><?= htmlspecialchars($error) ?></p><?php endif; ?>

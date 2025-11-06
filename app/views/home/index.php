@@ -1,4 +1,13 @@
-<?php $title = "Présentation"; ?>
+<?php
+/*
+ * ============================================================================
+ * app\views\home\index.php
+ * ============================================================================
+ */
+
+$title='Présentation';
+
+?>
 
     <h1>Mini CMS (PHP Procédural)</h1>
     <div class="newBlock">Ce projet inclut :</div>

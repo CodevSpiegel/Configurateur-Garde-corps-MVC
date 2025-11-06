@@ -1,4 +1,13 @@
-<?php $title='Inscription'; ?>
+<?php
+/*
+ * ============================================================================
+ * app\views\auth\register.php
+ * ============================================================================
+ */
+
+$title='Inscription';
+
+?>
 <main class="container">
   <h1>Créer un compte</h1>
   <?php if (!empty($error)): ?><p class="alert alert-danger"><?= htmlspecialchars($error) ?></p><?php endif; ?>

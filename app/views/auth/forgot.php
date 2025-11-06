@@ -1,4 +1,13 @@
-<?php $title='Mot de passe perdu'; ?>
+<?php
+/*
+ * ============================================================================
+ * aapp\views\auth\forgot.php
+ * ============================================================================
+ */
+
+$title='Mot de passe perdu';
+
+?>
 <main class="container">
   <h1>Mot de passe perdu</h1>
   <?php if (!empty($error)): ?><p class="alert alert-danger"><?= htmlspecialchars($error) ?></p><?php endif; ?>
