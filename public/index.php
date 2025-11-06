@@ -15,11 +15,12 @@
  *    d’accéder directement aux fichiers internes du projet (sécurité + propreté).
  * 
  * ➤ Exemple :
- *    URL → http://localhost/mon_mvc/public/article/show/5
+ *    URL → http://mon_mvc/public/article/show/5
  *    ⤷ index.php reçoit l’URL complète
  *    ⤷ il appelle le routeur → "ArticleController::show(5)"
  * ============================================================================
  */
+
 
  // -------------------------------------------------------
  // 1️⃣ — Mode strict pour la sécurité et la stabilité
@@ -37,17 +38,19 @@ declare(strict_types=1);
 session_start();
 
 
-// DÉFINITION DE LA CONSTANTE ROOT Pour fonctions d'inclusion php
+// -------------------------------------------------------
+//  3️⃣ — DÉFINITION DE LA CONSTANTE ROOT Pour fonctions d'inclusion php
+// -------------------------------------------------------
 define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 // DIRECTORY_SEPARATOR est une constante PHP
 // - Sur Windows : "\"
 // - Sur Linux/Mac : "/"
 // On l’utilise pour écrire du code compatible multiplateforme
 
-// -------------------------------------------------------
-// 3️⃣ — Chargement des fichiers essentiels du framework
-// -------------------------------------------------------
 
+// -------------------------------------------------------
+// 4️⃣ — Chargement des fichiers essentiels du framework
+// -------------------------------------------------------
 // Chemin vers le fichier de configuration principale
 // (ex: connexion à la BDD, constantes, etc.)
 require_once ROOT . 'app/config.php';
@@ -57,9 +60,8 @@ require_once ROOT . 'app/core/Router.php';
 
 
 // -------------------------------------------------------
-// 4️⃣ — Création du routeur et traitement de la requête
+// 5️⃣ — Création du routeur et traitement de la requête
 // -------------------------------------------------------
-
 // On crée une nouvelle instance de la classe Router
 $router = new Router();
 
@@ -81,6 +83,6 @@ $router->dispatch($_SERVER['REQUEST_URI'] ?? '/');
  *      → "contact" → méthode contact()
  * 5. Le contrôleur affiche la vue correspondante (HTML)
  * ----------------------------------------------------------------------------
- * 🚀 Ainsi, tout ton site passe toujours par ce fichier unique.
+ * 🚀 Ainsi, tout le site passe toujours par ce fichier unique.
  * ============================================================================
  */

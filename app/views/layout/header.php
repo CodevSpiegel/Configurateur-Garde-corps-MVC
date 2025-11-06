@@ -1,7 +1,7 @@
 <?php
 $title = $title ?? 'Configurateur';
 
-require_once __DIR__ . '/../../core/Sessions.php';
+require_once ROOT . 'app/core/Sessions.php';
 $S = new Sessions();
 $u = $S->user();
 ?>
@@ -12,6 +12,7 @@ $u = $S->user();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= htmlspecialchars($title) ?></title>
     <meta name="description" content="Guide pratique et CRUD d'astuces pour HTML, CSS, JavaScript, PHP et MySQL.">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/root.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
     <script>window.APP_BASE_URL = '<?= rtrim(BASE_URL, "/") . "/" ?>';</script>
 </head>

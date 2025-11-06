@@ -1,0 +1,13 @@
+:root {
+    --Primary-color: #FFFFFF;
+    --bg: #0f172a;
+    --bg-2: #111827;
+    --fg: #0b1220;
+    --muted: #6b7280;
+    --card: #ffffff;
+    --shadow: 0 10px 30px rgba(16,24,40,.08);
+    --brand: #4f46e5;
+    --brand-2: #6366f1;
+    --danger: #ef4444;
+    --valid: #007bff;
+}

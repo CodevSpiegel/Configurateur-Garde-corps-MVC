@@ -11,7 +11,7 @@ require_once ROOT . 'app/core/Model.php';
 require_once ROOT . 'app/core/Database.php';
 require_once ROOT . 'app/core/Functions.php';
 require_once ROOT . 'app/models/Devis.php';
-require_once ROOT . 'app//models/Users.php';
+require_once ROOT . 'app/models/Users.php';
 // require_once __DIR__ . '/../models/DevisTip.php';
 
 

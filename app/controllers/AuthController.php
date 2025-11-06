@@ -16,9 +16,9 @@
  */
 require_once ROOT . 'app/core/Controller.php';
 require_once ROOT . 'app/core/Sessions.php';
-require_once ROOT . 'app/models/Auth.php';
 require_once ROOT . 'app/core/Sessions.php';
 require_once ROOT . 'app/core/Functions.php'; // pour helpers si besoin
+require_once ROOT . 'app/models/Auth.php';
 
 
 class AuthController extends Controller
