@@ -1,6 +1,9 @@
 <?php
-// views/layout/header.php — Entête HTML global + nav
 $title = $title ?? 'Configurateur';
+
+require_once __DIR__ . '/../../core/Sessions.php';
+$S = new Sessions();
+$u = $S->user();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,8 +13,7 @@ $title = $title ?? 'Configurateur';
     <title><?= htmlspecialchars($title) ?></title>
     <meta name="description" content="Guide pratique et CRUD d'astuces pour HTML, CSS, JavaScript, PHP et MySQL.">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
-
-<script>window.APP_BASE_URL = '<?= rtrim(BASE_URL, "/") . "/" ?>';</script>
+    <script>window.APP_BASE_URL = '<?= rtrim(BASE_URL, "/") . "/" ?>';</script>
 </head>
 <body>
 <header class="site-header">
@@ -20,9 +22,15 @@ $title = $title ?? 'Configurateur';
         <nav class="main-nav" aria-label="Principale">
             <a href="<?= BASE_URL ?>">Présentation</a>
             <a href="<?= BASE_URL ?>configurateur">Devis Garde-corps</a>
-            <a href="<?= BASE_URL ?>admin">Admin</a>
+            <?php if ($u): ?>
+            <a href="<?= BASE_URL ?>auth/profile">@<?= htmlspecialchars($u['user_login']) ?></a>
+            <?php if ($S->isAdmin()): ?><a href="<?= BASE_URL ?>admin">Admin</a><?php endif; ?>
+            <a href="<?= BASE_URL ?>auth/logout">Se déconnecter</a>
+            <?php else: ?>
+                <a href="<?= BASE_URL ?>auth/login">Connexion</a>
+                <a href="<?= BASE_URL ?>auth/register">Inscription</a>
+            <?php endif; ?>
         </nav>
-        
     </div>
 </header>
 <main class="container content">
