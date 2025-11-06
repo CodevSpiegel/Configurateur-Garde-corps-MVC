@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 01 nov. 2025 à 21:33
+-- Généré le : jeu. 06 nov. 2025 à 18:19
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `cfg_devis` (
   KEY `cfg_devis_finition_id_foreign` (`finition_id`),
   KEY `cfg_devis_id_status_foreign` (`id_status`),
   KEY `cfg_devis_ancrage_id_foreign` (`ancrage_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `cfg_devis`
@@ -109,7 +109,13 @@ INSERT INTO `cfg_devis` (`id`, `user_id`, `type_id`, `finition_id`, `forme_id`, 
 (39, 21, 1, 2, 1, 3, 3, NULL, 152, NULL, NULL, 100, 55, 1, 1, 1762030168, 1762030168),
 (40, 7, 25, NULL, 5, NULL, 6, 11, 123, 100, 159, 102, NULL, 1, 1, 1762032431, 1762032431),
 (41, 15, 15, 3, 2, 2, 2, 5, 203, 158, NULL, 110, 47, 1, 1, 1762032470, 1762032470),
-(42, 5, 27, NULL, 2, NULL, 6, 4, 145, 129, NULL, 140, 41, 1, 1, 1762032548, 1762032548);
+(42, 5, 27, NULL, 2, NULL, 6, 4, 145, 129, NULL, 140, 41, 1, 1, 1762032548, 1762032548),
+(43, 15, 1, 1, 1, 1, 1, NULL, 123, NULL, NULL, 55, NULL, 1, 1, 1762427038, 1762427038),
+(44, 5, 1, 1, 1, 2, 2, NULL, 200, NULL, NULL, 60, NULL, 1, 1, 1762430305, 1762430305),
+(45, 1, 10, 1, 1, 1, 2, NULL, 450, NULL, NULL, 120, NULL, 1, 1, 1762436758, 1762436758),
+(46, 1, 7, 1, 1, 3, 1, NULL, 564, NULL, NULL, 213, 55, 1, 2, 1762437798, 1762438081),
+(47, 2, 10, 1, 1, 2, 2, NULL, 450, NULL, NULL, 130, NULL, 1, 1, 1762438365, 1762438365),
+(48, 1, 7, 1, 2, 2, 3, NULL, 210, 123, NULL, 108, 62, 1, 1, 1762450307, 1762450307);
 
 -- --------------------------------------------------------
 
@@ -368,6 +374,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_last_visit` int UNSIGNED NOT NULL,
   `user_last_activity` int UNSIGNED NOT NULL,
   `user_activation_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email_confirm_token` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email_confirmed_at` int DEFAULT NULL,
+  `reset_token` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `reset_expires` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_user_login_unique` (`user_login`),
   UNIQUE KEY `users_user_email_unique` (`user_email`),
@@ -378,26 +388,26 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_group_id`, `user_registered`, `user_last_visit`, `user_last_activity`, `user_activation_key`) VALUES
-(1, 'Admin', 'squalbass27@gmail.com', 'password', 27, 1761219976, 1761220005, 1761220021, 'dfgdsfgs3d32132sdfhg315sdfh51'),
-(2, 'alex', 'alex@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759302900, 1760954700, 1761747600, '5b5db98ed68aa6222c8b3e6a1d70a7ec'),
-(3, 'marie', 'marie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1759392000, 1761410400, 1761747720, '44d0010532dcd54f2ab5e3c81bfdba23'),
-(4, 'julien', 'julien@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759474200, 1761675600, 1761747900, '549e9f18d6d29c897e0ae94f9e9b7b75'),
-(5, 'claire', 'claire@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759563000, 1761495300, 1761748020, 'ac9dc742028f23102f0c62238407e307'),
-(6, 'thomas', 'thomas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1759654800, 1761566400, 1761748200, '794282a0e17f283fa03c1b5fed1e1fd8'),
-(7, 'sophie', 'sophie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759752000, 1761684000, 1761748260, 'd2153cbd3e1578cd442fbe1b3e1e4c32'),
-(8, 'lucas', 'lucas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759814100, 1761678000, 1761748380, 'f5cdab89741b65a39e415ad783666d2e'),
-(9, 'emma', 'emma@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759905000, 1761725400, 1761748440, '67cd2b294d89d25419fcffee2d1693b1'),
-(10, 'nicolas', 'nicolas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759999500, 1761423000, 1761748560, '0c06b408e5e3e7afb64110b0a08d597a'),
-(11, 'lea', 'lea@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760082600, 1761729300, 1761748680, '2f214c0a76cc8d15d0bc6f07772a0d49'),
-(12, 'quentin', 'quentin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760166000, 1761649200, 1761748800, 'c1a5bdd1ac02f23dd240be1aab32da3f'),
-(14, 'maxime', 'maxime@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760348700, 1761559200, 1761748920, '9dce3de905077b61fc919263b89adaac'),
-(15, 'camille', 'camille@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760439600, 1761672600, 1761748980, '1f2b3a35fa9356a12fff3e67bbea6065'),
-(16, 'antoine', 'antoine@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760513100, 1761723600, 1761749040, '11a595f648ca5759a7ad128856f3b521'),
-(17, 'julie', 'julie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1760604000, 1761497100, 1761749100, '0a40c89f518865be3795b3f434653766'),
-(18, 'paul', 'paul@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760679000, 1761657000, 1761749160, '3853c4818b995bb39ae9b7c81ef66ad2'),
-(20, 'martin', 'martin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760857200, 1761647400, 1761749280, 'ec180343d421a21519326c15b8a28cd8'),
-(21, 'eva', 'eva@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 4, 1760954400, 1761728400, 1761749340, '8a654f5280d9b5c89058307798c3f68c');
+INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_group_id`, `user_registered`, `user_last_visit`, `user_last_activity`, `user_activation_key`, `email_confirm_token`, `email_confirmed_at`, `reset_token`, `reset_expires`) VALUES
+(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1762443350, 1762451131, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
+(2, 'alex', 'alex@example.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 3, 1759302900, 1762438324, 1762438372, '5b5db98ed68aa6222c8b3e6a1d70a7ec', NULL, NULL, NULL, NULL),
+(3, 'marie', 'marie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759392000, 1761410400, 1761747720, '44d0010532dcd54f2ab5e3c81bfdba23', NULL, NULL, NULL, NULL),
+(4, 'julien', 'julien@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759474200, 1761675600, 1761747900, '549e9f18d6d29c897e0ae94f9e9b7b75', NULL, NULL, NULL, NULL),
+(5, 'claire', 'claire@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759563000, 1761495300, 1761748020, 'ac9dc742028f23102f0c62238407e307', NULL, NULL, NULL, NULL),
+(6, 'thomas', 'thomas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759654800, 1761566400, 1761748200, '794282a0e17f283fa03c1b5fed1e1fd8', NULL, NULL, NULL, NULL),
+(7, 'sophie', 'sophie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759752000, 1761684000, 1761748260, 'd2153cbd3e1578cd442fbe1b3e1e4c32', NULL, NULL, NULL, NULL),
+(8, 'lucas', 'lucas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759814100, 1761678000, 1761748380, 'f5cdab89741b65a39e415ad783666d2e', NULL, NULL, NULL, NULL),
+(9, 'emma', 'emma@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759905000, 1761725400, 1761748440, '67cd2b294d89d25419fcffee2d1693b1', NULL, NULL, NULL, NULL),
+(10, 'nicolas', 'nicolas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759999500, 1761423000, 1761748560, '0c06b408e5e3e7afb64110b0a08d597a', NULL, NULL, NULL, NULL),
+(11, 'lea', 'lea@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760082600, 1761729300, 1761748680, '2f214c0a76cc8d15d0bc6f07772a0d49', NULL, NULL, NULL, NULL),
+(12, 'quentin', 'quentin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760166000, 1761649200, 1761748800, 'c1a5bdd1ac02f23dd240be1aab32da3f', NULL, NULL, NULL, NULL),
+(14, 'maxime', 'maxime@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760348700, 1761559200, 1761748920, '9dce3de905077b61fc919263b89adaac', NULL, NULL, NULL, NULL),
+(15, 'camille', 'camille@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1760439600, 1761672600, 1761748980, '1f2b3a35fa9356a12fff3e67bbea6065', NULL, NULL, NULL, NULL),
+(16, 'antoine', 'antoine@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760513100, 1761723600, 1761749040, '11a595f648ca5759a7ad128856f3b521', NULL, NULL, NULL, NULL),
+(17, 'julie', 'julie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1760604000, 1761497100, 1761749100, '0a40c89f518865be3795b3f434653766', NULL, NULL, NULL, NULL),
+(18, 'paul', 'paul@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760679000, 1761657000, 1761749160, '3853c4818b995bb39ae9b7c81ef66ad2', NULL, NULL, NULL, NULL),
+(20, 'martin', 'martin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760857200, 1761647400, 1761749280, 'ec180343d421a21519326c15b8a28cd8', NULL, NULL, NULL, NULL),
+(21, 'eva', 'eva@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 4, 1760954400, 1761728400, 1761749340, '8a654f5280d9b5c89058307798c3f68c', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -434,14 +444,17 @@ INSERT INTO `user_groups` (`id`, `id_group`, `group_label`) VALUES
 
 DROP TABLE IF EXISTS `user_sessions`;
 CREATE TABLE IF NOT EXISTS `user_sessions` (
-  `id` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `s_user_id` bigint UNSIGNED NOT NULL DEFAULT '0',
-  `s_running_time` int UNSIGNED NOT NULL DEFAULT '0',
-  `s_ip_adress` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `s_browser` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `session_id` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_agent` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `expires_at` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `user_sessions_s_user_id_foreign` (`s_user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  UNIQUE KEY `sid_unique` (`session_id`),
+  KEY `idx_user` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
