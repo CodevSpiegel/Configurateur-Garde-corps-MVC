@@ -8,16 +8,18 @@
 $title='Changement d\'email';
 
 ?>
-<main class="container">
-  <h1>Changer mon email</h1>
   <?php if (!empty($error)): ?><p class="alert alert-danger"><?= htmlspecialchars($error) ?></p><?php endif; ?>
   <?php if (!empty($msg)): ?><p class="alert alert-success"><?= htmlspecialchars($msg) ?></p><?php endif; ?>
-  <form method="post" action="/auth/email" class="card p-3">
+  <form class="formulaire" method="post" action="/auth/email">
     <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
-    <div class="mb-2">
-      <label>Nouvel email</label>
-      <input name="email" type="email" class="form-control" required>
+    <div class="form-group">
+      <label for="password">Votre mot de passe</label>
+      <input type="password" id="password" name="password"" placeholder="Veuillez saisir votre mot de passe" required>
     </div>
-    <button class="btn btn-primary">Valider</button>
+    <div class="form-group">
+      <label for="email">Votre nouvel email</label>
+      <input type="email" id="email" name="email" placeholder="Indiquez votre nouvelle adresse email" required>
+    </div>
+    <button type="submit">Valider</button>
   </form>
-</main>
+

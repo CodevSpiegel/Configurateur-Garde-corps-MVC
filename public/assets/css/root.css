@@ -1,5 +1,22 @@
 :root {
-    --Primary-color: #FFFFFF;
+
+
+    --primary-color: #007bff;
+    --primary-hover: #0b5ed7;
+
+    --success: #28a745;
+    --success-hover: #157347;
+
+    --danger: #dc3545;
+    --danger-hover: #bb2d3b;
+
+    --dark: #343a40;
+    --dark-hover: #424649;
+
+
+
+
+
     --bg: #0f172a;
     --bg-2: #111827;
     --fg: #0b1220;
@@ -10,4 +27,5 @@
     --brand-2: #6366f1;
     --danger: #ef4444;
     --valid: #007bff;
+
 }

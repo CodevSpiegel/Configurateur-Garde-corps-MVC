@@ -29,6 +29,7 @@ class AuthController extends Controller
         $this->session = new Sessions();
     }
 
+    // Page par defaut (Connexion)
     public function index() {
         $this->redirect('/auth/login');
     }
@@ -63,7 +64,8 @@ class AuthController extends Controller
     /** Inscription */
     public function register() {
         $csrf = $this->csrfToken();
-        $msg  = null; $error = null;
+        $msg  = null;
+        $error = null;
 
         if ($this->isPost()) {
             if (!$this->checkCsrf($_POST['csrf'] ?? '')) die('CSRF');
@@ -71,8 +73,9 @@ class AuthController extends Controller
             $login = trim($_POST['login'] ?? '');
             $email = trim($_POST['email'] ?? '');
             $pass  = $_POST['password'] ?? '';
+            $passConfirm  = $_POST['passwordConfirm'] ?? '';
 
-            $res = $this->auth->register($login, $email, $pass);
+            $res = $this->auth->register($login, $email, $pass, $passConfirm);
             if ($res['ok'] ?? false) {
                 // "Envoi" du lien de confirmation — ici on affiche en mode dev
                 $token = $res['confirm_token'];
@@ -106,10 +109,9 @@ class AuthController extends Controller
             if (!$this->checkCsrf($_POST['csrf'] ?? '')) die('CSRF');
             $email = trim($_POST['email'] ?? '');
             $token = $this->auth->requestReset($email);
+            $msg = "Si un compte est lié à cette adresse, un email a été envoyé à $email";
             if ($token) {
-                $msg = "Lien de réinitialisation (dev) : /auth/reset/$token";
-            } else {
-                $error = "Email inconnu";
+                $msg .= "Lien de réinitialisation (dev) : /auth/reset/$token";
             }
         }
 
@@ -119,15 +121,17 @@ class AuthController extends Controller
     /** Reset via token */
     public function reset($token=null) {
         $csrf = $this->csrfToken();
-        $msg=null; $error=null;
+        $msg=null;
+        $error=null;
 
         if ($this->isPost()) {
             if (!$this->checkCsrf($_POST['csrf'] ?? '')) die('CSRF');
             $token = $_POST['token'] ?? '';
             $new   = $_POST['password'] ?? '';
+            $newConfirm   = $_POST['passwordConfirm'] ?? '';
             if (strlen($new) < 6) { $error='Mot de passe trop court'; }
             else {
-                $ok = $this->auth->resetPassword($token, $new);
+                $ok = $this->auth->resetPassword($token, $new, $newConfirm);
                 $msg = $ok ? "Mot de passe réinitialisé, vous pouvez vous connecter." : "Token invalide/expiré";
             }
         }
@@ -147,12 +151,14 @@ class AuthController extends Controller
         $this->session->requireAuth();
         $csrf = $this->csrfToken();
         $u = $this->session->user();
-        $msg=null; $error=null;
+        $msg=null;
+        $error=null;
 
         if ($this->isPost()) {
             if (!$this->checkCsrf($_POST['csrf'] ?? '')) die('CSRF');
+            $inputPass = trim($_POST['password'] ?? '');
             $new = trim($_POST['email'] ?? '');
-            $res = $this->auth->changeEmail((int)$u['id'], $new);
+            $res = $this->auth->changeEmail((int)$u['id'], $u['user_password'], $inputPass, $new);
             if ($res['ok'] ?? false) {
                 $msg = "Email changé. Confirmez via le lien (dev) : /auth/confirm/{$res['confirm_token']}";
             } else {

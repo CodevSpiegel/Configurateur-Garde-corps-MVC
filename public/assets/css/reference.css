@@ -1,0 +1,27 @@
+:root {
+    --primary: #007bff;         /* Bleu pour les éléments principaux */
+    --primary-hover: #0b5ed7;
+    --secondary: #6c757d;       /* Gris pour les éléments secondaires */
+    --secondary-hover: #5c636a;
+    --success: #28a745;         /*  Vert pour indiquer le succès */
+    --success-hover: #157347;
+    --danger: #dc3545;          /* Rouge pour les erreurs ou avertissements. */
+    --danger-hover: #bb2d3b;
+    --warning: #ffc107;         /* Jaune pour attirer l'attention */
+    --warning-hover: #ffca2c;
+    --info: #17a2b8;            /* Cyan pour des informations générales */
+    --info-hover: #31d2f2;
+    --light: #f8f9fa;           /* Gris clair pour les fonds clairs */
+    --light-hover: #d3d4d5;
+    --dark: #343a40;            /* Gris foncé pour les fonds foncés */
+    --dark-hover: #424649;
+    --white: #ffffff;
+
+    --shadow: 0 10px 30px rgba(16,24,40,.08);
+
+    --bg: #ffffff;
+    --panel: #121836;
+    --muted: #aab0c0;
+    --brand: #4f7cff;
+    --ok: #28a745;
+}

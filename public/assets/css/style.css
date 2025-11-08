@@ -30,7 +30,7 @@ body {
 }
 
 .site-header {
-    background: var(--bg);
+    background-color: var(--primary-color);
     color: #fff;
     position: sticky;
     top: 0;
@@ -39,10 +39,16 @@ body {
 }
 
 .brand {
-    color: #fff;
+    font-style: sans-serif;
+    font-size: 1.5rem;
+    color: var(--dark);
     text-decoration: none;
     font-weight: 800;
     letter-spacing: .3px;
+    transition: color 0.3s;
+}
+.brand:hover {
+    color: var(--dark-hover);
 }
 
 .main-nav a {
@@ -76,6 +82,124 @@ body {
     padding: .45rem .8rem;
     border-radius: .5rem;
 }
+
+/* -----------------------------------------------------------
+   Style général des formulaires
+----------------------------------------------------------- */
+.formulaire {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+  /* border-radius: 12px; */
+  /* box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08); */
+}
+
+.formulaire h1,
+.formulaire h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* -----------------------------------------------------------
+   CHAMPS DE FORMULAIRE
+----------------------------------------------------------- */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Inputs, select, textarea */
+.form-group input:not([type="checkbox"]):not([type="radio"]),
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Effet focus moderne */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+  background-color: #fff;
+  outline: none;
+}
+
+/* -----------------------------------------------------------
+   RADIO & CHECKBOX
+----------------------------------------------------------- */
+.form-group input[type="checkbox"],
+.form-group input[type="radio"] {
+  accent-color: #0d6efd; /* Couleur bleue Bootstrap */
+  transform: scale(1.2);
+  margin-right: 0.4rem;
+  cursor: pointer;
+}
+
+/* Alignement propre */
+.form-group label input[type="checkbox"],
+.form-group label input[type="radio"] {
+  vertical-align: middle;
+}
+
+/* -----------------------------------------------------------
+   TEXTAREA
+----------------------------------------------------------- */
+.formulaire textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* -----------------------------------------------------------
+   BOUTON
+----------------------------------------------------------- */
+.formulaire button {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.formulaire button:hover {
+  background-color: var(--primary-hover);
+}
+
+.formulaire p {
+    padding-top: 1.5rem;
+}
+
+.alert {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.alert-success {
+    color: var(--danger);
+}
+.alert-danger {
+    color: var(--danger);
+}
+
 
 .content {
     background: #fff;
@@ -154,19 +278,6 @@ code {
 
 .muted {
     color: var(--muted);
-}
-
-button {
-    color: #111827;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 500;
-    text-decoration: none;
-    padding: 4px 8px;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #f3f4f6;
 }
 
 .btn {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 06 nov. 2025 à 18:19
+-- Généré le : sam. 08 nov. 2025 à 01:11
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -81,8 +81,15 @@ CREATE TABLE IF NOT EXISTS `cfg_devis` (
   KEY `cfg_devis_verre_id_foreign` (`verre_id`),
   KEY `cfg_devis_finition_id_foreign` (`finition_id`),
   KEY `cfg_devis_id_status_foreign` (`id_status`),
-  KEY `cfg_devis_ancrage_id_foreign` (`ancrage_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `cfg_devis_ancrage_id_foreign` (`ancrage_id`),
+  KEY `idx_cfg_devis_user_id` (`user_id`),
+  KEY `idx_cfg_devis_type_id` (`type_id`),
+  KEY `idx_cfg_devis_finition_id` (`finition_id`),
+  KEY `idx_cfg_devis_pose_id` (`pose_id`),
+  KEY `idx_cfg_devis_ancrage_id` (`ancrage_id`),
+  KEY `idx_cfg_devis_forme_id` (`forme_id`),
+  KEY `idx_cfg_devis_verre_id` (`verre_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `cfg_devis`
@@ -115,7 +122,8 @@ INSERT INTO `cfg_devis` (`id`, `user_id`, `type_id`, `finition_id`, `forme_id`, 
 (45, 1, 10, 1, 1, 1, 2, NULL, 450, NULL, NULL, 120, NULL, 1, 1, 1762436758, 1762436758),
 (46, 1, 7, 1, 1, 3, 1, NULL, 564, NULL, NULL, 213, 55, 1, 2, 1762437798, 1762438081),
 (47, 2, 10, 1, 1, 2, 2, NULL, 450, NULL, NULL, 130, NULL, 1, 1, 1762438365, 1762438365),
-(48, 1, 7, 1, 2, 2, 3, NULL, 210, 123, NULL, 108, 62, 1, 1, 1762450307, 1762450307);
+(48, 1, 7, 1, 2, 2, 3, NULL, 210, 123, NULL, 108, 62, 1, 1, 1762450307, 1762450307),
+(49, 22, 6, 3, 1, 3, 3, NULL, 127, NULL, NULL, 100, 27, 1, 1, 1762453845, 1762453845);
 
 -- --------------------------------------------------------
 
@@ -381,16 +389,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_user_login_unique` (`user_login`),
   UNIQUE KEY `users_user_email_unique` (`user_email`),
-  KEY `users_user_group_id_foreign` (`user_group_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `users_user_group_id_foreign` (`user_group_id`),
+  KEY `idx_users_reset_token` (`reset_token`(250)),
+  KEY `idx_users_email_confirm_token` (`email_confirm_token`(250)),
+  KEY `idx_users_user_group_id` (`user_group_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_group_id`, `user_registered`, `user_last_visit`, `user_last_activity`, `user_activation_key`, `email_confirm_token`, `email_confirmed_at`, `reset_token`, `reset_expires`) VALUES
-(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1762443350, 1762451131, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
-(2, 'alex', 'alex@example.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 3, 1759302900, 1762438324, 1762438372, '5b5db98ed68aa6222c8b3e6a1d70a7ec', NULL, NULL, NULL, NULL),
+(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1762553457, 1762553497, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
+(2, 'alex', 'alex@alex.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 3, 1759302900, 1762563940, 1762564230, '5b5db98ed68aa6222c8b3e6a1d70a7ec', NULL, 1762561413, '91aef643bb96493b1d4edc38b1ece7c2', 1762566094),
 (3, 'marie', 'marie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759392000, 1761410400, 1761747720, '44d0010532dcd54f2ab5e3c81bfdba23', NULL, NULL, NULL, NULL),
 (4, 'julien', 'julien@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759474200, 1761675600, 1761747900, '549e9f18d6d29c897e0ae94f9e9b7b75', NULL, NULL, NULL, NULL),
 (5, 'claire', 'claire@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759563000, 1761495300, 1761748020, 'ac9dc742028f23102f0c62238407e307', NULL, NULL, NULL, NULL),
@@ -407,7 +418,9 @@ INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_gr
 (17, 'julie', 'julie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1760604000, 1761497100, 1761749100, '0a40c89f518865be3795b3f434653766', NULL, NULL, NULL, NULL),
 (18, 'paul', 'paul@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1760679000, 1761657000, 1761749160, '3853c4818b995bb39ae9b7c81ef66ad2', NULL, NULL, NULL, NULL),
 (20, 'martin', 'martin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760857200, 1761647400, 1761749280, 'ec180343d421a21519326c15b8a28cd8', NULL, NULL, NULL, NULL),
-(21, 'eva', 'eva@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 4, 1760954400, 1761728400, 1761749340, '8a654f5280d9b5c89058307798c3f68c', NULL, NULL, NULL, NULL);
+(21, 'eva', 'eva@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 4, 1760954400, 1761728400, 1761749340, '8a654f5280d9b5c89058307798c3f68c', NULL, NULL, NULL, NULL),
+(22, 'Testeur3', 'testeur3@testeur3.com', '$2y$10$J/bVetYB1VnxlA99x22l6.bnDhEGvDzrNdlpV/ePiUoksY7p.rk4m', 3, 1762453517, 1762462972, 1762546617, '', NULL, 1762463935, NULL, NULL),
+(23, 'sqdfqsdgqfdgqfdhg', 'sdfsdq@dsfhfd.com', '$2y$10$mPR8DBkRrrpYC5GnSdj3o.pOfWp5h7FgYFt/LgBiNjGNb28Mwe4Se', 3, 1762555830, 1762555830, 1762555830, '', NULL, 1762555954, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -422,7 +435,7 @@ CREATE TABLE IF NOT EXISTS `user_groups` (
   `group_label` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_group` (`id_group`),
-  KEY `id_group_2` (`id_group`)
+  UNIQUE KEY `uniq_user_groups_id_group` (`id_group`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -453,8 +466,16 @@ CREATE TABLE IF NOT EXISTS `user_sessions` (
   `expires_at` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sid_unique` (`session_id`),
-  KEY `idx_user` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `idx_user` (`user_id`),
+  KEY `idx_user_sessions_user_id` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `user_sessions`
+--
+
+INSERT INTO `user_sessions` (`id`, `user_id`, `session_id`, `ip_address`, `user_agent`, `created_at`, `expires_at`) VALUES
+(26, 2, '674ea648313e0e275c86f2eb0baf721956389f9e93605b74a668052ed4ceee33', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1762563940, 1763168740);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

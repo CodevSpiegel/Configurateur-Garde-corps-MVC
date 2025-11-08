@@ -43,7 +43,7 @@ class Auth extends Model
     }
 
     /** Inscription d'un nouvel utilisateur */
-    public function register(string $login, string $email, string $password): array
+    public function register(string $login, string $email, string $password, string $passwordConfirm): array
     {
         // Simples validations
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -54,6 +54,9 @@ class Auth extends Model
         }
         if (strlen($password) < 6) {
             return ['ok'=>false,'error'=>'Mot de passe trop court'];
+        }
+        if($password !== $passwordConfirm) {
+            return ['ok'=>false,'error'=>'Les mots de passe sont différents'];
         }
 
         // Unicité
@@ -95,7 +98,7 @@ class Auth extends Model
     public function attemptLogin(string $identity, string $password): array
     {
         $u = $this->findByLoginOrEmail($identity);
-        if (!$u) return ['ok'=>false,'error'=>'Utilisateur introuvable'];
+        if (!$u) return ['ok'=>false,'error'=>'Login/Email ou mot de passe incorrect.'];
 
         // le dump initial pouvait contenir des mots de passe non hashés ("password")
         $hash = $u['user_password'];
@@ -112,7 +115,7 @@ class Auth extends Model
             }
         }
 
-        if (!$valid) return ['ok'=>false,'error'=>'Mot de passe invalide'];
+        if (!$valid) return ['ok'=>false,'error'=>'Login/Email ou Mot de passe incorrect.'];
 
         // Vérifie que l'email est confirmé (optionnel)
         // if (!empty($u['email_confirm_token'])) {
@@ -153,8 +156,12 @@ class Auth extends Model
     }
 
     /** Change l'email (et redemande confirmation) */
-    public function changeEmail(int $userId, string $newEmail): array
+    public function changeEmail(int $userId, string $userPassword, string $inputPassword, string $newEmail): array
     {
+        if (!$this->checkPassword($inputPassword, $userPassword)) {
+            return ['ok'=>false,'error'=>'Mot de passe incorrect'];
+        }
+
         if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
             return ['ok'=>false,'error'=>'Email invalide'];
         }
