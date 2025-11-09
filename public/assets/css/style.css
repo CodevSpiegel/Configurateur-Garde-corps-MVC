@@ -1,407 +1,184 @@
-* {
+/*
+======================================================================
+FSA Inox / MonCMS — Thème minimaliste (Front + Admin)
+Auteur : ChatGPT (pour Sébastien) — 2025-11-08
+Objectif : fournir une base HTML + CSS responsive (sans JS) inspirée
+           de la maquette "Accueil / Connexion / Dashboard / Configurateur / User".
+- Palette : bleu Bootstrap, gris clair, gris foncé, blanc
+- Typo : system-ui / Inter / Roboto (fallback)
+- Largeur max Desktop : 1080px (container centré)
+- Grille : utilitaires .grid-2, .grid-3 + responsive
+======================================================================
+*/
+
+/* ------------------------- Variables & Reset ------------------------ */
+:root{
+    /* Couleurs (faciles à modifier partout) */
+    --primary: #0d6efd;
+    --primary-hover: #0b5ed7;
+    --text: #212529;
+    --muted: #495057;
+    --border: #dee2e6;
+    --bg: #ffffff;
+    --bg-soft: #f8f9fa;
+
+    /* Rythme vertical (8/16/24/32/48/64) */
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 32px;
+    --sp-5: 48px;
+    --sp-6: 64px;
+
+    /* Rayons & ombres */
+    --radius: 12px;
+    --shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+
+*,
+html,
+body{
     box-sizing: border-box;
-    padding: 0;
     margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.55;
+}
+
+/* ------------------------- Helpers ------------------------ */
+.container{
+    width: min(1080px, 100% - 32px); /* 1080px max, marges latérales 16px */
+    margin-inline: auto;
+}
+.section{
+    padding: var(--sp-6) 0;
+}
+
+h1{ font-size: clamp(28px, 4vw, 40px); margin: 0 0 var(--sp-3); line-height:1.2; }
+h2{ font-size: clamp(22px, 3vw, 28px); margin: 0 0 var(--sp-2); }
+p{ margin: 0 0 var(--sp-2); color: var(--muted); }
+.lead{ font-size: 1.1rem; }
+
+.btn{
+    display:inline-block; padding: 12px 20px; border-radius: 10px;
+    text-decoration:none; font-weight:600; transition: .2s ease;
+    border:1px solid transparent;
+}
+.btn-primary{ background: var(--primary); color:#fff; }
+.btn-primary:hover{ background: var(--primary-hover); }
+.btn-outline{ background: transparent; color: var(--primary); border-color: var(--primary); }
+.btn-outline:hover{ color:#fff; background: var(--primary); }
+
+.card{
+    background:#fff; border:1px solid var(--border); border-radius: var(--radius);
+    padding: var(--sp-3); box-shadow: var(--shadow);
+}
+.dot{ width:4px; height:10px; border-radius:50%; background: var(--primary); box-shadow:0 0 0 6px rgba(13,110,253,.08); }
+.card-header { display: flex; align-items: center; gap: 16px; }
+.card-title { font-size: 20px; font-weight: 700; }
+.card-body { padding-top: 16px; }
+.card-body li { margin-left: 2.5rem; line-height: 1.6rem;}
+
+.grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+.grid-3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+@media (max-width: 900px){
+    .grid-2{ grid-template-columns: 1fr; }
+    .grid-3{ grid-template-columns: 1fr; }
+}
+
+/* ------------------------- Navbar (front & admin) ------------------------ */
+/* Navbar 100% width avec container interne pour alignement */
+.navbar{
+    position: sticky; top:0; z-index:10; background: #fff; border-bottom:1px solid var(--border);
+}
+.navbar .row{ display:flex; align-items:center; justify-content:space-between; gap: var(--sp-3); height:64px; }
+.brand{ font-weight:800; letter-spacing:.2px; }
+.nav{ display:flex; gap: var(--sp-3); align-items:center; }
+.nav a{ color: var(--text); text-decoration:none; font-weight:600; opacity:.85; }
+.nav a:hover{ opacity:1; }
+
+/* Menu burger CSS-only (checkbox hack) */
+#nav-toggle{ display:none; }
+.nav-toggle-label{
+    display:none; width:40px; height:40px; border:1px solid var(--border); border-radius:10px; align-items:center; justify-content:center;
+}
+.nav-toggle-label span{ width:18px; height:2px; background:var(--text); position:relative; display:block; }
+.nav-toggle-label span::before,
+.nav-toggle-label span::after{
+  content:''; position:absolute; left:0; width:18px; height:2px; background:var(--text);
+}
+.nav-toggle-label span::before{ top:-6px; } .nav-toggle-label span::after{ top:6px; }
+
+@media (max-width: 780px){
+    .nav{ display:none; position:absolute; right:16px; top:64px; flex-direction:column; background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; width: min(240px, calc(100% - 32px)); box-shadow: var(--shadow); }
+    #nav-toggle:checked ~ .nav{ display:flex; }
+    .nav-toggle-label{ display:flex; }
+}
+
+/* ------------------------- HERO (front) ------------------------ */
+.hero{
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+}
+.hero-inner{ padding: var(--sp-6) 0; display:grid; grid-template-columns: 1.2fr .8fr; gap: var(--sp-4); align-items:center; }
+.hero-visual{
+    min-height: 260px; background: linear-gradient(180deg, #ffffff, #f1f3f5);
+    border:1px dashed var(--border); border-radius: var(--radius);
+    display:grid; place-items:center; color:#6c757d; font-weight:600;
+}
+.hero-visual img {
+    border-radius: var(--radius);
+}
+@media (max-width: 900px){
+    .hero-inner{ grid-template-columns: 1fr; }
 }
 
 
 
-html {
-    font-size: 16px;
+/* ------------------------- FOOTER ------------------------ */
+.footer{ background: var(--bg-soft); border-top:1px solid var(--border); padding: var(--sp-4) 0; color:#6c757d; font-size:14px; }
+
+/* ------------------------- TABLE + FORMS ------------------------ */
+.table{ width:100%; border-collapse: collapse; }
+.table th, .table td{ border:1px solid var(--border); padding:12px; text-align:left; }
+.table thead th{ background: var(--bg-soft); font-weight:700; }
+.input{
+    width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; outline:none;
+}
+.input:focus{ border-color: var(--primary); box-shadow: 0 0 0 3px rgba(13,110,253,.15); }
+
+/* ------------------------- ADMIN LAYOUT ------------------------ */
+.admin-wrap{ display:grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 64px); }
+.admin-sidebar{
+    background: var(--primary);
+    color:#fff; padding: var(--sp-4) var(--sp-3);
+}
+.admin-sidebar a{ color:#fff; text-decoration:none; opacity:.9; display:block; padding:10px 12px; border-radius:8px; }
+.admin-sidebar a:hover, .admin-sidebar a.active{ background: rgba(255,255,255,.12); opacity:1; }
+.admin-main{ padding: var(--sp-4); background:#fff; }
+
+@media (max-width: 980px){
+    .admin-wrap{ grid-template-columns: 1fr; }
+    .admin-sidebar{ position: sticky; top:64px; z-index: 5; display:flex; gap:8px; overflow:auto; white-space:nowrap; }
 }
 
-body {
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    color: #111827;
-    background: #f8fafc;
-    line-height: 1.6;
+/* ------------------------- STEP PROGRESS (configurateur) ------------------------ */
+.steps{ display:flex; gap:12px; flex-wrap:wrap; }
+.step{
+    display:flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:#fff;
 }
+.step .badge{ width:22px; height:22px; border-radius:50%; display:grid; place-items:center; font-size:12px; font-weight:700; color:#fff; background: var(--primary); }
+.step.is-active{ border-color: var(--primary); box-shadow: 0 0 0 3px rgba(13,110,253,.12); }
 
-.container {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 1rem;
-}
-
-.row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.site-header {
-    background-color: var(--primary-color);
-    color: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    box-shadow: var(--shadow);
-}
-
-.brand {
-    font-style: sans-serif;
-    font-size: 1.5rem;
-    color: var(--dark);
-    text-decoration: none;
-    font-weight: 800;
-    letter-spacing: .3px;
-    transition: color 0.3s;
-}
-.brand:hover {
-    color: var(--dark-hover);
-}
-
-.main-nav a {
-    color: #cbd5e1;
-    text-decoration: none;
-    padding: .4rem .6rem;
-    border-radius: .5rem;
-}
-
-.main-nav a:hover {
-    color: #fff;
-    background: #1e293b;
-}
-
-.search {
-    margin-left: auto;
-    display: flex;
-    gap: .5rem;
-}
-
-.search input {
-    padding: .45rem .6rem;
-    border-radius: .5rem;
-    border: 1px solid #e5e7eb;
-}
-
-.search button {
-    border: 0;
-    background:var(--brand);
-    color: #fff;
-    padding: .45rem .8rem;
-    border-radius: .5rem;
-}
-
-/* -----------------------------------------------------------
-   Style général des formulaires
------------------------------------------------------------ */
-.formulaire {
-  max-width: 600px;
-  margin: 0 auto;
-  background: white;
-  padding: 2rem;
-  /* border-radius: 12px; */
-  /* box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08); */
-}
-
-.formulaire h1,
-.formulaire h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: #333;
-}
-
-/* -----------------------------------------------------------
-   CHAMPS DE FORMULAIRE
------------------------------------------------------------ */
-.form-group {
-  margin-bottom: 1.2rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.4rem;
-  font-weight: 600;
-  color: #333;
-}
-
-/* Inputs, select, textarea */
-.form-group input:not([type="checkbox"]):not([type="radio"]),
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background: #f9f9f9;
-  font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-/* Effet focus moderne */
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
-  background-color: #fff;
-  outline: none;
-}
-
-/* -----------------------------------------------------------
-   RADIO & CHECKBOX
------------------------------------------------------------ */
-.form-group input[type="checkbox"],
-.form-group input[type="radio"] {
-  accent-color: #0d6efd; /* Couleur bleue Bootstrap */
-  transform: scale(1.2);
-  margin-right: 0.4rem;
-  cursor: pointer;
-}
-
-/* Alignement propre */
-.form-group label input[type="checkbox"],
-.form-group label input[type="radio"] {
-  vertical-align: middle;
-}
-
-/* -----------------------------------------------------------
-   TEXTAREA
------------------------------------------------------------ */
-.formulaire textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-/* -----------------------------------------------------------
-   BOUTON
------------------------------------------------------------ */
-.formulaire button {
-  width: 100%;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.9rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.formulaire button:hover {
-  background-color: var(--primary-hover);
-}
-
-.formulaire p {
-    padding-top: 1.5rem;
-}
-
-.alert {
-    display: flex;
-    justify-content: center;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-.alert-success {
-    color: var(--danger);
-}
-.alert-danger {
-    color: var(--danger);
-}
+/* ------------------------- SMALL UTILITIES ------------------------ */
+.mt-2{ margin-top: var(--sp-2); } .mt-3{ margin-top: var(--sp-3); } .mt-4{ margin-top: var(--sp-4); }
+.mb-2{ margin-bottom: var(--sp-2); } .mb-3{ margin-bottom: var(--sp-3); } .mb-4{ margin-bottom: var(--sp-4); }
+.text-center{ text-align:center; }
+.badge-kpi{ display:inline-block; background:var(--bg-soft); border:1px solid var(--border); border-radius:8px; padding:6px 10px; font-weight:700; }
 
 
-.content {
-    background: #fff;
-    margin-top: 1rem;
-    border-radius: 1rem;
-    box-shadow: var(--shadow);
-}
-
-.grid {
-    display: grid;
-    gap: 1rem;
-}
-.grid-2 {
-    grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
-}
-.grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-}
-.grid-5 {
-    grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
-}
-
-.card {
-    background:var(--card);
-    border-radius: .8rem;
-    padding: 1rem;
-    box-shadow: var(--shadow);
-}
-
-.chip {
-    display: inline-block;
-    background: #eef2ff;
-    color: #3730a3;
-    border: 1px solid #c7d2fe;
-    padding: .35rem .6rem;
-    border-radius: 999px;
-    text-decoration: none;
-}
-
-.list {
-    list-style: none;
-}
-
-.list li {
-    padding: .4rem 0;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.table th,
-.table td {
-    padding: .5rem .4rem;
-    border-bottom: 1px solid #e5e7eb;
-    text-align: left;
-}
-
-pre {
-    background: #0b1220;
-    color: #e2e8f0;
-    padding: 1rem;
-    border-radius: .75rem;
-    overflow: auto;
-    border: 1px solid #1f2a44;
-}
-
-code {
-    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-    background: #f1f5f9;
-    padding: .1rem .3rem;
-    border-radius: .3rem;
-}
-
-.muted {
-    color: var(--muted);
-}
-
-.btn {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 8px;
-    text-decoration: none;
-    background-color: #f3f4f6;
-    border: 1px solid #e5e7eb;
-    color: #111827;
-}
-
-
-
-.btn:hover {
-    background: #e5e7eb;
-}
-
-.btn.danger {
-    background: var(--danger);
-    border-color: var(--danger);
-    color: #fff;
-}
-
-.btn.valid {
-    background: var(--valid);
-    border-color: var(--valid);
-    color: #fff;
-}
-
-.form {
-    display: grid;
-    gap: .8rem;
-    max-width: 800px;
-}
-
-.form input[type="text"],
-.form textarea,
-.form select {
-    width: 100%;
-    padding: .6rem .7rem;
-    border: 1px solid #e5e7eb;
-    border-radius: .5rem;
-}
-
-.site-footer {
-    padding: 1.2rem 0;
-    color: #6b7280;
-}
-
-.actions {
-    display: inline-flex;
-    gap: .4rem;
-    align-items: center;
-}
-
-/* Details CSS */
-.details {
-    padding: 32px 0;
-}
-.detailsBlock {
-    
-}
-.rowDetails {
-    padding: .5rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    box-shadow:0 2px 6px rgba(0,0,0,.08);
-}
-
-.labelDetails {
-    font-weight: 600;
-}
-
-.valueDetails {
-    color: #000088;
-}
-
-.actionDetails {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-}
-
-
-.pagination {
-    padding-top: 16px;
-}
-
-
-.pagination > ul {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    list-style: none;
-}
-
-.pagination a {
-    text-decoration: none;
-}
-
-.pagination li {
-  padding: 4px 8px;
-  border: 1px solid gray;
-  color: rgb(0, 0, 0);
-  margin: 0 4px;
-  border-radius: 4px;
-}
-
-.pagination .active {
-    /* color: rgb(255, 0, 0); */
-    background-color: var(--valid);
-    color: white;
-}
-
-
-
-
-@media (max-width: 760px) {
-    .main-nav {
-        display: none; /* simple pour démo */
-    }
-
-    .search {
-        margin-left: 0;
-    }
-}

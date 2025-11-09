@@ -5,34 +5,56 @@
  * ============================================================================
  */
 
-$title='Présentation';
+$title='Accueil';
 
 ?>
 
-    <h1>Mini CMS (PHP - POO)</h1>
-    <div class="newBlock">Ce projet inclut :</div>
-    <div class="newBlock">
-        <h3>Front-End</h3>
-        <ul>
-            <li>Configurateur de devis en pur JavaScript (vanilla)</li>
-            <li>Inscription + email de confirmation</li>
-            <li>Connexion / Déconnexion</li>
-            <li>Mot de passe oublié / reset</li>
-            <li>Espace utilisateur (changement email / mot de passe)</li>
-            <li>Panier des devis (à venir)</li>
-        </ul>
+<section class="hero">
+    <div class="container hero-inner">
+        <div>
+            <h1>Configurez votre garde‑corps inox sur mesure</h1>
+            <p class="lead">Simulez vos options (câbles, barres, verre), visualisez le rendu et recevez un devis instantané.</p>
+            <a class="btn btn-primary mt-2" href="<?= BASE_URL ?>configurateur">Lancer le configurateur</a>
+            <a class="btn btn-outline mt-2" href="#">Voir un exemple</a>
+        </div>
+        <div class="hero-visual">
+            <img src="assets/images/exemple.webp" alt="">
+        </div>
     </div>
-    <div class="newBlock">
-        <h3>Back-End</h3>
-        <ul>
-            <li>Installation du CMS automatisée</li>
-            <li>Architecture MVC + Class PDO</li>
-            <li>Router (SEO friendly) avec segments illimités</li>
-            <li>Sessions persistantes en BDD (cookie + table <code>user_sessions</code>)</li>
-            <li>Sécurité CSRF tokens sur tous les formulaires</li>
-            <li>Gestion des utilisteurs & devis (CRUD Complet)</li>
-            <li>Recherches & Paginations</li>
-            <li>Hachage des mots de passe (password_hash)</li>
-            <li>Envois d'emails (Inscriptions, Devis)</li>
-        </ul>
+</section>
+<section class="section">
+    <div class="container">
+        <h2 class="mb-3">Pourquoi FRANCE Inox ?</h2>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-header">
+                    <span class="dot"></span>
+                    <span class="card-title">Inox pro</span>
+                </div>
+                <div class="card-body">
+                    <p>Matériaux de qualité professionnelle, durables et résistants.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="dot"></span>
+                    <span class="card-title">Devis instantané</span>
+                </div>
+                <div class="card-body">
+                    <p>Générez un devis clair dès la fin de votre configuration.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="dot"></span>
+                    <span class="card-title">Fabrication FR</span>
+                </div>
+                <div class="card-body">
+                    <p>Conception et assemblage sur mesure en France.</p>
+                </div>
+            </div>
+        </div>
     </div>
+</section>

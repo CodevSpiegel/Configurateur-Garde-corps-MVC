@@ -79,13 +79,13 @@ class AuthController extends Controller
             if ($res['ok'] ?? false) {
                 // "Envoi" du lien de confirmation — ici on affiche en mode dev
                 $token = $res['confirm_token'];
-                $msg = "Compte créé. Lien de confirmation (dev) : /auth/confirm/$token";
+                $msg = "Votre compte a été créé. Lien de confirmation (dev) : /auth/confirm/$token";
             } else {
                 $error = $res['error'] ?? 'Erreur';
             }
         }
 
-        $this->view('auth/register', compact('csrf','msg','error'));
+        $this->view('auth/login', compact('csrf','msg','error'));
     }
 
     /** Confirmation d'email */

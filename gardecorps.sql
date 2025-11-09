@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 08 nov. 2025 à 01:11
+-- Généré le : dim. 09 nov. 2025 à 18:04
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -393,15 +393,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `idx_users_reset_token` (`reset_token`(250)),
   KEY `idx_users_email_confirm_token` (`email_confirm_token`(250)),
   KEY `idx_users_user_group_id` (`user_group_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_group_id`, `user_registered`, `user_last_visit`, `user_last_activity`, `user_activation_key`, `email_confirm_token`, `email_confirmed_at`, `reset_token`, `reset_expires`) VALUES
-(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1762553457, 1762553497, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
-(2, 'alex', 'alex@alex.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 3, 1759302900, 1762563940, 1762564230, '5b5db98ed68aa6222c8b3e6a1d70a7ec', NULL, 1762561413, '91aef643bb96493b1d4edc38b1ece7c2', 1762566094),
+(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1762711111, 1762711427, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
+(2, 'alex', 'alex@alex.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 3, 1759302900, 1762563940, 1762699543, '5b5db98ed68aa6222c8b3e6a1d70a7ec', NULL, 1762561413, '91aef643bb96493b1d4edc38b1ece7c2', 1762566094),
 (3, 'marie', 'marie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759392000, 1761410400, 1761747720, '44d0010532dcd54f2ab5e3c81bfdba23', NULL, NULL, NULL, NULL),
 (4, 'julien', 'julien@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759474200, 1761675600, 1761747900, '549e9f18d6d29c897e0ae94f9e9b7b75', NULL, NULL, NULL, NULL),
 (5, 'claire', 'claire@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759563000, 1761495300, 1761748020, 'ac9dc742028f23102f0c62238407e307', NULL, NULL, NULL, NULL),
@@ -420,7 +420,8 @@ INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_gr
 (20, 'martin', 'martin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760857200, 1761647400, 1761749280, 'ec180343d421a21519326c15b8a28cd8', NULL, NULL, NULL, NULL),
 (21, 'eva', 'eva@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 4, 1760954400, 1761728400, 1761749340, '8a654f5280d9b5c89058307798c3f68c', NULL, NULL, NULL, NULL),
 (22, 'Testeur3', 'testeur3@testeur3.com', '$2y$10$J/bVetYB1VnxlA99x22l6.bnDhEGvDzrNdlpV/ePiUoksY7p.rk4m', 3, 1762453517, 1762462972, 1762546617, '', NULL, 1762463935, NULL, NULL),
-(23, 'sqdfqsdgqfdgqfdhg', 'sdfsdq@dsfhfd.com', '$2y$10$mPR8DBkRrrpYC5GnSdj3o.pOfWp5h7FgYFt/LgBiNjGNb28Mwe4Se', 3, 1762555830, 1762555830, 1762555830, '', NULL, 1762555954, NULL, NULL);
+(23, 'sqdfqsdgqfdgqfdhg', 'sdfsdq@dsfhfd.com', '$2y$10$mPR8DBkRrrpYC5GnSdj3o.pOfWp5h7FgYFt/LgBiNjGNb28Mwe4Se', 3, 1762555830, 1762555830, 1762555830, '', NULL, 1762555954, NULL, NULL),
+(24, 'testeur4', 'testeur4@testeur.com', '$2y$10$ukWOW3VNEaFLwHTlGZcPJeTanUKtXO6yQRys09AGxoky79B2R24ea', 3, 1762710682, 1762710824, 1762710970, '', NULL, 1762710794, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -468,14 +469,14 @@ CREATE TABLE IF NOT EXISTS `user_sessions` (
   UNIQUE KEY `sid_unique` (`session_id`),
   KEY `idx_user` (`user_id`),
   KEY `idx_user_sessions_user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `user_sessions`
 --
 
 INSERT INTO `user_sessions` (`id`, `user_id`, `session_id`, `ip_address`, `user_agent`, `created_at`, `expires_at`) VALUES
-(26, 2, '674ea648313e0e275c86f2eb0baf721956389f9e93605b74a668052ed4ceee33', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1762563940, 1763168740);
+(31, 1, 'f50951a5c348f0eddc4c78094db613232035bc64b4682488349a299419fcc374', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1762711111, 1765303111);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
