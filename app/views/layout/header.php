@@ -35,7 +35,6 @@ $u = $S->user();
             <a class="active" href="<?= BASE_URL ?>presentation">Présentation</a>
             <a href="<?= BASE_URL ?>configurateur">Configurateur</a>
             <?php if ($u): ?>
-            <a href="<?= BASE_URL ?>cart">Mes devis</a>
             <a href="<?= BASE_URL ?>auth/profile">Mon compte</a>
             <?php if ($S->isAdmin()): ?><a href="<?= BASE_URL ?>admin">Administration</a><?php endif; ?>
             <a href="<?= BASE_URL ?>auth/logout">Déconnexion</a>

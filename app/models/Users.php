@@ -70,6 +70,7 @@ class Users extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }
 
+
     public function userGroups(): array {
         $stmt = $this->db->query("SELECT
             id_group,

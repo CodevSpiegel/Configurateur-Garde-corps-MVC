@@ -106,9 +106,10 @@ class Sessions
         $now = time();
 
         // jointure user_sessions -> users
-        $sql = "SELECT u.* 
-                FROM user_sessions s 
+        $sql = "SELECT u.*, g.group_label
+                FROM user_sessions s
                 JOIN users u ON u.id = s.user_id
+                JOIN user_groups g ON g.id_group = u.user_group_id
                 WHERE s.session_id = ? AND s.expires_at > ? 
                 LIMIT 1";
         $stmt = $this->db->prepare($sql);

@@ -49,17 +49,25 @@ class Devis extends Model
             d.verre_id,
             t.model_id         AS id_model_via_type,
             m.label_model      AS model_label,
+            m.slug_model,
             t.label_type       AS type_label,
+            t.slug_type,
             f.label_finition   AS finition_label,
+            f.slug_finition,
             p.label_pose       AS pose_label,
+            p.slug_pose,
             a.label_ancrage    AS ancrage_label,
+            a.slug_ancrage,
             fo.label_forme     AS forme_label,
+            fo.slug_forme,
             v.label_verre      AS verre_label,
+            v.slug_verre,
             d.longueur_a,
             d.longueur_b,
             d.longueur_c,
             d.hauteur,
             d.angle,
+            d.quantity,
             d.create_date,
             d.update_date,
             u.user_login,
@@ -94,6 +102,58 @@ class Devis extends Model
         ORDER BY id ASC");
         return $stmt->fetchAll();
     }
+
+        /** Fiche d’un user par ID (paramétrée) */
+    public function listUserDevis(int $id): array {
+        $sql = "SELECT
+            d.id,
+            d.user_id,
+            d.type_id,
+            d.finition_id,
+            d.pose_id,
+            d.ancrage_id,
+            d.forme_id,
+            d.verre_id,
+            t.model_id         AS id_model_via_type,
+            m.label_model      AS model_label,
+            t.label_type       AS type_label,
+            f.label_finition   AS finition_label,
+            p.label_pose       AS pose_label,
+            a.label_ancrage    AS ancrage_label,
+            fo.label_forme     AS forme_label,
+            v.label_verre      AS verre_label,
+            d.longueur_a,
+            d.longueur_b,
+            d.longueur_c,
+            d.hauteur,
+            d.angle,
+            d.quantity,
+            d.create_date,
+            d.update_date,
+            u.user_login,
+            u.user_email,
+            u.user_registered,
+            s.id                AS id_status,
+            s.label_status
+
+        FROM cfg_devis d
+        LEFT JOIN cfg_types     t  ON d.type_id     = t.id
+        LEFT JOIN cfg_models    m  ON t.model_id    = m.id
+        LEFT JOIN cfg_finitions f  ON d.finition_id = f.id
+        LEFT JOIN cfg_poses     p  ON d.pose_id     = p.id
+        LEFT JOIN cfg_ancrages  a  ON d.ancrage_id  = a.id
+        LEFT JOIN cfg_formes    fo ON d.forme_id    = fo.id
+        LEFT JOIN cfg_verres    v  ON d.verre_id    = v.id
+        LEFT JOIN cfg_status    s  ON d.id_status   = s.id
+        LEFT JOIN users         u  ON d.user_id = u.id
+        WHERE u.id = ?
+        ORDER BY d.create_date DESC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     public function find(int $id): ?array {
         $stmt = $this->db->prepare("SELECT * FROM cfg_devis WHERE id=?");

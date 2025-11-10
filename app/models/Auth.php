@@ -56,7 +56,7 @@ class Auth extends Model
             return ['ok'=>false,'error'=>'Mot de passe trop court'];
         }
         if($password !== $passwordConfirm) {
-            return ['ok'=>false,'error'=>'Les mots de passe sont différents'];
+            return ['ok'=>false,'error'=>'Les mots de passe doivent être identiques'];
         }
 
         // Unicité

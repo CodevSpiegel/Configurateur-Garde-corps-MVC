@@ -77,7 +77,7 @@ class AdminController extends Controller {
                 $pages = (int)ceil($total / $perPage);
 
                 // On rend la vue liste (ex: app/views/devis/list.php)
-                return $this->view('devis/list', [
+                return $this->view('admin/devis/list', [
                     'func'   => $func,
                     'row'    => $rows,
                     'csrf'   => $csrf,
@@ -103,7 +103,7 @@ class AdminController extends Controller {
                 $status = $dev->status();
 
                 // Vue de détail (ex: app/views/devis/show.php)
-                return $this->view('devis/show', [
+                return $this->view('admin/devis/show', [
                     'func' => $func,
                     'row'  => $row,
                     'csrf' => $csrf,
@@ -154,7 +154,7 @@ class AdminController extends Controller {
                 }
 
                 // GET : on affiche le formulaire édition
-                return $this->view('devis/show', [
+                return $this->view('admin/devis/show', [
                     'mode' => 'edit',
                     'row'  => $row,
                     'csrf' => $csrf
@@ -191,7 +191,7 @@ class AdminController extends Controller {
                 $pages = (int)ceil($total / $perPage);
 
                 // On rend la vue liste (ex: app/views/users/list.php)
-                return $this->view('users/list', [
+                return $this->view('admin/users/list', [
                     'func'  => $func,
                     'users' => $row,
                     'csrf'  => $csrf,
@@ -217,7 +217,7 @@ class AdminController extends Controller {
                 $groups = $user->userGroups();
 
                 // Vue de détail (ex: app/views/users/show.php)
-                return $this->view('users/show', [
+                return $this->view('admin/users/show', [
                     'func' => $func,
                     'row'  => $row,
                     'csrf' => $csrf,
@@ -268,7 +268,7 @@ class AdminController extends Controller {
                 }
 
                 // GET : on affiche le formulaire édition
-                return $this->view('users/show', [
+                return $this->view('admin/users/show', [
                     'mode' => 'edit',
                     'row'  => $row,
                     'csrf' => $csrf

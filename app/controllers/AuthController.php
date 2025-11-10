@@ -17,16 +17,24 @@
  */
 
 require_once ROOT . 'app/models/Auth.php';
+require_once ROOT . 'app/models/Devis.php';
+require_once ROOT . 'app/models/Users.php';
 
 class AuthController extends Controller
 {
     private Auth $auth;
     private Sessions $session;
+    private Users $user;
+    private Devis $dev;
+    private Functions $func;
 
     public function __construct()
     {
         $this->auth    = new Auth();
         $this->session = new Sessions();
+        $this->user  = new Users();
+        $this->dev  = new Devis();
+        $this->func = new Functions();
     }
 
     // Page par defaut (Connexion)
@@ -141,9 +149,53 @@ class AuthController extends Controller
 
     /** Espace utilisateur */
     public function profile() {
-        $u = $this->session->user();
-        if (!$u) $this->redirect('/auth/login');
-        $this->view('auth/profile', ['user'=>$u]);
+
+        $func = new Functions();
+
+        $s = $this->session->user();
+        $user = $this->user->show($s['id']);
+        $devis = $this->dev->listUserDevis($s['id']);
+
+        if (!$s) $this->redirect('/auth/login');
+        $this->view('auth/profile', ['func'=>$func, 'user'=>$user, 'devis'=>$devis]);
+    }
+
+    /** Consulter un devis */
+    public function showDevis( int $id ) {
+
+        $safeId = (int)($id ?? 0);
+
+        $func = new Functions();
+
+        $s = $this->session->user();
+
+        if (!$s) $this->redirect('/auth/login');
+
+        $user = $this->user->show($s['id']);
+
+        $devis = $this->dev->show($safeId);
+
+        // Sécurité :
+        // Un utilisateur ne peux consulter les devis d'un autre
+        if( $user['id'] !== $devis['user_id'] ) return;
+
+        $this->view('auth/show_devis', ['func'=>$func, 'user'=>$user, 'devis'=>$devis]);
+    }
+
+     /** Liste des devis */
+    public function listDevis() {
+
+        $func = new Functions();
+
+        $s = $this->session->user();
+
+        if (!$s) $this->redirect('/auth/login');
+
+        $user = $this->user->show($s['id']);
+
+        $devis = $this->dev->listUserDevis($user['id']);
+
+        $this->view('auth/list_devis', ['func'=>$func, 'user'=>$user, 'devis'=>$devis]);
     }
 
     /** Changement d'email (demande confirmation à nouveau) */

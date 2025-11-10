@@ -8,18 +8,31 @@
 $title='Changement d\'email';
 
 ?>
-  <?php if (!empty($error)): ?><p class="alert alert-danger"><?= htmlspecialchars($error) ?></p><?php endif; ?>
-  <?php if (!empty($msg)): ?><p class="alert alert-success"><?= htmlspecialchars($msg) ?></p><?php endif; ?>
-  <form class="formulaire" method="post" action="/auth/email">
-    <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
-    <div class="form-group">
-      <label for="password">Votre mot de passe</label>
-      <input type="password" id="password" name="password"" placeholder="Veuillez saisir votre mot de passe" required>
+
+<section class="section">
+    <div class="container">
+        <?php if (!empty($error)): ?><p class="alert alert-danger"><?= htmlspecialchars($error) ?></p><?php endif; ?>
+        <?php if (!empty($msg)): ?><p class="alert alert-success"><?= htmlspecialchars($msg) ?></p><?php endif; ?>
+        </div>
+        <div class="container" style="max-width:500px;">
+            <section class="card">
+            <h1 class="mb-3">Changement d'email</h1>
+            <form class="grid-2" method="post" action="/auth/email">
+                <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
+                <div style="grid-column: 1 / -1;">
+                    <label for="password">Mot de passe</label>
+                    <input class="input" type="password" id="password" name="password"" placeholder="Votre mot de passe" required>
+                </div>
+                <div style="grid-column: 1 / -1;">
+                    <label for="email">Votre nouvel email</label>
+                    <input class="input" id="email" name="email" placeholder="Indiquez votre nouvelle adresse email" required>
+                </div>
+                <div style="grid-column: 1 / -1;">
+                    <button class="btn btn-primary" type="submit">Valider</button>
+                </div>
+            </form>
+            </section>
+        </div>
     </div>
-    <div class="form-group">
-      <label for="email">Votre nouvel email</label>
-      <input type="email" id="email" name="email" placeholder="Indiquez votre nouvelle adresse email" required>
-    </div>
-    <button type="submit">Valider</button>
-  </form>
+</section>
 

@@ -9,20 +9,10 @@ $title='Connexion';
 
 ?>
 
-<?php if (!empty($error)): ?>
-    <p class="alert alert-danger">
-        <?= htmlspecialchars($error) ?>
-    </p>
-<?php endif; ?>
-
-<?php if (!empty($msg)): ?>
-    <p class="alert alert-success">
-        <?= htmlspecialchars($msg) ?>
-    </p>
-<?php endif; ?>
-
 <section class="section">
     <div class="container">
+        <?php if (!empty($error)): ?><p class="alert alert-danger"><?= htmlspecialchars($error) ?></p><?php endif; ?>
+        <?php if (!empty($msg)): ?><p class="alert alert-success"><?= htmlspecialchars($msg) ?></p><?php endif; ?>
         <div class="grid-2">
             <!-- Connexion -->
             <section class="card">
