@@ -207,7 +207,7 @@ function makeGlassOptions(items = []) {
       id: verreId,                                        // 👈 IMPORTANT: expose l'ID numérique
       value: code,                                        // code technique (ex: "1010-4-eva")
       label: labelFromCode(code),                         // label propre pour l'UI
-      image: `assets/images/configurateur/verres/${code}.jpg`,
+      image: `assets/images/configurateur/verres/${code}.webp`,
       meta: { verreId }                                   // 👈 ID BDD directement disponible
     };
   });
@@ -239,7 +239,7 @@ export default [
     id: "type",
     label: "Type",
     description: "Choisissez le type de projet et l'ancrage souhaité.",
-    defaultPreview: "assets/images/configurateur/previews/verre-a-profile/autoreglable-sol/autoreglable-sol-decoupe.png",
+    defaultPreview: "assets/images/configurateur/previews/verre-a-profile/autoreglable-sol/autoreglable-sol-decoupe.webp",
     fields: [{
       id: "type",
       label: "Type",
@@ -247,15 +247,15 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 18, typeId: 18, value: "autoreglable-sol",       label: "Autoréglable Sol",       image: "assets/images/configurateur/types/verre-a-profile/autoreglable-sol.jpg" },
-        { id: 19, typeId: 19, value: "autoreglable-lateral",   label: "Autoréglable Latéral",   image: "assets/images/configurateur/types/verre-a-profile/autoreglable-lateral.jpg" },
-        { id: 20, typeId: 20, value: "autoreglable-sol-en-f",  label: "Autoréglable Sol en F",  image: "assets/images/configurateur/types/verre-a-profile/autoreglable-sol-en-f.jpg" },
-        { id: 21, typeId: 21, value: "autoreglable-lateral-y", label: "Autoréglable Latéral Y", image: "assets/images/configurateur/types/verre-a-profile/autoreglable-lateral-y.jpg" },
-        { id: 22, typeId: 22, value: "sol-en-f",               label: "Sol en F",               image: "assets/images/configurateur/types/verre-a-profile/sol-en-f.jpg" },
-        { id: 23, typeId: 23, value: "sol-en-u",               label: "Sol en U",               image: "assets/images/configurateur/types/verre-a-profile/sol-en-u.jpg" },
-        { id: 24, typeId: 24, value: "lateral",                label: "Latéral",                image: "assets/images/configurateur/types/verre-a-profile/lateral.jpg" },
-        { id: 25, typeId: 25, value: "lateral-y",              label: "Latéral Y",              image: "assets/images/configurateur/types/verre-a-profile/lateral-y.jpg" },
-        { id: 26, typeId: 26, value: "profil-muret",           label: "Profil Muret",           image: "assets/images/configurateur/types/verre-a-profile/profil-muret.jpg" },
+        { id: 18, typeId: 18, value: "autoreglable-sol",       label: "Autoréglable Sol",       image: "assets/images/configurateur/types/verre-a-profile/autoreglable-sol.webp" },
+        { id: 19, typeId: 19, value: "autoreglable-lateral",   label: "Autoréglable Latéral",   image: "assets/images/configurateur/types/verre-a-profile/autoreglable-lateral.webp" },
+        { id: 20, typeId: 20, value: "autoreglable-sol-en-f",  label: "Autoréglable Sol en F",  image: "assets/images/configurateur/types/verre-a-profile/autoreglable-sol-en-f.webp" },
+        { id: 21, typeId: 21, value: "autoreglable-lateral-y", label: "Autoréglable Latéral Y", image: "assets/images/configurateur/types/verre-a-profile/autoreglable-lateral-y.webp" },
+        { id: 22, typeId: 22, value: "sol-en-f",               label: "Sol en F",               image: "assets/images/configurateur/types/verre-a-profile/sol-en-f.webp" },
+        { id: 23, typeId: 23, value: "sol-en-u",               label: "Sol en U",               image: "assets/images/configurateur/types/verre-a-profile/sol-en-u.webp" },
+        { id: 24, typeId: 24, value: "lateral",                label: "Latéral",                image: "assets/images/configurateur/types/verre-a-profile/lateral.webp" },
+        { id: 25, typeId: 25, value: "lateral-y",              label: "Latéral Y",              image: "assets/images/configurateur/types/verre-a-profile/lateral-y.webp" },
+        { id: 26, typeId: 26, value: "profil-muret",           label: "Profil Muret",           image: "assets/images/configurateur/types/verre-a-profile/profil-muret.webp" },
       ]
     },
     {
@@ -265,9 +265,9 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 4, ancrageId: 4, value: "beton-m10x100", label: "Béton M10 x 100", image: "assets/images/configurateur/ancrages/beton-m10x100.jpg" },
-        { id: 5, ancrageId: 5, value: "vis-bois-10mm", label: "Bois Ø10 mm",     image: "assets/images/configurateur/ancrages/vis-bois-10mm.jpg" },
-        { id: 6, ancrageId: 6, value: "aucun",         label: "Aucun",           image: "assets/images/configurateur/ancrages/aucun.jpg" }
+        { id: 4, ancrageId: 4, value: "beton-m10x100", label: "Béton M10 x 100", image: "assets/images/configurateur/ancrages/beton-m10x100.webp" },
+        { id: 5, ancrageId: 5, value: "vis-bois-10mm", label: "Bois Ø10 mm",     image: "assets/images/configurateur/ancrages/vis-bois-10mm.webp" },
+        { id: 6, ancrageId: 6, value: "aucun",         label: "Aucun",           image: "assets/images/configurateur/ancrages/aucun.webp" }
       ]
     }],
     preview: ({ selection }) => buildTypePreview(selection),
@@ -288,12 +288,12 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 1, formeId: 1, value: "droit",    label: "Droit",    image: "assets/images/configurateur/formes/droit.png" },
-        { id: 2, formeId: 2, value: "en-v",     label: "En V",     image: "assets/images/configurateur/formes/v.png" },
-        { id: 3, formeId: 3, value: "en-l",     label: "En L",     image: "assets/images/configurateur/formes/l.png" },
-        { id: 4, formeId: 4, value: "en-u",     label: "En U",     image: "assets/images/configurateur/formes/u.png" },
-        { id: 5, formeId: 5, value: "en-s",     label: "En S",     image: "assets/images/configurateur/formes/s.png" },
-        { id: 6, formeId: 6, value: "complexe", label: "Complexe", image: "assets/images/configurateur/formes/complexe.png" }
+        { id: 1, formeId: 1, value: "droit",    label: "Droit",    image: "assets/images/configurateur/formes/droit.webp" },
+        { id: 2, formeId: 2, value: "en-v",     label: "En V",     image: "assets/images/configurateur/formes/v.webp" },
+        { id: 3, formeId: 3, value: "en-l",     label: "En L",     image: "assets/images/configurateur/formes/l.webp" },
+        { id: 4, formeId: 4, value: "en-u",     label: "En U",     image: "assets/images/configurateur/formes/u.webp" },
+        { id: 5, formeId: 5, value: "en-s",     label: "En S",     image: "assets/images/configurateur/formes/s.webp" },
+        { id: 6, formeId: 6, value: "complexe", label: "Complexe", image: "assets/images/configurateur/formes/complexe.webp" }
       ],
     }],
     preview: ({ selection }) => buildPreviewPath(selection)
@@ -436,18 +436,18 @@ function buildPreviewPath(selection) {
   const forme = selection.forme || "droit";
 
   if (selection.type === "autoreglable-sol-en-f") {
-    return `assets/images/configurateur/previews/verre-a-profile/autoreglable-sol-en-f/autoreglable-sol-en-f-decoupe.png`;
+    return `assets/images/configurateur/previews/verre-a-profile/autoreglable-sol-en-f/autoreglable-sol-en-f-decoupe.webp`;
   } else if (selection.type === "autoreglable-lateral-y") {
-    return `assets/images/configurateur/previews/verre-a-profile/autoreglable-lateral-y/autoreglable-lateral-y-decoupe.png`;
+    return `assets/images/configurateur/previews/verre-a-profile/autoreglable-lateral-y/autoreglable-lateral-y-decoupe.webp`;
   } else if (selection.type === "profil-muret" ) {
-    return `assets/images/configurateur/previews/verre-a-profile/profil-muret/profil-muret-decoupe.png`;
+    return `assets/images/configurateur/previews/verre-a-profile/profil-muret/profil-muret-decoupe.webp`;
   } else {
-    return `assets/images/configurateur/previews/verre-a-profile/${type}/${type}-${forme}.png`;
+    return `assets/images/configurateur/previews/verre-a-profile/${type}/${type}-${forme}.webp`;
   }
 }
 
 function buildTypePreview(selection) {
   if (!selection.type) return null;
   const type = selection.type;
-  return `assets/images/configurateur/previews/verre-a-profile/${type}/${type}-decoupe.png`;
+  return `assets/images/configurateur/previews/verre-a-profile/${type}/${type}-decoupe.webp`;
 }

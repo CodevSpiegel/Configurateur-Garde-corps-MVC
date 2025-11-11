@@ -8,7 +8,7 @@ export default [
     id: "type",
     label: "Type",
     description: "Choisissez le type de projet et la finition souhaitée.",
-    defaultPreview: "assets/images/configurateur/previews/filet-inox/filet-inox/sol/filet-inox-droit-sol.png", // 🆕 image de base
+    defaultPreview: "assets/images/configurateur/previews/filet-inox/filet-inox/sol/filet-inox-droit-sol.webp", // 🆕 image de base
     fields: [{
       id: "type",
       label: "Type",
@@ -16,10 +16,10 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 29, typeId: 29, value: "filet-inox",           label: "Filet inox",           image: "assets/images/configurateur/types/filet-inox/filet-inox.png" },
-        { id: 30, typeId: 30, value: "filet-inox-et-cables", label: "Filet Inox et Cables", image: "assets/images/configurateur/types/filet-inox/filet-inox-et-cables.png" },
-        { id: 31, typeId: 31, value: "filet-inox-et-barres", label: "Filet Inox et Barres", image: "assets/images/configurateur/types/filet-inox/filet-inox-et-barres.png" },
-        { id: 32, typeId: 32, value: "filet-inox-muret",     label: "Filet Inox Muret",     image: "assets/images/configurateur/types/filet-inox/filet-inox-muret.png" }
+        { id: 29, typeId: 29, value: "filet-inox",           label: "Filet inox",           image: "assets/images/configurateur/types/filet-inox/filet-inox.webp" },
+        { id: 30, typeId: 30, value: "filet-inox-et-cables", label: "Filet Inox et Cables", image: "assets/images/configurateur/types/filet-inox/filet-inox-et-cables.webp" },
+        { id: 31, typeId: 31, value: "filet-inox-et-barres", label: "Filet Inox et Barres", image: "assets/images/configurateur/types/filet-inox/filet-inox-et-barres.webp" },
+        { id: 32, typeId: 32, value: "filet-inox-muret",     label: "Filet Inox Muret",     image: "assets/images/configurateur/types/filet-inox/filet-inox-muret.webp" }
       ]
     },
     {
@@ -29,9 +29,9 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 1, finitionId: 1, value: "tube-inox-304l", label: "Inox 304 Brossé (Intérieur)",         image: "assets/images/configurateur/finitions/tube-inox-304l.png" },
-        { id: 2, finitionId: 2, value: "tube-inox-316l", label: "Inox 316L Brossé (Extérieur)",        image: "assets/images/configurateur/finitions/tube-inox-316l.png" },
-        { id: 3, finitionId: 3, value: "tube-inox-316",  label: "Inox 316 Poli Miroir (Mer/Piscine)",  image: "assets/images/configurateur/finitions/tube-inox-316.png" }
+        { id: 1, finitionId: 1, value: "tube-inox-304l", label: "Inox 304 Brossé (Intérieur)",         image: "assets/images/configurateur/finitions/tube-inox-304l.webp" },
+        { id: 2, finitionId: 2, value: "tube-inox-316l", label: "Inox 316L Brossé (Extérieur)",        image: "assets/images/configurateur/finitions/tube-inox-316l.webp" },
+        { id: 3, finitionId: 3, value: "tube-inox-316",  label: "Inox 316 Poli Miroir (Mer/Piscine)",  image: "assets/images/configurateur/finitions/tube-inox-316.webp" }
       ]
     }],
     preview: ({ selection }) => buildPreviewPath(selection)
@@ -55,12 +55,12 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 1, formeId: 1, value: "droit", label: "Droit", image: "assets/images/configurateur/formes/droit.png" },
-        { id: 2, formeId: 2, value: "en-v",  label: "En V",  image: "assets/images/configurateur/formes/v.png" },
-        { id: 3, formeId: 3, value: "en-l",  label: "En L",  image: "assets/images/configurateur/formes/l.png" },
-        { id: 4, formeId: 4, value: "en-u",  label: "En U",  image: "assets/images/configurateur/formes/u.png" },
-        { id: 5, formeId: 5, value: "en-s",  label: "En S",  image: "assets/images/configurateur/formes/s.png" },
-        { id: 6, formeId: 6, value: "complexe", label: "Complexe", image: "assets/images/configurateur/formes/complexe.png" }
+        { id: 1, formeId: 1, value: "droit", label: "Droit", image: "assets/images/configurateur/formes/droit.webp" },
+        { id: 2, formeId: 2, value: "en-v",  label: "En V",  image: "assets/images/configurateur/formes/v.webp" },
+        { id: 3, formeId: 3, value: "en-l",  label: "En L",  image: "assets/images/configurateur/formes/l.webp" },
+        { id: 4, formeId: 4, value: "en-u",  label: "En U",  image: "assets/images/configurateur/formes/u.webp" },
+        { id: 5, formeId: 5, value: "en-s",  label: "En S",  image: "assets/images/configurateur/formes/s.webp" },
+        { id: 6, formeId: 6, value: "complexe", label: "Complexe", image: "assets/images/configurateur/formes/complexe.webp" }
       ],
       // 🔔 Si la pose préservée n'est plus valide avec la nouvelle forme, on l'invalide
       onChange: ({ selection }) => {
@@ -90,8 +90,8 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 1, poseId: 1, value: "sol",     label: "Sol", image: "assets/images/configurateur/poses/sol.png" },
-        { id: 2, poseId: 2, value: "lateral", label: "Latérale", image: "assets/images/configurateur/poses/lateral.png" }
+        { id: 1, poseId: 1, value: "sol",     label: "Sol", image: "assets/images/configurateur/poses/sol.webp" },
+        { id: 2, poseId: 2, value: "lateral", label: "Latérale", image: "assets/images/configurateur/poses/lateral.webp" }
       ],
     },
     {
@@ -101,9 +101,9 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 1, ancrageId: 1, value: "goujon-a-frapper", label: "Goujon à frapper pour béton",         image: "assets/images/configurateur/ancrages/goujon-a-frapper.png" },
-        { id: 2, ancrageId: 2, value: "tirefonds-pour-bois", label: "Tirefonds pour bois",        image: "assets/images/configurateur/ancrages/tirefonds-pour-bois.png" },
-        { id: 3, ancrageId: 3, value: "scellement-chimique",  label: "Tiges Filetées pour scellement Chimique",  image: "assets/images/configurateur/ancrages/scellement-chimique.png" }
+        { id: 1, ancrageId: 1, value: "goujon-a-frapper", label: "Goujon à frapper pour béton",         image: "assets/images/configurateur/ancrages/goujon-a-frapper.webp" },
+        { id: 2, ancrageId: 2, value: "tirefonds-pour-bois", label: "Tirefonds pour bois",        image: "assets/images/configurateur/ancrages/tirefonds-pour-bois.webp" },
+        { id: 3, ancrageId: 3, value: "scellement-chimique",  label: "Tiges Filetées pour scellement Chimique",  image: "assets/images/configurateur/ancrages/scellement-chimique.webp" }
       ]
     }],
     preview: ({ selection }) => buildPreviewPath(selection)
@@ -169,7 +169,7 @@ function buildPreviewPath(selection) {
   const forme = selection.forme || "droit";
   const pose  = selection.pose || "sol";
   // const ancrage  = selection.ancrage;
-  return `assets/images/configurateur/previews/filet-inox/${type}/${pose}/${type}-${forme}-${pose}.png`;
+  return `assets/images/configurateur/previews/filet-inox/${type}/${pose}/${type}-${forme}-${pose}.webp`;
 }
 
 

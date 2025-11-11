@@ -8,7 +8,7 @@ export default [
     id: "type",
     label: "Type",
     description: "Choisissez le type de projet, le type de verre et la finition souhaitée.",
-    defaultPreview: "assets/images/configurateur/previews/verre/verre-et-mc/sol/verre-et-mc-droit-sol.png", // 🆕 image de base
+    defaultPreview: "assets/images/configurateur/previews/verre/verre-et-mc/sol/verre-et-mc-droit-sol.webp", // 🆕 image de base
     fields: [{
       id: "type",
       label: "Type",
@@ -16,12 +16,12 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 12, typeId: 12, value: "verre-et-mc",         label: "Verre et Main-courante",         image: "assets/images/configurateur/types/verre/verre-et-mc.png" },
-        { id: 13, typeId: 13, value: "verre-et-2-barres",   label: "Verre et 2 barres",              image: "assets/images/configurateur/types/verre/verre-et-2-barres.png" },
-        { id: 14, typeId: 14, value: "verre-et-2-cables",   label: "Verre et 2 cables",              image: "assets/images/configurateur/types/verre/verre-et-2-cables.png" },
-        { id: 15, typeId: 15, value: "verre-sans-mc",       label: "Verre sans Main-Courante",       image: "assets/images/configurateur/types/verre/verre-sans-mc.png" },
-        { id: 16, typeId: 16, value: "verre-muret-sans-mc", label: "Verre Muret sans Main Courante", image: "assets/images/configurateur/types/verre/verre-muret-sans-mc.png" },
-        { id: 17, typeId: 17, value: "verre-sur-muret",     label: "Verre sur Muret",                image: "assets/images/configurateur/types/verre/verre-sur-muret.png" }
+        { id: 12, typeId: 12, value: "verre-et-mc",         label: "Verre et Main-courante",         image: "assets/images/configurateur/types/verre/verre-et-mc.webp" },
+        { id: 13, typeId: 13, value: "verre-et-2-barres",   label: "Verre et 2 barres",              image: "assets/images/configurateur/types/verre/verre-et-2-barres.webp" },
+        { id: 14, typeId: 14, value: "verre-et-2-cables",   label: "Verre et 2 cables",              image: "assets/images/configurateur/types/verre/verre-et-2-cables.webp" },
+        { id: 15, typeId: 15, value: "verre-sans-mc",       label: "Verre sans Main-Courante",       image: "assets/images/configurateur/types/verre/verre-sans-mc.webp" },
+        { id: 16, typeId: 16, value: "verre-muret-sans-mc", label: "Verre Muret sans Main Courante", image: "assets/images/configurateur/types/verre/verre-muret-sans-mc.webp" },
+        { id: 17, typeId: 17, value: "verre-sur-muret",     label: "Verre sur Muret",                image: "assets/images/configurateur/types/verre/verre-sur-muret.webp" }
       ]
     },
     {
@@ -31,9 +31,9 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 6, verreId: 6, value: "44-2-clair", label: "Feuilleté clair 44-2 (8,76mm)",         image: "assets/images/configurateur/verres/44-2-clair.jpg" },
-        { id: 5, verreId: 5, value: "55-2-clair", label: "Feuilleté clair 55-2 (10,76mm)",        image: "assets/images/configurateur/verres/55-2-clair.jpg" },
-        { id: 23, verreId: 23, value: "aucun",  label: "Aucun",  image: "assets/images/configurateur/verres/aucun.jpg" }
+        { id: 6, verreId: 6, value: "44-2-clair", label: "Feuilleté clair 44-2 (8,76mm)",         image: "assets/images/configurateur/verres/44-2-clair.webp" },
+        { id: 5, verreId: 5, value: "55-2-clair", label: "Feuilleté clair 55-2 (10,76mm)",        image: "assets/images/configurateur/verres/55-2-clair.webp" },
+        { id: 23, verreId: 23, value: "aucun",  label: "Aucun",  image: "assets/images/configurateur/verres/aucun.webp" }
       ]
     },
     {
@@ -43,9 +43,9 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 1, finitionId: 1, value: "tube-inox-304l", label: "Inox 304 Brossé (Intérieur)",         image: "assets/images/configurateur/finitions/tube-inox-304l.png" },
-        { id: 2, finitionId: 2, value: "tube-inox-316l", label: "Inox 316L Brossé (Extérieur)",        image: "assets/images/configurateur/finitions/tube-inox-316l.png" },
-        { id: 3, finitionId: 3, value: "tube-inox-316",  label: "Inox 316 Poli Miroir (Mer/Piscine)",  image: "assets/images/configurateur/finitions/tube-inox-316.png" }
+        { id: 1, finitionId: 1, value: "tube-inox-304l", label: "Inox 304 Brossé (Intérieur)",         image: "assets/images/configurateur/finitions/tube-inox-304l.webp" },
+        { id: 2, finitionId: 2, value: "tube-inox-316l", label: "Inox 316L Brossé (Extérieur)",        image: "assets/images/configurateur/finitions/tube-inox-316l.webp" },
+        { id: 3, finitionId: 3, value: "tube-inox-316",  label: "Inox 316 Poli Miroir (Mer/Piscine)",  image: "assets/images/configurateur/finitions/tube-inox-316.webp" }
       ]
     }],
     preview: ({ selection }) => buildPreviewPath(selection)
@@ -69,12 +69,12 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 1, formeId: 1, value: "droit", label: "Droit", image: "assets/images/configurateur/formes/droit.png" },
-        { id: 2, formeId: 2, value: "en-v",  label: "En V",  image: "assets/images/configurateur/formes/v.png" },
-        { id: 3, formeId: 3, value: "en-l",  label: "En L",  image: "assets/images/configurateur/formes/l.png" },
-        { id: 4, formeId: 4, value: "en-u",  label: "En U",  image: "assets/images/configurateur/formes/u.png" },
-        { id: 5, formeId: 5, value: "en-s",  label: "En S",  image: "assets/images/configurateur/formes/s.png" },
-        { id: 6, formeId: 6, value: "complexe", label: "Complexe", image: "assets/images/configurateur/formes/complexe.png" }
+        { id: 1, formeId: 1, value: "droit", label: "Droit", image: "assets/images/configurateur/formes/droit.webp" },
+        { id: 2, formeId: 2, value: "en-v",  label: "En V",  image: "assets/images/configurateur/formes/v.webp" },
+        { id: 3, formeId: 3, value: "en-l",  label: "En L",  image: "assets/images/configurateur/formes/l.webp" },
+        { id: 4, formeId: 4, value: "en-u",  label: "En U",  image: "assets/images/configurateur/formes/u.webp" },
+        { id: 5, formeId: 5, value: "en-s",  label: "En S",  image: "assets/images/configurateur/formes/s.webp" },
+        { id: 6, formeId: 6, value: "complexe", label: "Complexe", image: "assets/images/configurateur/formes/complexe.webp" }
       ],
     }],
     preview: ({ selection }) => buildPreviewPath(selection)
@@ -102,7 +102,7 @@ export default [
         return base.map(opt => ({
           ...opt,
           id: opt.poseId,
-          image: `assets/images/configurateur/poses/${opt.value}.png`, // ← important
+          image: `assets/images/configurateur/poses/${opt.value}.webp`, // ← important
         }));
       }
   },
@@ -113,9 +113,9 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 1, ancrageId: 1, value: "goujon-a-frapper", label: "Goujon à frapper pour béton",         image: "assets/images/configurateur/ancrages/goujon-a-frapper.png" },
-        { id: 2, ancrageId: 2, value: "tirefonds-pour-bois", label: "Tirefonds pour bois",        image: "assets/images/configurateur/ancrages/tirefonds-pour-bois.png" },
-        { id: 3, ancrageId: 3, value: "scellement-chimique",  label: "Tiges Filetées pour scellement Chimique",  image: "assets/images/configurateur/ancrages/scellement-chimique.png" }
+        { id: 1, ancrageId: 1, value: "goujon-a-frapper", label: "Goujon à frapper pour béton",         image: "assets/images/configurateur/ancrages/goujon-a-frapper.webp" },
+        { id: 2, ancrageId: 2, value: "tirefonds-pour-bois", label: "Tirefonds pour bois",        image: "assets/images/configurateur/ancrages/tirefonds-pour-bois.webp" },
+        { id: 3, ancrageId: 3, value: "scellement-chimique",  label: "Tiges Filetées pour scellement Chimique",  image: "assets/images/configurateur/ancrages/scellement-chimique.webp" }
       ]
     }],
     preview: ({ selection }) => buildPreviewPath(selection)
@@ -181,7 +181,7 @@ function buildPreviewPath(selection) {
   const forme = selection.forme || "droit";
   const pose  = selection.pose || "sol";
   // const ancrage  = selection.ancrage;
-  return `assets/images/configurateur/previews/verre/${type}/${pose}/${type}-${forme}-${pose}.png`;
+  return `assets/images/configurateur/previews/verre/${type}/${pose}/${type}-${forme}-${pose}.webp`;
 }
 
 

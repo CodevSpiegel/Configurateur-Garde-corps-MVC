@@ -124,7 +124,7 @@ HTML; }
                     <span class="card-title">Aperçu</span>
                 </div>
                 <div class="card-body">
-                    <img class="appercu" src="../../assets/images/configurateur/previews/<?= $devis['slug_model'] ?>/<?= $devis['slug_type'] ?>/<?= $devis['slug_pose'] ?>/<?= $devis['slug_type'] ?>-<?= $devis['slug_forme'] ?>-<?= $devis['slug_pose'] ?>.png" alt="">
+                    <img class="appercu" src="../../assets/images/configurateur/previews/<?= $devis['slug_model'] ?>/<?= $devis['slug_type'] ?>/<?= $devis['slug_pose'] ?>/<?= $devis['slug_type'] ?>-<?= $devis['slug_forme'] ?>-<?= $devis['slug_pose'] ?>.webp" alt="">
                 </div>
                 <p class="mt-2">Aperçu non contractuel — rendu indicatif.</p>
                 <div class="mt-2">
