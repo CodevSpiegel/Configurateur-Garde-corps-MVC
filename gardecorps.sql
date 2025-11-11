@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 09 nov. 2025 à 18:04
+-- Généré le : mar. 11 nov. 2025 à 00:15
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `cfg_devis` (
   KEY `idx_cfg_devis_ancrage_id` (`ancrage_id`),
   KEY `idx_cfg_devis_forme_id` (`forme_id`),
   KEY `idx_cfg_devis_verre_id` (`verre_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `cfg_devis`
@@ -123,7 +123,19 @@ INSERT INTO `cfg_devis` (`id`, `user_id`, `type_id`, `finition_id`, `forme_id`, 
 (46, 1, 7, 1, 1, 3, 1, NULL, 564, NULL, NULL, 213, 55, 1, 2, 1762437798, 1762438081),
 (47, 2, 10, 1, 1, 2, 2, NULL, 450, NULL, NULL, 130, NULL, 1, 1, 1762438365, 1762438365),
 (48, 1, 7, 1, 2, 2, 3, NULL, 210, 123, NULL, 108, 62, 1, 1, 1762450307, 1762450307),
-(49, 22, 6, 3, 1, 3, 3, NULL, 127, NULL, NULL, 100, 27, 1, 1, 1762453845, 1762453845);
+(49, 22, 6, 3, 1, 3, 3, NULL, 127, NULL, NULL, 100, 27, 1, 1, 1762453845, 1762453845),
+(50, 24, 1, 2, 1, 3, 1, NULL, 120, NULL, NULL, 100, 45, 1, 1, 1762773897, 1762773897),
+(51, 1, 4, 2, 5, 2, 3, NULL, 125, 144, 155, 110, NULL, 1, 1, 1762811760, 1762811760),
+(52, 24, 31, 2, 3, 2, 3, NULL, 111, 222, NULL, 98, NULL, 1, 1, 1762812059, 1762812059),
+(53, 24, 6, 3, 2, 2, 3, NULL, 125, 120, NULL, 80, 36, 1, 1, 1762812183, 1762812183),
+(54, 24, 5, 2, 1, 2, 2, NULL, 120, NULL, NULL, 89, NULL, 1, 1, 1762815879, 1762815879),
+(55, 1, 20, NULL, 1, NULL, 5, 11, 110, NULL, NULL, 80, NULL, 1, 1, 1762816417, 1762816417),
+(56, 1, 2, 2, 2, 2, 2, NULL, 442, 544, NULL, 100, 29, 1, 1, 1762817872, 1762817872),
+(57, 1, 28, NULL, 5, NULL, 6, 9, 128, 120, 149, 85, NULL, 1, 1, 1762818015, 1762818015),
+(58, 1, 13, 2, 5, 1, 3, 5, 120, 121, 122, 90, NULL, 1, 1, 1762818979, 1762818979),
+(59, 24, 31, 2, 6, 2, 2, NULL, NULL, NULL, NULL, 120, NULL, 1, 1, 1762819355, 1762819355),
+(60, 24, 28, NULL, 5, NULL, 1, 9, 111, 112, 113, 80, NULL, 1, 1, 1762819732, 1762819732),
+(61, 24, 25, NULL, 5, NULL, 4, 15, 123, 124, 125, 99, NULL, 1, 1, 1762819879, 1762819879);
 
 -- --------------------------------------------------------
 
@@ -382,9 +394,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_last_visit` int UNSIGNED NOT NULL,
   `user_last_activity` int UNSIGNED NOT NULL,
   `user_activation_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `email_confirm_token` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email_confirm_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `email_confirmed_at` int DEFAULT NULL,
-  `reset_token` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `reset_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `reset_expires` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_user_login_unique` (`user_login`),
@@ -400,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_group_id`, `user_registered`, `user_last_visit`, `user_last_activity`, `user_activation_key`, `email_confirm_token`, `email_confirmed_at`, `reset_token`, `reset_expires`) VALUES
-(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1762711111, 1762711427, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
+(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1762820004, 1762820092, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
 (2, 'alex', 'alex@alex.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 3, 1759302900, 1762563940, 1762699543, '5b5db98ed68aa6222c8b3e6a1d70a7ec', NULL, 1762561413, '91aef643bb96493b1d4edc38b1ece7c2', 1762566094),
 (3, 'marie', 'marie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759392000, 1761410400, 1761747720, '44d0010532dcd54f2ab5e3c81bfdba23', NULL, NULL, NULL, NULL),
 (4, 'julien', 'julien@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 1, 1759474200, 1761675600, 1761747900, '549e9f18d6d29c897e0ae94f9e9b7b75', NULL, NULL, NULL, NULL),
@@ -420,8 +432,7 @@ INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_gr
 (20, 'martin', 'martin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760857200, 1761647400, 1761749280, 'ec180343d421a21519326c15b8a28cd8', NULL, NULL, NULL, NULL),
 (21, 'eva', 'eva@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 4, 1760954400, 1761728400, 1761749340, '8a654f5280d9b5c89058307798c3f68c', NULL, NULL, NULL, NULL),
 (22, 'Testeur3', 'testeur3@testeur3.com', '$2y$10$J/bVetYB1VnxlA99x22l6.bnDhEGvDzrNdlpV/ePiUoksY7p.rk4m', 3, 1762453517, 1762462972, 1762546617, '', NULL, 1762463935, NULL, NULL),
-(23, 'sqdfqsdgqfdgqfdhg', 'sdfsdq@dsfhfd.com', '$2y$10$mPR8DBkRrrpYC5GnSdj3o.pOfWp5h7FgYFt/LgBiNjGNb28Mwe4Se', 3, 1762555830, 1762555830, 1762555830, '', NULL, 1762555954, NULL, NULL),
-(24, 'testeur4', 'testeur4@testeur.com', '$2y$10$ukWOW3VNEaFLwHTlGZcPJeTanUKtXO6yQRys09AGxoky79B2R24ea', 3, 1762710682, 1762710824, 1762710970, '', NULL, 1762710794, NULL, NULL);
+(24, 'testeur4', 'testeur4@testeur4.com', '$2y$10$ukWOW3VNEaFLwHTlGZcPJeTanUKtXO6yQRys09AGxoky79B2R24ea', 3, 1762710682, 1762819593, 1762819992, '', NULL, 1762763405, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -460,23 +471,25 @@ DROP TABLE IF EXISTS `user_sessions`;
 CREATE TABLE IF NOT EXISTS `user_sessions` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` bigint UNSIGNED NOT NULL,
-  `session_id` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_agent` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `session_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_agent` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` int NOT NULL,
   `expires_at` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sid_unique` (`session_id`),
   KEY `idx_user` (`user_id`),
   KEY `idx_user_sessions_user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `user_sessions`
 --
 
 INSERT INTO `user_sessions` (`id`, `user_id`, `session_id`, `ip_address`, `user_agent`, `created_at`, `expires_at`) VALUES
-(31, 1, 'f50951a5c348f0eddc4c78094db613232035bc64b4682488349a299419fcc374', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1762711111, 1765303111);
+(42, 1, '1f06fa57dbd398cc7ad215284b78dc5231ad4ce0cc91cd652fafd00985362316', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1762816271, 1765408271),
+(45, 24, '5b2e5c29ebacb14e1160e2187799626c7d1957c46031a1ce3ae8ad75a54641d5', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1762819593, 1765411593),
+(46, 1, '746eba78b9bedfe7d27c58a88a0c3dfa1b0c13a85242eade9ff379e030ad2431', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1762820004, 1765412004);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

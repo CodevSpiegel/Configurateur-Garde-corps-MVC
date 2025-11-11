@@ -3,6 +3,7 @@
  * ============================================================================
  * app\views\auth\details_devis.php
  * ============================================================================
+ * Utilisation de la syntaxe HereDoc <<<HTML ....  HTML; (Assez rare, on ne sait pas vraiment pourquoi !)
  */
 
 $title='Détails devis';
@@ -60,7 +61,6 @@ HTML; }
                       <div class="info-title">Forme :</div>
                       <div class="info-data"><?= $devis['forme_label'] ?></div>
                     </div>
-
 <?php
 if ( $devis['verre_label'] !== NULL ) {
 echo <<<HTML
@@ -115,10 +115,6 @@ echo <<<HTML
 
 HTML; }
 ?>
-                    <div class="info-group">
-                      <div class="info-title">Quantité :</div>
-                      <div class="info-data"><?= $devis['quantity'] ?></div>
-                    </div>
                 </div>
             </div>
             <!-- Visuel -->
