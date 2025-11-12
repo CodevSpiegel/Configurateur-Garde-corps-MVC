@@ -7,7 +7,6 @@
 
 $title='Mon compte';
 
-// var_dump($u);
 ?>
 
 
@@ -33,9 +32,9 @@ $title='Mon compte';
                       <div class="info-title">Groupe :</div>
                       <div class="info-data"><?= ucfirst($user['group_label']) ?></div>
                     </div>
-                    <div class="info-group">
-                        <a class="btn btn-secondary" href="/auth/email">Changer mon email</a>
-                        <a class="btn btn-outline-danger" href="/auth/logout">Se déconnecter</a>
+                    <div class="nav-buttons">
+                        <a class="btn btn-outline" href="/auth/email">Changer mon email</a>
+                        <a class="btn btn-outline" href="/auth/logout">Se déconnecter</a>
                     </div>
                 </div>
             </div>
@@ -44,13 +43,15 @@ $title='Mon compte';
                     <span class="dot"></span>
                     <span class="card-title">Mes devis</span>
                 </div>
-                <div class="card-body">
+                <div class="card-body-grid">
+                    <?php foreach ($devis as $d): ?>
                     <div class="info-group">
-                      <div class="info-title">Total :</div>
-                      <div class="info-data"><?= $user['nb_devis'] ?></div>
+                      <div class="info-title"><?= $d['statut'] ?> :</div>
+                      <div class="info-data"><?= $d['total_devis'] ?></div>
                     </div>
-                    <div class="info-group">
-                        <a class="btn btn-secondary" href="/auth/listDevis">Consulter mes devis</a>
+                    <?php endforeach; ?>
+                    <div class="nav-buttons">
+                        <a class="btn btn-outline" href="/auth/listDevis">Voir tous mes devis</a>
                     </div>
                 </div>
             </div>

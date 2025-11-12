@@ -14,8 +14,10 @@ $title='Accueil';
         <div>
             <h1>Configurez votre garde‑corps inox sur mesure</h1>
             <p class="lead">Simulez vos options (câbles, barres, verre), visualisez le rendu et recevez un devis instantané.</p>
-            <a class="btn btn-primary mt-2" href="<?= BASE_URL ?>configurateur">Lancer le configurateur</a>
-            <a class="btn btn-outline mt-2" href="#">Voir un exemple</a>
+            <div class="header-buttons">
+                <a class="btn btn-primary mt-2" href="<?= BASE_URL ?>configurateur">Lancer le configurateur</a>
+                <a class="btn btn-outline mt-2" href="#">Voir un exemple</a>
+            </div>
         </div>
         <div class="hero-visual">
             <img src="assets/images/exemple.webp" alt="">

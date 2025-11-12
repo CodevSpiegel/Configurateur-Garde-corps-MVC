@@ -5,10 +5,11 @@
  * ============================================================================
  */
 ?>
+
 </main>
 <footer class="footer">
 <div class="container">
-    <p>© <?= date('Y') ?> FRANCE INOX — Développé par Sébastien SPIEGEL </p>
+    <p>© <?= date('Y') ?> FRANCE INOX (Démonstration) — Développé par Sébastien SPIEGEL </p>
 </div>
 </footer>
 </body>

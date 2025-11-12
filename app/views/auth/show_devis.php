@@ -115,6 +115,9 @@ echo <<<HTML
 
 HTML; }
 ?>
+                    <div class="nav-buttons">
+                        <a class="btn btn-outline" href="/auth/listDevis">Retour à la liste</a>
+                    </div>
                 </div>
             </div>
             <!-- Visuel -->
@@ -123,13 +126,32 @@ HTML; }
                     <span class="dot"></span>
                     <span class="card-title">Aperçu</span>
                 </div>
-                <div class="card-body">
-                    <img class="appercu" src="../../assets/images/configurateur/previews/<?= $devis['slug_model'] ?>/<?= $devis['slug_type'] ?>/<?= $devis['slug_pose'] ?>/<?= $devis['slug_type'] ?>-<?= $devis['slug_forme'] ?>-<?= $devis['slug_pose'] ?>.webp" alt="">
+                <div class="card-body-img">
+                    <?php
+                        if( $devis['slug_model'] === "verre-a-profile") {
+                            if ( $devis['slug_type'] === "autoreglable-lateral-y" || 
+                                 $devis['slug_type'] === "autoreglable-sol-en-f" || 
+                                 $devis['slug_type'] === "profil-muret" ) 
+                            {
+                                $img_preview = $devis['slug_model']."/".$devis['slug_type']."/".$devis['slug_type']."-decoupe";
+                                // var_dump($img_preview);
+                            } else {
+                                $img_preview = $devis['slug_model']."/".$devis['slug_type']."/".$devis['slug_type']."-".$devis['slug_forme'];
+                                // var_dump($img_preview);
+                            }
+                        }
+                        elseif( $devis['slug_model'] === "barriere-piscine") {
+                            $img_preview = $devis['slug_model']."/".$devis['slug_type']."/".$devis['slug_model']."-".$devis['slug_type']."-".$devis['slug_forme'];
+                            // var_dump($img_preview);
+                        }
+                        else {
+                            $img_preview = $devis['slug_model']."/".$devis['slug_type']."/".$devis['slug_pose']."/".$devis['slug_type']."-".$devis['slug_forme']."-".$devis['slug_pose'];
+
+                        }
+                    ?>
+                    <img class="appercu" src="../../assets/images/configurateur/previews/<?= $img_preview ?>.webp" alt="">
                 </div>
                 <p class="mt-2">Aperçu non contractuel — rendu indicatif.</p>
-                <div class="mt-2">
-                    <a class="btn btn-outline" href="/auth/listDevis">Retour à la liste</a>
-                </div>
             </div>
         </div>
     </div>

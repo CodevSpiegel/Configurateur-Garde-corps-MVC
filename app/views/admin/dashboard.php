@@ -11,17 +11,68 @@
  *   - $cards : array [ [ 'title' => string, 'desc' => string, 'url' => string ], ... ]
  */
 ?>
-<div class="container" style="max-width:980px;margin:2rem auto;">
-  <h1 style="margin-bottom:1rem;">Administration</h1>
-  <p style="color:#666;margin-bottom:2rem;">Bienvenue dans le tableau de bord. Choisissez une section :</p>
 
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
-    <?php foreach ($cards as $c): ?>
-      <a href="<?= htmlspecialchars($c['url'], ENT_QUOTES, 'UTF-8') ?>"
-         style="display:block;padding:16px;border:1px solid #e5e5e5;border-radius:12px;text-decoration:none;">
-        <h2 style="margin:0 0 8px 0;font-size:18px;"><?= htmlspecialchars($c['title'], ENT_QUOTES, 'UTF-8') ?></h2>
-        <p style="margin:0;color:#666;"><?= htmlspecialchars($c['desc'], ENT_QUOTES, 'UTF-8') ?></p>
-      </a>
-    <?php endforeach; ?>
-  </div>
+
+
+<!-- WRAP ADMIN : sidebar + contenu -->
+<div class="admin-wrap">
+    <!-- Sidebar (collante en mobile, horizontale) -->
+    <aside class="admin-sidebar">
+        <a class="active" href="../admin/index.html">Tableau de bord</a>
+        <a href="<?php BASE_URL ?>admin/devis/list">Devis</a>
+        <a href="<?php BASE_URL ?>admin/users/list">Utilisateurs</a>
+        <a href="<?php BASE_URL ?>admin/settings">Paramètres</a>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="admin-main">
+        <h1 class="mb-3">Tableau de bord</h1>
+
+        <!-- KPI -->
+        <div class="grid-3 mb-4">
+            <div class="card">
+                <div class="badge-kpi">Devis</div>
+                <h2 class="mt-2">128</h2>
+                <p class="mt-1">Total des devis enregistrés</p>
+            </div>
+            <div class="card">
+                <div class="badge-kpi">Utilisateurs</div>
+                <h2 class="mt-2">42</h2>
+                <p class="mt-1">Comptes actifs</p>
+            </div>
+            <div class="card">
+                <div class="badge-kpi">Validation</div>
+                <h2 class="mt-2">67%</h2>
+                <p class="mt-1">Taux de devis validés</p>
+            </div>
+        </div>
+
+        <!-- Tableau des derniers devis -->
+        <div class="card">
+            <h2 class="mb-2">Derniers devis</h2>
+            <div style="overflow:auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th><th>Client</th><th>Type</th><th>Date</th><th>Statut</th><th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>104</td><td>Martin</td><td>Verre latéral</td><td>05/11/2025</td><td>En cours</td>
+                            <td><a class="btn btn-outline" href="#">Voir</a></td>
+                        </tr>
+                        <tr>
+                            <td>103</td><td>Dupont</td><td>Câble au sol</td><td>04/11/2025</td><td>Validé</td>
+                            <td><a class="btn btn-outline" href="#">Voir</a></td>
+                        </tr>
+                        <tr>
+                            <td>102</td><td>Lefevre</td><td>Barres au sol</td><td>03/11/2025</td><td>Refusé</td>
+                            <td><a class="btn btn-outline" href="#">Voir</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
 </div>

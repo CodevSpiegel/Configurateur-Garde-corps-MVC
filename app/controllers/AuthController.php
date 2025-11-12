@@ -154,7 +154,7 @@ class AuthController extends Controller
 
         $s = $this->session->user();
         $user = $this->user->show($s['id']);
-        $devis = $this->dev->listUserDevis($s['id']);
+        $devis = $this->dev->getCountsByStatusForUser($s['id']);
 
         if (!$s) $this->redirect('/auth/login');
         $this->view('auth/profile', ['func'=>$func, 'user'=>$user, 'devis'=>$devis]);
@@ -174,6 +174,9 @@ class AuthController extends Controller
         $user = $this->user->show($s['id']);
 
         $devis = $this->dev->show($safeId);
+
+        // Si le devis n'existe pas !
+        if(!$devis) return;
 
         // Sécurité :
         // Un utilisateur ne peux consulter les devis d'un autre

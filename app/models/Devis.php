@@ -36,6 +36,25 @@ class Devis extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    public function getCountsByStatusForUser(int $userId): array
+    {
+        $sql = "SELECT
+                s.label_status   AS statut,
+                COUNT(d.id)      AS total_devis
+                FROM cfg_status s
+                LEFT JOIN cfg_devis d 
+                ON d.id_status = s.id
+                AND d.user_id   = :user_id
+                GROUP BY s.id, s.label_status
+                ORDER BY s.id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':user_id' => $userId]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function show(int $id): array {
 
         $sql = "SELECT
