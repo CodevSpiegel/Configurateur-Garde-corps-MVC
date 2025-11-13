@@ -63,9 +63,9 @@ p{ margin: 0 0 16px; color: var(--muted); }
 .header-buttons { display: flex; gap: 24px; justify-content: left; }
 
 .btn{
-    display:inline-block; padding: 8px 20px; border-radius: 10px;
+    display:inline-block; padding: 10px 20px; border-radius: 10px;
     text-decoration:none; font-weight:600; transition: .3s ease;
-    border:1px solid transparent;
+    border: 1px solid transparent;
 }
 .btn-primary{ background: var(--primary); color:#fff;}
 .btn-primary:hover{ background: var(--primary-hover); }
@@ -82,6 +82,11 @@ p{ margin: 0 0 16px; color: var(--muted); }
 .card-body-grid { padding-top: 16px; display:grid; grid-template-columns: 1fr 1fr;}
 .card-body-img { height: 100%; display: flex; justify-content: center; align-items: center;}
 .card-body li { margin-left: 2.5rem; line-height: 1.6rem;}
+.vetical-card-gap {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
 
 .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .grid-3{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }

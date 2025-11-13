@@ -16,7 +16,7 @@ $title='Liste des Devis';
     <aside class="admin-sidebar">
         <a href="<?php BASE_URL ?>/admin">Tableau de bord</a>
         <a class="active" href="<?php BASE_URL ?>/admin/devis/list">Devis</a>
-        <a href="<?php BASE_URL ?>/admin/users/list">Utilisateurs</a>
+        <a href="<?php BASE_URL ?>/admin/users/list">Clients</a>
         <a href="<?php BASE_URL ?>/admin/settings">Paramètres</a>
     </aside>
 

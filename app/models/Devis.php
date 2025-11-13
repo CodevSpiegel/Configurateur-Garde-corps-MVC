@@ -117,6 +117,7 @@ class Devis extends Model
             u.user_login,
             u.user_email,
             u.user_registered,
+            g.group_label,
             s.id                AS id_status,
             s.label_status
 
@@ -130,6 +131,7 @@ class Devis extends Model
         LEFT JOIN cfg_verres    v  ON d.verre_id    = v.id
         LEFT JOIN cfg_status    s  ON d.id_status   = s.id
         LEFT JOIN users         u  ON d.user_id = u.id
+        LEFT JOIN user_groups   g  ON u.user_group_id = g.id_group
         WHERE d.id = ?";
 
         $stmt = $this->db->prepare($sql);

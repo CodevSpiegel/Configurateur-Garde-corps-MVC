@@ -72,7 +72,7 @@ class AdminController extends Controller {
             case 'list':
                 // page via query ?page=2 (facile à partager/bookmarker)
                 $page    = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
-                $perPage = 10;
+                $perPage = 12;
 
                 // On récupère le nombre total de devis
                 $total = $dev->countAll();
@@ -186,7 +186,7 @@ class AdminController extends Controller {
             case 'list':
                 // page via query ?page=2 (facile à partager/bookmarker)
                 $page    = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
-                $perPage = 10;
+                $perPage = 12;
 
                 // On récupère le nombre total d'utilisateurs
                 $total = $user->countAll();

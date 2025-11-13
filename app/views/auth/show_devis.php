@@ -149,7 +149,7 @@ HTML; }
 
                         }
                     ?>
-                    <img class="appercu" src="../../assets/images/configurateur/previews/<?= $img_preview ?>.webp" alt="">
+                    <img class="appercu" src="<?php BASE_URL ?>/assets/images/configurateur/previews/<?= $img_preview ?>.webp" alt="">
                 </div>
                 <p class="mt-2">Aperçu non contractuel — rendu indicatif.</p>
             </div>
