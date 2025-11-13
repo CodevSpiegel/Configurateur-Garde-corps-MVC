@@ -15,6 +15,11 @@ class Devis extends Model
         return (int)$this->db->query("SELECT COUNT(*) FROM cfg_devis")->fetchColumn();
     }
 
+    /** Compte total des devis validés */
+    public function countValidate(): int {
+        return (int)$this->db->query("SELECT COUNT(*) FROM cfg_devis WHERE id_status = 3")->fetchColumn();
+    }
+
     /**
      * Liste paginée (10/pg par défaut)
      */
@@ -36,7 +41,7 @@ class Devis extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
+    /* Retourne le nombre de devis par statut pour UN utilisateur. */
     public function getCountsByStatusForUser(int $userId): array
     {
         $sql = "SELECT
@@ -54,6 +59,26 @@ class Devis extends Model
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /* Retourne le nombre de devis par statut POUR TOUS LES UTILISATEURS. */
+    public function getCountsByStatusAllUsers(): array
+    {
+        $sql = "SELECT
+                u.user_login        AS user_login,
+                s.label_status      AS statut,
+                COUNT(d.id)         AS total_devis
+                FROM users u
+                LEFT JOIN cfg_devis d 
+                ON d.user_id = u.id
+                LEFT JOIN cfg_status s
+                ON s.id = d.id_status
+                GROUP BY u.id, u.user_login, s.id, s.label_status
+                ORDER BY u.user_login, s.id";
+
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     public function show(int $id): array {
 

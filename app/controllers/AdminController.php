@@ -17,30 +17,35 @@ class AdminController extends Controller {
 
     public function index(): void
     {
-        // Données de la vue : titres + URLs (on calcule à partir de BASE_URL pour être robuste)
-        $cards = [
-            [
-                'title' => 'Gérer les devis',
-                'desc'  => 'Lister, afficher, supprimer…',
-                // ➜ La route pointe vers DevisController::devis('list')
-                'url'   => rtrim(BASE_URL, '/') . 'admin/devis/list'
-            ],
-            [
-                'title' => 'Gérer les utilisateurs',
-                'desc'  => 'Lister, afficher, supprimer…',
-                // ➜ La route pointe vers UsersController::users('list')
-                'url'   => rtrim(BASE_URL, '/') . 'admin/users/list'
-            ],
-            [
-                'title' => 'Réglages',
-                'desc'  => 'Paramètres de base (placeholder)',
-                // ➜ À relier plus tard vers un vrai controller (SettingsController, par ex.)
-                'url'   => rtrim(BASE_URL, '/') . '/admin/settings'
-            ],
-        ];
+        $dev  = new Devis();
+        $users  = new Users();
+        $func = new Functions();
+        $csrf = $this->csrfToken();
+
+        // Nombre total de devis
+        $totalDevis = $dev->countAll();
+        // Nombre total d'utilisateurs
+        $totalUsers = $users->countAll();
+        // Nombre de devis acceptés
+        $nbValidate = $dev->countValidate();
+        // Pourcentage de devis acceptés
+        $validation = ($nbValidate / $totalDevis) * 100;
+
+        $devisByStatus = $dev->getCountsByStatusAllUsers();
+
+        // On récupère la liste des x derniers devis
+        $rows  = $dev->list( 1, 5);
 
         // Rendu de la vue : app/views/admin/dashboard.php
-        $this->view('admin/dashboard', ['cards' => $cards]);
+        $this->view('admin/dashboard', [
+            'totalDevis' => $totalDevis,
+            'totalUsers' => $totalUsers,
+            'validation' => $validation,
+            'devisByStatus' => $devisByStatus,
+            'row'    => $rows,
+            'func' => $func,
+            'csrf' => $csrf
+        ]);
     }
 
      /**
