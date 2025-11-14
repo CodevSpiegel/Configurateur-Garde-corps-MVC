@@ -4,19 +4,20 @@
  * app\views\layout\header.php
  * ============================================================================
  */
-$title = $title ?? 'Configurateur';
+$title = $title ?? SITE_TITLE;
+$description = $description ?? SITE_DESCRIPTION;
 
 require_once ROOT . 'app/core/Sessions.php';
 $S = new Sessions();
 $u = $S->user();
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= SITE_LANGUAGE; ?>">
 <head>
-    <meta charset="utf-8">
+    <meta charset="<?= SITE_CHARSET; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= htmlspecialchars($title) ?></title>
-    <meta name="description" content="">
+    <meta name="description" content="<?= htmlspecialchars($description) ?>">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
     <script>window.APP_BASE_URL = '<?= rtrim(BASE_URL, "/") . "/" ?>';</script>
 </head>

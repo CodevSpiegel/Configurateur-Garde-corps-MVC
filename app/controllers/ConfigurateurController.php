@@ -25,8 +25,8 @@ class ConfigurateurController extends Controller {
      * Page d’accueil du configurateur (vue front avec le module JS)
      */
     public function index() {
-        // Vue : app/views/configurateur/index.php
-        $this->view('configurateur/index');
+        $title = "Configurateur";
+        $this->view( 'configurateur/index', compact( 'title' ) );
     }
 
     /**

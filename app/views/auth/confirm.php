@@ -4,9 +4,6 @@
  * app\views\auth\confirm.php
  * ============================================================================
  */
-
-$title='Confirmation';
-
 ?>
   <h1>Confirmation d'email</h1>
   <?php if (!empty($ok)): ?>

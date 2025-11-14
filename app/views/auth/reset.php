@@ -4,9 +4,6 @@
  * app\views\auth\reset.php
  * ============================================================================
  */
-
-$title='Nouveau mot de passe';
-
 ?>
 
 <section class="section">

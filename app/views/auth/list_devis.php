@@ -4,10 +4,6 @@
  * app\views\auth\details_devis.php
  * ============================================================================
  */
-
-$title='Mes devis';
-
-// var_dump($u);
 ?>
 
 <section class="section">

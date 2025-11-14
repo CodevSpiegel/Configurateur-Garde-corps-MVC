@@ -21,7 +21,10 @@ $title='Liste des Utilisateurs';
 
     <!-- Contenu principal -->
     <main class="admin-main">
-        <h1 class="mb-3">Liste des Clients (<?= (int)$total ?>)</h1>
+        <div class="admin-page-title">
+            <h1>Liste des clients</h1>
+            <h2> (<?= (int)$total ?>)</h2>
+        </div>
 
         <!-- Tableau des derniers devis -->
         <div class="card">
@@ -29,7 +32,7 @@ $title='Liste des Utilisateurs';
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th><th>Utilisateur</th><th>Groupe</th><th>Email</th><th>Insciption</th><th>Action</th>
+                            <th>ID</th><th>Login</th><th>Groupe</th><th>Email</th><th>Insciption</th><th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

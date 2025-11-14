@@ -4,9 +4,6 @@
  * app\views\auth\login.php
  * ============================================================================
  */
-
-$title='Connexion';
-
 ?>
 
 <section class="section">

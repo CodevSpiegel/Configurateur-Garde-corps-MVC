@@ -22,7 +22,10 @@ $title='Liste des Devis';
 
     <!-- Contenu principal -->
     <main class="admin-main">
-        <h1 class="mb-3">Liste des Devis (<?= (int)$total ?>)</h1>
+        <div class="admin-page-title">
+            <h1>Liste des devis</h1>
+            <h2> (<?= (int)$total ?>)</h2>
+        </div>
 
         <!-- Tableau des derniers devis -->
         <div class="card">

@@ -4,9 +4,6 @@
  * aapp\views\auth\forgot.php
  * ============================================================================
  */
-
-$title='Mot de passe perdu';
-
 ?>
 
 <section class="section">
@@ -16,7 +13,7 @@ $title='Mot de passe perdu';
     </div>
     <div class="container" style="max-width:500px;">
         <div class="card">
-            <h1 class="mb-3">Mot de passe perdu</h1>
+            <h1 class="mb-3">Mot de passe oublié</h1>
             <form class="grid-2" method="post" action="/auth/forgot">
                 <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf) ?>">
                 <div style="grid-column: 1 / -1;">

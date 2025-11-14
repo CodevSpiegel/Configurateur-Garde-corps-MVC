@@ -4,10 +4,8 @@
  * app\views\configurateur\index.php
  * ============================================================================
  */
-
-$title='Configurateur';
-
 ?>
+
 <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/configurateur.css">
 <section>
     <div class="container">

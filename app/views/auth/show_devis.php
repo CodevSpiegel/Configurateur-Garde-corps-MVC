@@ -5,9 +5,6 @@
  * ============================================================================
  * Utilisation de la syntaxe HereDoc <<<HTML ....  HTML; (Assez rare, on ne sait pas vraiment pourquoi !)
  */
-
-$title='Détails devis';
-// var_dump($u);
 ?>
 
 <section class="section">

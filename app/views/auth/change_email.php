@@ -4,9 +4,6 @@
  * app\views\auth\change_email.php
  * ============================================================================
  */
-
-$title='Changement d\'email';
-
 ?>
 
 <section class="section">

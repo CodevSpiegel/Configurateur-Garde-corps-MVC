@@ -17,6 +17,7 @@ class AdminController extends Controller {
 
     public function index(): void
     {
+        $title = "Admin - Tableau de bord";
         $dev  = new Devis();
         $users  = new Users();
         $func = new Functions();
@@ -38,6 +39,7 @@ class AdminController extends Controller {
 
         // Rendu de la vue : app/views/admin/dashboard.php
         $this->view('admin/dashboard', [
+            'title' => $title,
             'totalDevis' => $totalDevis,
             'totalUsers' => $totalUsers,
             'validation' => $validation,
@@ -54,7 +56,8 @@ class AdminController extends Controller {
      */
     public function settings(): void
     {
-        $this->view('admin/settings', []);
+        $title = "Admin - Paramètres";
+        $this->view( 'admin/settings', [ 'title' => $title ] );
     }
 
     // ---------- DEVIS ----------
@@ -70,6 +73,7 @@ class AdminController extends Controller {
             // ---------------- LIST ----------------
             // admin/devis/list
             case 'list':
+                $title = "Admin - Liste des devis";
                 // page via query ?page=2 (facile à partager/bookmarker)
                 $page    = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
                 $perPage = 12;
@@ -83,6 +87,7 @@ class AdminController extends Controller {
 
                 // On rend la vue liste (ex: app/views/devis/list.php)
                 return $this->view('admin/devis/list', [
+                    'title'   => $title,
                     'func'   => $func,
                     'row'    => $rows,
                     'csrf'   => $csrf,
@@ -95,6 +100,7 @@ class AdminController extends Controller {
             // ---------------- SHOW ----------------
             // AFFICHAGE D'UN DEVIS : /admin/devis/show/{id}
             case 'show':
+                $title = "Admin - Devis #".$id;
                 // Cast de sécurité
                 $safeId = (int)($id ?? 0);
 
@@ -109,6 +115,7 @@ class AdminController extends Controller {
 
                 // Vue de détail (ex: app/views/devis/show.php)
                 return $this->view('admin/devis/show', [
+                    'title' => $title,
                     'func' => $func,
                     'row'  => $row,
                     'csrf' => $csrf,

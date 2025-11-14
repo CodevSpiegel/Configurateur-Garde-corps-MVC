@@ -4,9 +4,6 @@
  * app\views\home\index.php
  * ============================================================================
  */
-
-$title='Accueil';
-
 ?>
 
 <section class="hero">
@@ -16,7 +13,6 @@ $title='Accueil';
             <p class="lead">Simulez vos options (câbles, barres, verre), visualisez le rendu et recevez un devis instantané.</p>
             <div class="header-buttons">
                 <a class="btn btn-primary mt-2" href="<?= BASE_URL ?>configurateur">Lancer le configurateur</a>
-                <a class="btn btn-outline mt-2" href="#">Voir un exemple</a>
             </div>
         </div>
         <div class="hero-visual">

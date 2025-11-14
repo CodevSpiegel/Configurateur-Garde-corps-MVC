@@ -44,6 +44,7 @@ class AuthController extends Controller
 
     /** Connexion */
     public function login() {
+        $title = "Connexion";
         $csrf = $this->csrfToken();
         $error = null;
 
@@ -66,11 +67,12 @@ class AuthController extends Controller
             }
         }
 
-        $this->view('auth/login', compact('csrf','error'));
+        $this->view( 'auth/login', compact( 'title', 'csrf', 'error' ) );
     }
 
     /** Inscription */
     public function register() {
+        $title = "Inscription";
         $csrf = $this->csrfToken();
         $msg  = null;
         $error = null;
@@ -93,13 +95,15 @@ class AuthController extends Controller
             }
         }
 
-        $this->view('auth/login', compact('csrf','msg','error'));
+        $this->view( 'auth/login', compact( 'title', 'csrf', 'msg', 'error' ) );
     }
 
     /** Confirmation d'email */
     public function confirm($token=null) {
+        $title = "Confirmation d'email";
         $ok = $token ? $this->auth->confirmEmail($token) : false;
-        $this->view('auth/confirm', ['ok'=>$ok]);
+
+        $this->view( 'auth/confirm', compact( 'title', 'ok' ) );
     }
 
     /** Déconnexion */
@@ -110,6 +114,7 @@ class AuthController extends Controller
 
     /** Mot de passe oublié */
     public function forgot() {
+        $title = "Mot de passe oublié";
         $csrf = $this->csrfToken();
         $msg = null; $error = null;
 
@@ -123,14 +128,15 @@ class AuthController extends Controller
             }
         }
 
-        $this->view('auth/forgot', compact('csrf','msg','error'));
+        $this->view( 'auth/forgot', compact( 'title', 'csrf', 'msg', 'error' ) );
     }
 
     /** Reset via token */
     public function reset($token=null) {
+        $title = "Nouveau mot de passe";
         $csrf = $this->csrfToken();
-        $msg=null;
-        $error=null;
+        $msg = null;
+        $error = null;
 
         if ($this->isPost()) {
             if (!$this->checkCsrf($_POST['csrf'] ?? '')) die('CSRF');
@@ -144,24 +150,24 @@ class AuthController extends Controller
             }
         }
 
-        $this->view('auth/reset', compact('csrf','token','msg','error'));
+        $this->view( 'auth/reset', compact( 'title', 'csrf', 'token', 'msg', 'error' ) );
     }
 
     /** Espace utilisateur */
     public function profile() {
-
+        $title = "Mon compte";
         $func = new Functions();
-
         $s = $this->session->user();
         $user = $this->user->show($s['id']);
         $devis = $this->dev->getCountsByStatusForUser($s['id']);
 
         if (!$s) $this->redirect('/auth/login');
-        $this->view('auth/profile', ['func'=>$func, 'user'=>$user, 'devis'=>$devis]);
+        $this->view( 'auth/profile', compact( 'title', 'func', 'user', 'devis' ) );
     }
 
     /** Consulter un devis */
     public function showDevis( int $id ) {
+        $title = "Mon devis #".$id;
 
         $safeId = (int)($id ?? 0);
 
@@ -182,12 +188,12 @@ class AuthController extends Controller
         // Un utilisateur ne peux consulter les devis d'un autre
         if( $user['id'] !== $devis['user_id'] ) return;
 
-        $this->view('auth/show_devis', ['func'=>$func, 'user'=>$user, 'devis'=>$devis]);
+        $this->view( 'auth/show_devis', compact( 'title', 'func', 'user', 'devis' ) );
     }
 
      /** Liste des devis */
     public function listDevis() {
-
+        $title = "Mes devis";
         $func = new Functions();
 
         $s = $this->session->user();
@@ -198,11 +204,12 @@ class AuthController extends Controller
 
         $devis = $this->dev->listUserDevis($user['id']);
 
-        $this->view('auth/list_devis', ['func'=>$func, 'user'=>$user, 'devis'=>$devis]);
+        $this->view( 'auth/list_devis', compact( 'title', 'func', 'user', 'devis' ) );
     }
 
     /** Changement d'email (demande confirmation à nouveau) */
     public function email() {
+        $title = "Changement d'email";
         $this->session->requireAuth();
         $csrf = $this->csrfToken();
         $u = $this->session->user();
@@ -221,6 +228,6 @@ class AuthController extends Controller
             }
         }
 
-        $this->view('auth/change_email', compact('csrf','u','msg','error'));
+        $this->view( 'auth/change_email', compact( 'title', 'csrf', 'u', 'msg', 'error' ) );
     }
 }
