@@ -57,7 +57,7 @@ p{ margin: 0 0 16px; color: var(--muted); }
 .info-title { font-weight: 500;}
 /* .info-data { } */
 
-.nav-buttons { padding: 20px; display: flex; gap: 24px; justify-content: left; align-items: center; }
+.nav-buttons { padding: 20px 0 0 20px; display: flex; gap: 24px; justify-content: left; align-items: center; }
 .admin-buttons { display: flex; gap: 24px; justify-content: left; align-items: center; }
 
 .header-buttons { display: flex; gap: 24px; justify-content: left; }

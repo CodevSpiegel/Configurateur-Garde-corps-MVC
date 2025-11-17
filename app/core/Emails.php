@@ -48,7 +48,7 @@ class Emails
         // 1) Récupération de la configuration définie dans app/config.php
         // ---------------------------------------------------------------------
         // Adresse e-mail d'expédition (ex: "no-reply@moncms.test")
-        $fromEmail = defined('MAIL_FROM') ? MAIL_FROM : 'no-reply@example.com';
+        $fromEmail = defined('MAIL_FROM') ? MAIL_FROM : 'no-reply@squal.dev';
 
         // Nom lisible de l'expéditeur (ex: "FSA Inox" ou "MonCMS")
         $fromName  = defined('MAIL_FROM_NAME') ? MAIL_FROM_NAME : 'MonCMS';

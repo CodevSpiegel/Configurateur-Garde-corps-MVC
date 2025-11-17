@@ -24,7 +24,7 @@ define('BASE_URL', '/');
 // CONFIG E-MAIL
 // ----------------------------------------------------------
 // Adresse d'expédition par défaut
-define('MAIL_FROM', 'no-reply@moncms.test');
+define('MAIL_FROM', 'no-reply@squal.dev');
 // Nom de l'expéditeur (visible dans les clients mail)
 define('MAIL_FROM_NAME', 'MonCMS – France Inox');
 

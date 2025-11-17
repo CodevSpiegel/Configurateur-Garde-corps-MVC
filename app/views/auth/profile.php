@@ -31,7 +31,9 @@
                     </div>
                     <div class="nav-buttons">
                         <a class="btn btn-outline" href="/auth/email">Changer mon email</a>
-                        <a class="btn btn-outline" href="/auth/logout">Se déconnecter</a>
+                    </div>
+                    <div class="nav-buttons">
+                        <a class="btn btn-outline" href="/auth/reset">Changer mon mot de passe</a>
                     </div>
                 </div>
             </div>
