@@ -18,3 +18,25 @@ define('DB_PASS', '');             // mot de passe
 define('DB_CHARSET', 'utf8mb4');   // interclassement moderne
 
 define('BASE_URL', '/');
+
+
+// ----------------------------------------------------------
+// CONFIG E-MAIL
+// ----------------------------------------------------------
+// Adresse d'expédition par défaut
+define('MAIL_FROM', 'no-reply@moncms.test');
+// Nom de l'expéditeur (visible dans les clients mail)
+define('MAIL_FROM_NAME', 'MonCMS – France Inox');
+
+// Mode :
+//  - 'prod' = envoi normal
+//  - 'dev'  = sujet tagué + redirection éventuelle + log
+define('MAIL_MODE', 'dev');
+
+// En mode DEV : tous les mails sont redirigés vers cette adresse
+// (laisser vide/null pour désactiver la redirection)
+define('MAIL_DEV_TO', 'spiegel.codeur@gmail.com');
+
+// Fichier de log (optionnel) pour voir le contenu des mails
+// (laisser vide/null pour ne pas loguer)
+define('MAIL_LOG_FILE', ''); // par ex. app/logs/mails.log

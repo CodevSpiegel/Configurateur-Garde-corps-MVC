@@ -163,7 +163,7 @@
 }
 
 /* --- Overlay global semi-transparent --- */
-.gc-overlay {
+.cfg-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.4);
@@ -176,12 +176,12 @@
     justify-content: center;
     pointer-events: none; /* bloque tout sauf la popup */
 }
-.gc-overlay.show {
+.cfg-overlay.show {
     opacity: 1;
     pointer-events: all;
 }
 
-.gc-toast {
+.cfg-toast {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -199,7 +199,7 @@
 }
 
 /* --- Boîte centrale --- */
-.gc-toast-center {
+.cfg-toast-center {
     background: #fff;
     color: #333;
     padding: 25px 40px;
@@ -213,18 +213,18 @@
     text-align: center;
     min-width: 300px;
 }
-.gc-toast-center.show {
+.cfg-toast-center.show {
     opacity: 1;
     transform: translateY(0);
 }
 
 /* --- Variantes de couleur --- */
-.gc-toast-success { border-top: 6px solid #2ecc71; }
-.gc-toast-error   { border-top: 6px solid #e74c3c; }
-.gc-toast-info    { border-top: 6px solid #3498db; }
+.cfg-toast-success { border-top: 6px solid #2ecc71; }
+.cfg-toast-error   { border-top: 6px solid #e74c3c; }
+.cfg-toast-info    { border-top: 6px solid #3498db; }
 
 /* --- Texte interne --- */
-.gc-toast-inner {
+.cfg-toast-inner {
     padding: 5px;
 }
 

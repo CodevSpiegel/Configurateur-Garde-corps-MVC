@@ -19,6 +19,7 @@
 require_once ROOT . 'app/models/Auth.php';
 require_once ROOT . 'app/models/Devis.php';
 require_once ROOT . 'app/models/Users.php';
+require_once ROOT . 'app/core/Emails.php';
 
 class AuthController extends Controller
 {
@@ -87,9 +88,10 @@ class AuthController extends Controller
 
             $res = $this->auth->register($login, $email, $pass, $passConfirm);
             if ($res['ok'] ?? false) {
-                // "Envoi" du lien de confirmation — ici on affiche en mode dev
                 $token = $res['confirm_token'];
-                $msg = "Votre compte a été créé. Lien de confirmation (dev) : /auth/confirm/$token";
+                // "Envoi" du lien de confirmation — ici on affiche en mode dev
+                // $msg = "Votre compte a été créé. Lien de confirmation (dev) : /auth/confirm/$token";
+                Emails::sendConfirmationEmail($email, $token);
             } else {
                 $error = $res['error'] ?? 'Erreur';
             }
@@ -124,7 +126,8 @@ class AuthController extends Controller
             $token = $this->auth->requestReset($email);
             $msg = "Si un compte est lié à cette adresse, un email a été envoyé à $email";
             if ($token) {
-                $msg .= "Lien de réinitialisation (dev) : /auth/reset/$token";
+                // $msg .= "Lien de réinitialisation (dev) : /auth/reset/$token"; 
+                Emails::sendResetPasswordEmail($email, $token);
             }
         }
 
@@ -222,7 +225,9 @@ class AuthController extends Controller
             $new = trim($_POST['email'] ?? '');
             $res = $this->auth->changeEmail((int)$u['id'], $u['user_password'], $inputPass, $new);
             if ($res['ok'] ?? false) {
-                $msg = "Email changé. Confirmez via le lien (dev) : /auth/confirm/{$res['confirm_token']}";
+                $msg = "Email changé. Confirmez via le lien envoyé sur {$new}";
+                // $msg = "Email changé. Confirmez via le lien (dev) : /auth/confirm/{$res['confirm_token']}";
+                Emails::sendChangeEmailConfirmation($new, $res['confirm_token']);
             } else {
                 $error = $res['error'] ?? 'Erreur';
             }

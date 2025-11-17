@@ -81,7 +81,7 @@ p{ margin: 0 0 16px; color: var(--muted); }
 .card-body { padding-top: 16px;}
 .card-body-grid { padding-top: 16px; display:grid; grid-template-columns: 1fr 1fr;}
 .card-body-img { height: 100%; display: flex; justify-content: center; align-items: center;}
-.card-body li { margin-left: 2.5rem; line-height: 1.6rem;}
+.card-body li { margin-left: 2.5rem; line-height: 2rem;}
 .vetical-card-gap {
     display: flex;
     flex-direction: column;
@@ -145,7 +145,7 @@ p{ margin: 0 0 16px; color: var(--muted); }
 .input:focus{ border-color: var(--primary); box-shadow: 0 0 0 3px rgba(13,110,253,.15); }
 
 /* ------------------------- ADMIN LAYOUT ------------------------ */
-.admin-wrap{ display:grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 64px); }
+.admin-wrap{ display:grid; grid-template-columns: 240px 1fr; /* min-height: calc(100vh - 64px); */ }
 .admin-sidebar{ background: var(--primary); color:#fff; padding: 32px 24px; }
 .admin-sidebar a{ color:#fff; text-decoration:none; opacity:.9; display:block; padding:10px 12px; border-radius:8px; }
 .admin-sidebar a:hover, .admin-sidebar a.active{ background: rgba(255,255,255,.12); opacity:1; }
@@ -155,10 +155,14 @@ p{ margin: 0 0 16px; color: var(--muted); }
     gap: 24px;
     align-items: center;
 }
+.admin-main a {
+    text-decoration: none;
+    color: var(--primary);
+}
 
 @media (max-width: 980px){
     .admin-wrap{ grid-template-columns: 1fr; }
-    .admin-sidebar{ position: sticky; top:64px; z-index: 5; display:flex; gap:8px; overflow:auto; white-space:nowrap; }
+    .admin-sidebar{ position: sticky; top:64px; z-index: 5; display:flex; gap:8px; overflow:auto; white-space:nowrap; max-height: 100px; }
 }
 
 /* ------------------------- PAGINATIONS ------------------------ */

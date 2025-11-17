@@ -4,14 +4,11 @@
  * app\views\home\index.php
  * ============================================================================
  */
-
-$title='Présentation';
-
 ?>
 
 <section class="section">
     <div class="container">
-        <h1>Mini CMS (PHP - POO)</h1>
+        <h1>Mini CMS (PHP - MVC - POO)</h1>
         <p class="lead">Ce projet inclut :</p>
         <div class="grid-2">
             <div class="card">
@@ -26,7 +23,7 @@ $title='Présentation';
                         <li>Connexion / Déconnexion</li>
                         <li>Mot de passe oublié / reset</li>
                         <li>Espace utilisateur (changement email / mot de passe)</li>
-                        <li>Panier des devis (à venir)</li>
+                        <li>Liste des mes devis (Paginations)</li>
                     </ul>
                 </div>
             </div>
@@ -37,12 +34,12 @@ $title='Présentation';
                 </div>
                 <div class="card-body">
                     <ul>
-                        <li>Architecture MVC + Class PDO</li>
+                        <li>Architecture MVC & Class PDO</li>
                         <li>Router (SEO friendly) avec segments illimités</li>
                         <li>Sessions persistantes en BDD (cookie + table <code>user_sessions</code>)</li>
                         <li>Sécurité CSRF tokens sur tous les formulaires</li>
                         <li>Gestion des utilisteurs & devis (CRUD Complet)</li>
-                        <li>Recherches & Paginations</li>
+                        <li>Listes & Paginations</li>
                         <li>Hachage des mots de passe (password_hash)</li>
                         <li>Envois d'emails (Inscriptions, Devis)</li>
                     </ul>

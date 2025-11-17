@@ -4,21 +4,15 @@
  * app\views\devis\list.php
  * ============================================================================
  */
-
-$title='Liste des Devis';
-
 ?>
-
 
 <!-- WRAP ADMIN : sidebar + contenu -->
 <div class="admin-wrap">
-    <!-- Sidebar (collante en mobile, horizontale) -->
-    <aside class="admin-sidebar">
-        <a href="<?php BASE_URL ?>/admin">Tableau de bord</a>
-        <a class="active" href="<?php BASE_URL ?>/admin/devis/list">Devis</a>
-        <a href="<?php BASE_URL ?>/admin/users/list">Clients</a>
-        <a href="<?php BASE_URL ?>/admin/settings">Paramètres</a>
-    </aside>
+
+    <?php
+    $page_active = "devis";
+    include_once ROOT . 'app/views/admin/includes/inc-asside.php';
+    ?>
 
     <!-- Contenu principal -->
     <main class="admin-main">

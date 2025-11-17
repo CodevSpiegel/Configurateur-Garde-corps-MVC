@@ -402,12 +402,12 @@ function showToast(message, duration, type) {
 
     // --- Crée un overlay semi-transparent qui bloque la page ---
     var overlay = document.createElement('div');
-    overlay.className = 'gc-overlay';
+    overlay.className = 'cfg-overlay';
 
     // --- Crée la boîte centrale ---
     var box = document.createElement('div');
-    box.className = 'gc-toast-center gc-toast-' + type;
-    box.innerHTML = '<div class="gc-toast-inner">' + message + '</div>';
+    box.className = 'cfg-toast-center cfg-toast-' + type;
+    box.innerHTML = '<div class="cfg-toast-inner">' + message + '</div>';
 
     // --- Ajoute au DOM ---
     overlay.appendChild(box);

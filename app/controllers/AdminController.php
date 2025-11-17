@@ -76,7 +76,7 @@ class AdminController extends Controller {
                 $title = "Admin - Liste des devis";
                 // page via query ?page=2 (facile à partager/bookmarker)
                 $page    = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
-                $perPage = 12;
+                $perPage = 10;
 
                 // On récupère le nombre total de devis
                 $total = $dev->countAll();
@@ -191,9 +191,10 @@ class AdminController extends Controller {
             // ---------------- LIST ----------------
             // admin/users/list
             case 'list':
+                $title = "Admin - Liste des clients";
                 // page via query ?page=2 (facile à partager/bookmarker)
                 $page    = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
-                $perPage = 12;
+                $perPage = 10;
 
                 // On récupère le nombre total d'utilisateurs
                 $total = $user->countAll();
@@ -204,6 +205,7 @@ class AdminController extends Controller {
 
                 // On rend la vue liste (ex: app/views/users/list.php)
                 return $this->view('admin/users/list', [
+                    'title'  => $title,
                     'func'  => $func,
                     'users' => $row,
                     'csrf'  => $csrf,
@@ -216,6 +218,7 @@ class AdminController extends Controller {
             // ---------------- SHOW ----------------
             // AFFICHAGE D'UN UTILISATEUR : /admin/users/show/{id}
             case 'show':
+                $title = "Admin - Clients #".$id;
                 // Cast de sécurité
                 $safeId = (int)($id ?? 0);
 
@@ -230,6 +233,7 @@ class AdminController extends Controller {
 
                 // Vue de détail (ex: app/views/users/show.php)
                 return $this->view('admin/users/show', [
+                    'title' => $title,
                     'func' => $func,
                     'row'  => $row,
                     'csrf' => $csrf,
