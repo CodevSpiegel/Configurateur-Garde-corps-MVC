@@ -18,12 +18,12 @@ export default [
       required: true,
       options: [
         // ⚠️ Les value DOIVENT matcher les dossiers/fichiers :
-        { id: 1, typeId: 1, value: "5-cables",      label: "5 Câbles",      image: "assets/images/configurateur/types/cables/5-cables.webp" },
-        { id: 2, typeId: 2, value: "7-cables",      label: "7 Câbles",      image: "assets/images/configurateur/types/cables/7-cables.webp" },
-        { id: 3, typeId: 3, value: "8-cables",      label: "8 Câbles",      image: "assets/images/configurateur/types/cables/8-cables.webp" },
-        { id: 4, typeId: 4, value: "11-cables",     label: "11 Câbles",     image: "assets/images/configurateur/types/cables/11-cables.webp" },
-        { id: 5, typeId: 5, value: "2-cables-muret",label: "2 Câbles Muret",image: "assets/images/configurateur/types/cables/2-cables-muret.webp" },
-        { id: 6, typeId: 6, value: "3-cables-muret",label: "3 Câbles Muret",image: "assets/images/configurateur/types/cables/3-cables-muret.webp" }
+        { id: 1, value: "5-cables",      label: "5 Câbles",      image: "assets/images/configurateur/types/cables/5-cables.webp" },
+        { id: 2, value: "7-cables",      label: "7 Câbles",      image: "assets/images/configurateur/types/cables/7-cables.webp" },
+        { id: 3, value: "8-cables",      label: "8 Câbles",      image: "assets/images/configurateur/types/cables/8-cables.webp" },
+        { id: 4, value: "11-cables",     label: "11 Câbles",     image: "assets/images/configurateur/types/cables/11-cables.webp" },
+        { id: 5, value: "2-cables-muret",label: "2 Câbles Muret",image: "assets/images/configurateur/types/cables/2-cables-muret.webp" },
+        { id: 6, value: "3-cables-muret",label: "3 Câbles Muret",image: "assets/images/configurateur/types/cables/3-cables-muret.webp" }
       ]
     },
     {
@@ -33,9 +33,9 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 1, finitionId: 1, value: "tube-inox-304l", label: "Inox 304 Brossé (Intérieur)",         image: "assets/images/configurateur/finitions/tube-inox-304l.webp" },
-        { id: 2, finitionId: 2, value: "tube-inox-316l", label: "Inox 316L Brossé (Extérieur)",        image: "assets/images/configurateur/finitions/tube-inox-316l.webp" },
-        { id: 3, finitionId: 3, value: "tube-inox-316",  label: "Inox 316 Poli Miroir (Mer/Piscine)",  image: "assets/images/configurateur/finitions/tube-inox-316.webp" }
+        { id: 1, value: "tube-inox-304l", label: "Inox 304 Brossé (Intérieur)",         image: "assets/images/configurateur/finitions/tube-inox-304l.webp" },
+        { id: 2, value: "tube-inox-316l", label: "Inox 316L Brossé (Extérieur)",        image: "assets/images/configurateur/finitions/tube-inox-316l.webp" },
+        { id: 3, value: "tube-inox-316",  label: "Inox 316 Poli Miroir (Mer/Piscine)",  image: "assets/images/configurateur/finitions/tube-inox-316.webp" }
       ]
     }
   ],
@@ -60,12 +60,12 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 1, formeId: 1, value: "droit", label: "Droit", image: "assets/images/configurateur/formes/droit.webp" },
-        { id: 2, formeId: 2, value: "en-v",  label: "En V",  image: "assets/images/configurateur/formes/v.webp" },
-        { id: 3, formeId: 3, value: "en-l",  label: "En L",  image: "assets/images/configurateur/formes/l.webp" },
-        { id: 4, formeId: 4, value: "en-u",  label: "En U",  image: "assets/images/configurateur/formes/u.webp" },
-        { id: 5, formeId: 5, value: "en-s",  label: "En S",  image: "assets/images/configurateur/formes/s.webp" },
-        { id: 6, formeId: 6, value: "complexe", label: "Complexe", image: "assets/images/configurateur/formes/complexe.webp" }
+        { id: 1, value: "droit", label: "Droit", image: "assets/images/configurateur/formes/droit.webp" },
+        { id: 2, value: "en-v",  label: "En V",  image: "assets/images/configurateur/formes/v.webp" },
+        { id: 3, value: "en-l",  label: "En L",  image: "assets/images/configurateur/formes/l.webp" },
+        { id: 4, value: "en-u",  label: "En U",  image: "assets/images/configurateur/formes/u.webp" },
+        { id: 5, value: "en-s",  label: "En S",  image: "assets/images/configurateur/formes/s.webp" },
+        { id: 6, value: "complexe", label: "Complexe", image: "assets/images/configurateur/formes/complexe.webp" }
       ],
       // 🔔 Si la pose préservée n'est plus valide avec la nouvelle forme, on l'invalide
       onChange: ({ selection }) => {
@@ -121,9 +121,9 @@ export default [
       ui: "cards",
       required: true,
       options: [
-        { id: 1, ancrageId: 1, value: "goujon-a-frapper", label: "Goujon à frapper pour béton",         image: "assets/images/configurateur/ancrages/goujon-a-frapper.webp" },
-        { id: 2, ancrageId: 2, value: "tirefonds-pour-bois", label: "Tirefonds pour bois",        image: "assets/images/configurateur/ancrages/tirefonds-pour-bois.webp" },
-        { id: 3, ancrageId: 3, value: "scellement-chimique",  label: "Tiges Filetées pour scellement Chimique",  image: "assets/images/configurateur/ancrages/scellement-chimique.webp" }
+        { id: 1, value: "goujon-a-frapper", label: "Goujon à frapper pour béton",         image: "assets/images/configurateur/ancrages/goujon-a-frapper.webp" },
+        { id: 2, value: "tirefonds-pour-bois", label: "Tirefonds pour bois",        image: "assets/images/configurateur/ancrages/tirefonds-pour-bois.webp" },
+        { id: 3, value: "scellement-chimique",  label: "Tiges Filetées pour scellement Chimique",  image: "assets/images/configurateur/ancrages/scellement-chimique.webp" }
       ]
     }],
     preview: ({ selection }) => buildPreviewPath(selection)
@@ -185,10 +185,8 @@ export default [
 function buildPreviewPath(selection) {
   if (!selection.type) return null;
   const type  = selection.type;
-  // const finition  = selection.finition;
   const forme = selection.forme || "droit";
   const pose  = selection.pose || "sol";
-  // const ancrage  = selection.ancrage;
   return `assets/images/configurateur/previews/cables/${type}/${pose}/${type}-${forme}-${pose}.webp`;
 }
 

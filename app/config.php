@@ -26,7 +26,7 @@ define('BASE_URL', '/');
 // Adresse d'expédition par défaut
 define('MAIL_FROM', 'no-reply@squal.dev');
 // Nom de l'expéditeur (visible dans les clients mail)
-define('MAIL_FROM_NAME', 'MonCMS – France Inox');
+define('MAIL_FROM_NAME', 'France Inox');
 
 // Mode :
 //  - 'prod' = envoi normal

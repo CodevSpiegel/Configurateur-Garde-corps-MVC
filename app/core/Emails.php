@@ -2,7 +2,7 @@
 /**
  * app/core/Emails.php
  * -----------------------------------------------------------------------------
- * Petite classe utilitaire pour l'envoi d'e-mails dans MonCMS.
+ * Petite classe utilitaire pour l'envoi d'e-mails.
  *
  * Objectifs :
  *  - Centraliser la logique d'envoi d'e-mails (confirmation, reset, etc.).
@@ -144,7 +144,7 @@ class Emails
         // ---------------------------------------------------------------------
         // 9) Envoi réel via mail() (même en DEV)
         // ---------------------------------------------------------------------
-        // Si tu veux désactiver complètement l'envoi en DEV, tu peux
+        // Si on veux désactiver complètement l'envoi en DEV, on peux
         // décommenter le return true ci-dessous :
         //
         // if ($mode === 'dev') {
@@ -159,7 +159,7 @@ class Emails
     /**
      * encodeHeaderName()
      * -------------------------------------------------------------------------
-     * Encode un nom (ex: "FSA Inox") pour l'utiliser dans les en-têtes
+     * Encode un nom (ex: "France Inox") pour l'utiliser dans les en-têtes
      * avec des caractères spéciaux (UTF-8).
      *
      * @param string $name

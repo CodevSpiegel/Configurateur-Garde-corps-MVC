@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 13 nov. 2025 à 22:12
+-- Généré le : mar. 18 nov. 2025 à 17:04
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `cfg_devis` (
   KEY `idx_cfg_devis_ancrage_id` (`ancrage_id`),
   KEY `idx_cfg_devis_forme_id` (`forme_id`),
   KEY `idx_cfg_devis_verre_id` (`verre_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `cfg_devis`
@@ -102,9 +102,11 @@ INSERT INTO `cfg_devis` (`id`, `user_id`, `type_id`, `finition_id`, `forme_id`, 
 (7, 11, 30, 1, 1, 2, 2, NULL, 123, NULL, NULL, 85, NULL, 1, 3, 1761515656, 1763059716),
 (34, 15, 1, 2, 1, 3, 3, NULL, 127, NULL, NULL, 100, 27, 1, 1, 1762025174, 1762025174),
 (24, 1, 28, NULL, 2, NULL, 6, 9, 100, 100, NULL, 100, 45, 1, 6, 1761654347, 1761935729),
+(62, 1, 2, 2, 2, 2, 2, NULL, 123, 111, NULL, 90, 47, 1, 1, 1763407778, 1763407778),
 (28, 5, 7, 2, 1, 3, 1, NULL, 123, NULL, NULL, 145, 46, 1, 1, 1762003018, 1762003018),
 (33, 2, 12, 2, 2, 2, 2, 5, 142, 123, NULL, 112, 48, 1, 1, 1762024820, 1762024820),
 (26, 7, 34, 2, 5, 2, 2, NULL, 158, 123, 158, 88, NULL, 1, 3, 1761759118, 1761998143),
+(63, 1, 6, 3, 1, 3, 2, NULL, 112, NULL, NULL, 113, 49, 1, 1, 1763407847, 1763407847),
 (31, 1, 6, 3, 1, 3, 3, NULL, 156, NULL, NULL, 110, 36, 1, 4, 1762003148, 1762987691),
 (29, 7, 34, 3, 1, 2, 2, NULL, 158, NULL, NULL, 77, NULL, 1, 1, 1762003053, 1762003053),
 (35, 18, 6, 3, 1, 3, 1, NULL, 123, NULL, NULL, 144, 29, 1, 3, 1762025207, 1762025295),
@@ -133,7 +135,8 @@ INSERT INTO `cfg_devis` (`id`, `user_id`, `type_id`, `finition_id`, `forme_id`, 
 (58, 1, 35, 2, 2, 2, 2, NULL, 133, 134, NULL, 89, 60, 1, 1, 1762828348, 1762828348),
 (59, 1, 13, 3, 4, 1, 1, 6, 210, 128, 220, 88, NULL, 1, 1, 1762828540, 1763070245),
 (60, 1, 1, 2, 1, 1, 2, NULL, 123, NULL, NULL, 100, NULL, 1, 3, 1762987581, 1763070686),
-(61, 1, 9, 3, 2, 2, 3, NULL, 125, 120, NULL, 98, 39, 1, 3, 1762987612, 1763069517);
+(61, 1, 9, 3, 2, 2, 3, NULL, 125, 120, NULL, 98, 39, 1, 3, 1762987612, 1763069517),
+(64, 1, 8, 2, 3, 2, 2, NULL, 122, 122, NULL, 100, NULL, 1, 1, 1763408491, 1763408491);
 
 -- --------------------------------------------------------
 
@@ -378,6 +381,36 @@ INSERT INTO `cfg_verres` (`id`, `label_verre`, `slug_verre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `settings`
+--
+
+DROP TABLE IF EXISTS `settings`;
+CREATE TABLE IF NOT EXISTS `settings` (
+  `id` smallint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `setting_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `setting_value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `updated_at` int UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cfg_settings_setting_key_unique` (`setting_key`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `settings`
+--
+
+INSERT INTO `settings` (`id`, `setting_key`, `setting_value`, `description`, `updated_at`) VALUES
+(1, 'site_title', 'France Inox', 'Titre du site affiché dans le <title>', 1763415691),
+(2, 'site_description', 'Configurateur visuel de garde-corps', 'Description meta du site', 1763415691),
+(3, 'mail_from', 'no-reply@squal.dev', 'Adresse e-mail d\'expéditeur par défaut', 1763415691),
+(4, 'mail_from_name', 'France Inox', 'Nom d\'expéditeur par défaut', 1763415691),
+(5, 'mail_mode', 'dev', 'Mode d\'envoi des mails: dev ou prod', 1763415691),
+(6, 'mail_dev_to', 'spiegel.codeur@gmail.com', 'Adresse de redirection en mode DEV', 1763415691),
+(7, 'mail_log_file', NULL, 'Fichier de log des mails (optionnel)', 1763415691);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `users`
 --
 
@@ -387,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_login` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `user_email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `user_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `user_group_id` smallint UNSIGNED NOT NULL DEFAULT '0',
+  `user_group_id` smallint UNSIGNED NOT NULL DEFAULT '1',
   `user_registered` int NOT NULL,
   `user_last_visit` int UNSIGNED NOT NULL,
   `user_last_activity` int UNSIGNED NOT NULL,
@@ -410,7 +443,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_group_id`, `user_registered`, `user_last_visit`, `user_last_activity`, `user_activation_key`, `email_confirm_token`, `email_confirmed_at`, `reset_token`, `reset_expires`) VALUES
-(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1762982713, 1763071471, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
+(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1763074819, 1763480391, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
 (2, 'alex', 'alex@alex.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 3, 1759302900, 1762563940, 1762699543, '5b5db98ed68aa6222c8b3e6a1d70a7ec', NULL, 1762561413, '91aef643bb96493b1d4edc38b1ece7c2', 1762566094),
 (3, 'marie', 'marie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759392000, 1761410400, 1761747720, '44d0010532dcd54f2ab5e3c81bfdba23', NULL, NULL, NULL, NULL),
 (4, 'julien', 'julien@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1759474200, 1761675600, 1761747900, '549e9f18d6d29c897e0ae94f9e9b7b75', NULL, NULL, NULL, NULL),
@@ -431,7 +464,7 @@ INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_gr
 (21, 'eva', 'eva@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 4, 1760954400, 1761728400, 1761749340, '8a654f5280d9b5c89058307798c3f68c', NULL, NULL, NULL, NULL),
 (22, 'Testeur3', 'testeur3@testeur3.com', '$2y$10$J/bVetYB1VnxlA99x22l6.bnDhEGvDzrNdlpV/ePiUoksY7p.rk4m', 3, 1762453517, 1762462972, 1762546617, '', NULL, 1762463935, NULL, NULL),
 (23, 'sqdfqsdgqfdgqfdhg', 'sdfsdq@dsfhfd.com', '$2y$10$mPR8DBkRrrpYC5GnSdj3o.pOfWp5h7FgYFt/LgBiNjGNb28Mwe4Se', 3, 1762555830, 1762555830, 1762555830, '', NULL, 1762555954, NULL, NULL),
-(24, 'testeur4', 'testeur4@testeur4.com', '$2y$10$ukWOW3VNEaFLwHTlGZcPJeTanUKtXO6yQRys09AGxoky79B2R24ea', 3, 1762710682, 1762816071, 1762816257, '', NULL, 1762763405, NULL, NULL);
+(24, 'testeur4', 'testeur4@testeur4.com', '$2y$10$ukWOW3VNEaFLwHTlGZcPJeTanUKtXO6yQRys09AGxoky79B2R24ea', 3, 1762710682, 1763074640, 1763074696, '', NULL, 1762763405, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -479,14 +512,14 @@ CREATE TABLE IF NOT EXISTS `user_sessions` (
   UNIQUE KEY `sid_unique` (`session_id`),
   KEY `idx_user` (`user_id`),
   KEY `idx_user_sessions_user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `user_sessions`
 --
 
 INSERT INTO `user_sessions` (`id`, `user_id`, `session_id`, `ip_address`, `user_agent`, `created_at`, `expires_at`) VALUES
-(43, 1, 'c8bcd906691f3af1d747aaef69fa5ddd7c94739c05b8eadba1878247fee24231', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1762982713, 1765574713);
+(48, 1, '6adfeff0cc4856fa45fde2f73ec801421d3eae48ceb5e7203fe1058fe01e848e', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1763074819, 1765666819);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

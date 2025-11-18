@@ -22,7 +22,7 @@
                 </div>
                 <div style="grid-column: 1 / -1;">
                     <label for="password">Mot de passe</label>
-                    <input class="input" type="password" id="password" name="password"" placeholder="Votre mot de passe" required>
+                    <input class="input" type="password" id="password" name="password" placeholder="Votre mot de passe" required>
                 </div>
                 <div style="grid-column: 1 / -1;">
                     <label for="remember"><input type="checkbox" id="remember" name="remember"> Se souvenir de moi</label>
