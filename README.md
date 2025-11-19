@@ -968,7 +968,7 @@ Ce projet a été développé exclusivement pour **France Inox** et est protég�
 - ❌ Modification interdite
 - ❌ Usage privé sans autorisation interdit
 
-Pour toute demande d'autorisation, contacter : [contact@franceinox.fr]
+Pour toute demande d'autorisation, contacter : codev.spiegel@gmail.com
 
 ---
 
