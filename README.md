@@ -917,7 +917,7 @@ Ce projet est développé dans un cadre académique et n'accepte pas de contribu
 Si vous identifiez un bug ou une vulnérabilité de sécurité :
 
 1. **NE PAS** créer d'issue publique pour les failles de sécurité
-2. Contacter directement : [votre-email@exemple.com]
+2. Contacter directement : codev.spiegel@gmail.com
 3. Fournir :
    - Description détaillée du problème
    - Étapes de reproduction
