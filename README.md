@@ -951,7 +951,7 @@ Si vous identifiez un bug ou une vulnérabilité de sécurité :
 ### Encadrement
 
 **Tuteur Entreprise :** Fabienne Lacorre - France Inox  
-**Référent Pédagogique :** Anthony MERLIER - GRETA Sud Champagne
+**Référent Pédagogique :** Anthony MERLIER - GRETA CFA Sud Champagne
 
 ---
 
@@ -975,7 +975,7 @@ Pour toute demande d'autorisation, contacter : codev.spiegel@gmail.com
 ## 🙏 Remerciements
 
 - **France Inox** pour la confiance et l'opportunité de stage
-- **GRETA Sud Champagne** pour la formation DWWM
+- **GRETA CFA Sud Champagne** pour la formation DWWM
 - **Anthony MERLIER** pour le suivi pédagogique
 - La communauté PHP pour la documentation et les ressources
 
