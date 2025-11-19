@@ -77,7 +77,7 @@ Ce projet a été développé dans le cadre d'un stage de 8 semaines (25 août -
   - Définition de la forme (droit, angle, L, U)
   - Saisie des mesures (longueur, largeur, hauteur)
   - Options d'ancrage et de pose
-  - Calcul automatique du prix
+  - Calcul automatique du prix (à venir)
 
 - **Interface interactive** :
   - Visualisation en temps réel
@@ -104,7 +104,7 @@ Ce projet a été développé dans le cadre d'un stage de 8 semaines (25 août -
 - **Dashboard de suivi** :
   - Vue d'ensemble des devis
   - Statistiques en temps réel
-  - Filtres et recherche avancée
+  - Liste paginée des devis
 
 - **Gestion des utilisateurs** :
   - Liste paginée des utilisateurs
