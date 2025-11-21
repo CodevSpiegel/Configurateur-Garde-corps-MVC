@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>MonCMS v5.3 - Soutenance DWWM</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css">
+    
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/monokai.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- SLIDE 1 : TITRE -->
+            <section>
+                <h1>MonCMS v5.3</h1>
+                <h3>Configurateur de Garde-Corps</h3>
+                <p>
+                    <small>
+                        <strong>Sébastien SPIEGEL</strong><br>
+                        Titre Professionnel Développeur Web et Web Mobile<br>
+                        Stage France Inox - 25/08/2025 au 17/10/2025
+                    </small>
+                </p>
+            </section>
+            
+            <!-- SLIDE 2 : SOMMAIRE -->
+            <section>
+                <h2>Sommaire</h2>
+                <ol>
+                    <li>Contexte et entreprise</li>
+                    <li>Cahier des charges</li>
+                    <li>Architecture technique</li>
+                    <li>Fonctionnalités développées</li>
+                    <li>Démonstration du flux MVC</li>
+                    <li>Sécurité</li>
+                    <li>Difficultés et solutions</li>
+                    <li>Compétences acquises</li>
+                    <li>Bilan</li>
+                </ol>
+            </section>
+            
+            <!-- SECTION 1 : CONTEXTE -->
+            <section>
+                <section>
+                    <h2>1. Contexte du Projet</h2>
+                    <ul>
+                        <li><strong>Formation :</strong> Titre Professionnel DWWM</li>
+                        <li><strong>Entreprise :</strong> France Inox</li>
+                        <li><strong>Durée :</strong> 8 semaines (320 heures)</li>
+                        <li><strong>Période :</strong> 25 août - 17 octobre 2025</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Objectifs pédagogiques</h3>
+                    <ul>
+                        <li>Démontrer la maîtrise de l'architecture MVC</li>
+                        <li>Développer une application full-stack complète</li>
+                        <li>Mettre en pratique les bonnes pratiques</li>
+                        <li>Gérer un projet de A à Z</li>
+                        <li>Travailler en autonomie</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>France Inox</h3>
+                    <p><strong>Activité :</strong></p>
+                    <ul>
+                        <li>Fabrication de garde-corps en inox sur mesure</li>
+                        <li>Installation résidentielle et commerciale</li>
+                        <li>Barrières de piscine</li>
+                    </ul>
+                    <p style="margin-top: 30px;"><strong>Problématique :</strong></p>
+                    <ul>
+                        <li>Processus de devis manuel et chronophage</li>
+                        <li>Pas de visualisation pour les clients</li>
+                        <li>Risque d'erreurs de compréhension</li>
+                    </ul>
+                </section>
+            </section>
+            
+            <!-- SECTION 2 : CAHIER DES CHARGES -->
+            <section>
+                <section>
+                    <h2>2. Cahier des Charges</h2>
+                    <p><strong>Objectif :</strong> Créer un configurateur en ligne</p>
+                </section>
+                
+                <section>
+                    <h3>Fonctionnalités principales</h3>
+                    <ul>
+                        <li><strong>Configurateur visuel</strong> : 7 types de garde-corps</li>
+                        <li><strong>Gestion utilisateurs</strong> : inscription, connexion, profil</li>
+                        <li><strong>Gestion des devis</strong> : création, historique, statuts</li>
+                        <li><strong>Interface admin</strong> : dashboard, validation, statistiques</li>
+                        <li><strong>API REST</strong> : communication frontend/backend</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Types de garde-corps</h3>
+                    <ol>
+                        <li>Barres horizontales en inox</li>
+                        <li>Câbles tendus</li>
+                        <li>Panneaux de verre</li>
+                        <li>Verre à profilés</li>
+                        <li>Tôle perforée inox</li>
+                        <li>Filet inox</li>
+                        <li>Barrières de piscine</li>
+                    </ol>
+                    <p style="margin-top: 20px;"><em>→ Architecture modulaire par "datasets"</em></p>
+                </section>
+                
+                <section>
+                    <h3>Contraintes techniques</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Contrainte</th>
+                                <th>Exigence</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sécurité</td>
+                                <td>Protection SQL, XSS, CSRF</td>
+                            </tr>
+                            <tr>
+                                <td>Performance</td>
+                                <td>Temps de réponse < 1s</td>
+                            </tr>
+                            <tr>
+                                <td>Compatibilité</td>
+                                <td>Navigateurs modernes</td>
+                            </tr>
+                            <tr>
+                                <td>Documentation</td>
+                                <td>Code commenté en français</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+            
+            <!-- SECTION 3 : ARCHITECTURE -->
+            <section>
+                <section>
+                    <h2>3. Architecture Technique</h2>
+                    <p><strong>Architecture MVC personnalisée</strong></p>
+                    <p>Développée <em>from scratch</em> en PHP 8.3</p>
+                </section>
+                
+                <section>
+                    <h3>Stack Technique</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left;">
+                        <div>
+                            <h4>Backend</h4>
+                            <ul>
+                                <li><strong>PHP 8.3.14</strong>
+                                    <ul>
+                                        <li>Types stricts</li>
+                                        <li>POO avancée</li>
+                                        <li>PDO sécurisé</li>
+                                    </ul>
+                                </li>
+                                <li><strong>MySQL 9.1.0</strong>
+                                    <ul>
+                                        <li>Base normalisée</li>
+                                        <li>Index optimisés</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Frontend</h4>
+                            <ul>
+                                <li><strong>JavaScript ES6+</strong>
+                                    <ul>
+                                        <li>Vanilla JS</li>
+                                        <li>Modules</li>
+                                        <li>Fetch API</li>
+                                    </ul>
+                                </li>
+                                <li><strong>CSS3</strong>
+                                    <ul>
+                                        <li>Responsive</li>
+                                        <li>Moderne</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h3>Pourquoi un MVC from scratch ?</h3>
+                    <ul>
+                        <li><strong>Maîtrise complète</strong> du code</li>
+                        <li><strong>Performance optimale</strong> (pas de code inutile)</li>
+                        <li><strong>Démonstration pédagogique</strong> de compréhension</li>
+                        <li><strong>Maintenance facilitée</strong></li>
+                        <li><strong>Évolutivité</strong> simple</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Structure du projet</h3>
+                    <pre><code data-trim data-noescape class="language-plaintext">
+MonCMS-v5.3/
+├── app/
+│   ├── config.php
+│   ├── controllers/      # 5 contrôleurs
+│   ├── core/            # Classes système
+│   │   ├── Router.php
+│   │   ├── Database.php
+│   │   ├── Sessions.php
+│   │   ├── Controller.php
+│   │   └── Model.php
+│   ├── models/          # 3 modèles
+│   └── views/           # Templates HTML
+├── public/
+│   ├── index.php       # Point d'entrée unique
+│   └── assets/
+└── gardecorps.sql
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h3>Statistiques</h3>
+                    <ul>
+                        <li><strong>37</strong> fichiers PHP (~3500 lignes)</li>
+                        <li><strong>13</strong> fichiers JavaScript (~2000 lignes)</li>
+                        <li><strong>2</strong> fichiers CSS (~400 lignes)</li>
+                        <li><strong>5</strong> contrôleurs</li>
+                        <li><strong>3</strong> modèles</li>
+                        <li><strong>7</strong> datasets de configuration</li>
+                    </ul>
+                </section>
+            </section>
+            
+            <!-- SECTION 4 : FONCTIONNALITÉS -->
+            <section>
+                <section>
+                    <h2>4. Fonctionnalités Développées</h2>
+                </section>
+                
+                <section>
+                    <h3>Le Configurateur</h3>
+                    <p><strong>Processus de configuration en 6 étapes :</strong></p>
+                    <ol>
+                        <li>Choix du <strong>type</strong> → Chargement du dataset</li>
+                        <li>Sélection <strong>finition</strong> → Mise à jour tarif</li>
+                        <li>Définition <strong>forme</strong> → Adaptation des champs</li>
+                        <li>Saisie <strong>mesures</strong> → Validation contraintes</li>
+                        <li>Options <strong>ancrage/pose</strong> → Calcul prix</li>
+                        <li>Résumé → <strong>Enregistrement en BDD</strong></li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h3>Gestion Utilisateurs</h3>
+                    <ul>
+                        <li><strong>Inscription</strong> avec validation email</li>
+                        <li><strong>Connexion</strong> sécurisée</li>
+                        <li>Option "Se souvenir de moi" (30 jours)</li>
+                        <li><strong>Espace client</strong> personnalisé</li>
+                        <li><strong>Historique</strong> complet des devis</li>
+                        <li>Gestion du <strong>profil</strong></li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Interface Administration</h3>
+                    <ul>
+                        <li><strong>Dashboard</strong> avec statistiques</li>
+                        <li>Gestion des <strong>utilisateurs</strong> (liste, groupes, permissions)</li>
+                        <li>Gestion des <strong>devis</strong> (validation, changement statut)</li>
+                        <li><strong>Filtres</strong> et recherche avancée</li>
+                        <li>Vue détaillée des configurations</li>
+                    </ul>
+                </section>
+            </section>
+            
+            <!-- SECTION 5 : FLUX MVC -->
+            <section>
+                <section>
+                    <h2>5. Démonstration du Flux MVC</h2>
+                    <p><strong>Exemple concret :</strong></p>
+                    <p>URL demandée : <code>/configurateur/index</code></p>
+                </section>
+                
+                <section>
+                    <h3>Étape 1 : Point d'entrée (index.php)</h3>
+                    <pre><code data-trim data-noescape class="language-php">
+&lt;?php
+// public/index.php
+
+declare(strict_types=1);        // 1. Mode strict
+session_start();                 // 2. Session
+
+// 3. Définition ROOT
+define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
+
+// 4. Chargement des classes
+require_once ROOT . 'app/config.php';
+require_once ROOT . 'app/core/Router.php';
+// ...
+
+// 5. Création du routeur
+$router = new Router();
+$router->dispatch($_SERVER['REQUEST_URI'] ?? '/');
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h3>Étape 2 : Le Routeur</h3>
+                    <p><strong>Analyse de l'URL :</strong> <code>/configurateur/index</code></p>
+                    <ol>
+                        <li><strong>Nettoyage</strong> : suppression /, query strings
+                            <br>→ <code>'configurateur/index'</code>
+                        </li>
+                        <li><strong>Découpage</strong> : <code>explode('/', $path)</code>
+                            <br>→ <code>['configurateur', 'index']</code>
+                        </li>
+                        <li><strong>Extraction</strong> :
+                            <br>• Contrôleur : <strong>ConfigurateurController</strong>
+                            <br>• Action : <strong>index</strong>
+                        </li>
+                        <li><strong>Chargement et exécution</strong>
+                            <br>→ <code>ConfigurateurController::index()</code>
+                        </li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h3>Étape 3 : Le Contrôleur</h3>
+                    <pre><code data-trim data-noescape class="language-php">
+// ConfigurateurController.php
+
+class ConfigurateurController extends Controller {
+    
+    public function index() {
+        // 1. Vérification authentification
+        $this->session->requireAuth();
+        
+        // 2. Préparation des données
+        $title = 'Configurateur';
+        
+        // 3. Appel de la vue
+        $this->view('configurateur/index', 
+                    compact('title'));
+    }
+}
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h3>Étape 4 : Le Modèle (si besoin)</h3>
+                    <pre><code data-trim data-noescape class="language-php">
+// Exemple : récupérer les devis d'un utilisateur
+
+$devisModel = new Devis();
+$userDevis = $devisModel->getUserDevis($userId);
+
+// Dans Devis.php
+public function getUserDevis(int $userId): array {
+    $sql = "SELECT * FROM cfg_devis 
+            WHERE user_id = ? 
+            ORDER BY create_date DESC";
+    
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([$userId]);
+    
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h3>Étape 5 : La Vue</h3>
+                    <pre><code data-trim data-noescape class="language-php">
+&lt;!-- app/views/configurateur/index.php --&gt;
+
+&lt;!-- Header chargé automatiquement --&gt;
+
+&lt;main&gt;
+    &lt;h1&gt;&lt;?= htmlspecialchars($title) ?&gt;&lt;/h1&gt;
+    
+    &lt;div id="configurateur"&gt;
+        &lt;!-- Interface du configurateur --&gt;
+    &lt;/div&gt;
+&lt;/main&gt;
+
+&lt;!-- Footer + scripts chargés automatiquement --&gt;
+                    </code></pre>
+                    <p><strong>Important :</strong> Utilisation de <code>htmlspecialchars()</code> pour la sécurité (protection XSS)</p>
+                </section>
+                
+                <section>
+                    <h3>Schéma du flux complet</h3>
+                    <pre style="font-size: 0.4em;"><code data-trim data-noescape class="language-plaintext">
+┌─────────────────────────────────────────┐
+│   UTILISATEUR                           │
+│   URL: /configurateur/index             │
+└────────────────┬────────────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────────────┐
+│   1. index.php                          │
+│   • Initialisation                      │
+│   • Chargement classes                  │
+└────────────────┬────────────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────────────┐
+│   2. Router                             │
+│   • Parse URL                           │
+│   • Charge contrôleur                   │
+└────────────────┬────────────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────────────┐
+│   3. ConfigurateurController            │
+│   • Logique métier                      │
+│   • Appelle modèle/vue                  │
+└────────────────┬────────────────────────┘
+                 │
+      ┌──────────┴──────────┐
+      │                     │
+      ▼                     ▼
+┌─────────────┐      ┌─────────────┐
+│ 4. Modèle   │      │ 5. Vue      │
+│   (Devis)   │──►   │   (HTML)    │
+└─────────────┘      └──────┬──────┘
+                            │
+                            ▼
+                   ┌─────────────────┐
+                   │   UTILISATEUR   │
+                   │   Reçoit HTML   │
+                   └─────────────────┘
+                    </code></pre>
+                </section>
+            </section>
+            
+            <!-- SECTION 6 : SÉCURITÉ -->
+            <section>
+                <section>
+                    <h2>6. Sécurité</h2>
+                    <p>La sécurité : priorité absolue</p>
+                </section>
+                
+                <section>
+                    <h3>Protection contre les injections SQL</h3>
+                    <p><strong>❌ Mauvais (dangereux) :</strong></p>
+                    <pre><code data-trim data-noescape class="language-php">
+$sql = "SELECT * FROM users WHERE id = " . $_GET['id'];
+$result = $db->query($sql);
+                    </code></pre>
+                    <p><strong>✅ Bon (sécurisé) :</strong></p>
+                    <pre><code data-trim data-noescape class="language-php">
+$sql = "SELECT * FROM users WHERE id = ?";
+$stmt = $db->prepare($sql);
+$stmt->execute([$_GET['id']]);
+                    </code></pre>
+                    <p><strong>Solution :</strong> Requêtes préparées PDO avec <code>bindValue()</code></p>
+                </section>
+                
+                <section>
+                    <h3>Autres mesures de sécurité</h3>
+                    <table style="font-size: 0.8em;">
+                        <thead>
+                            <tr>
+                                <th>Menace</th>
+                                <th>Protection</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>XSS</td>
+                                <td><code>htmlspecialchars()</code> systématique</td>
+                            </tr>
+                            <tr>
+                                <td>CSRF</td>
+                                <td>Tokens sur formulaires</td>
+                            </tr>
+                            <tr>
+                                <td>Session hijacking</td>
+                                <td>Cookies HttpOnly, SameSite</td>
+                            </tr>
+                            <tr>
+                                <td>Mots de passe</td>
+                                <td>Hachage bcrypt</td>
+                            </tr>
+                            <tr>
+                                <td>Accès non autorisé</td>
+                                <td>Middleware d'authentification</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                
+                <section>
+                    <h3>Sessions sécurisées</h3>
+                    <p><strong>Stockage en base de données</strong></p>
+                    <ul>
+                        <li>ID session : 64 caractères hexadécimaux aléatoires</li>
+                        <li>Tracking IP et User-Agent</li>
+                        <li>Expiration automatique (7 ou 30 jours)</li>
+                        <li>Nettoyage automatique des sessions expirées</li>
+                    </ul>
+                    <pre><code data-trim data-noescape class="language-php">
+$sid = bin2hex(random_bytes(32)); // 64 hex
+
+$stmt = $this->db->prepare(
+    "INSERT INTO user_sessions 
+     (user_id, session_id, ip_address, expires_at)
+     VALUES (?, ?, ?, ?)"
+);
+                    </code></pre>
+                </section>
+            </section>
+            
+            <!-- SECTION 7 : DIFFICULTÉS -->
+            <section>
+                <section>
+                    <h2>7. Difficultés Rencontrées</h2>
+                </section>
+                
+                <section>
+                    <h3>Défi 1 : Gestion des sessions</h3>
+                    <p><strong>Problème :</strong> Déconnexions intempestives</p>
+                    <p><strong>Solution :</strong></p>
+                    <ul>
+                        <li>Recherche approfondie documentation PHP</li>
+                        <li>Implémentation système custom en BDD</li>
+                        <li>Tests sur différents navigateurs</li>
+                        <li>Configuration fine des cookies</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Défi 2 : Architecture du configurateur</h3>
+                    <p><strong>Problème :</strong> Code JavaScript difficile à maintenir</p>
+                    <p><strong>Solution :</strong></p>
+                    <ul>
+                        <li>Refactoring complet en modules ES6</li>
+                        <li>Pattern "dataset" : 1 module par type</li>
+                        <li>Séparation des responsabilités</li>
+                        <li>Documentation du code</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Leçons apprises</h3>
+                    <ul>
+                        <li>Importance d'une <strong>conception solide</strong></li>
+                        <li>Tester <strong>régulièrement</strong></li>
+                        <li><strong>Documentation</strong> claire facilite la maintenance</li>
+                        <li>Échanger avec son tuteur pour <strong>débloquer</strong></li>
+                        <li>Prévoir du temps pour l'<strong>imprévu</strong></li>
+                    </ul>
+                </section>
+            </section>
+            
+            <!-- SECTION 8 : COMPÉTENCES -->
+            <section>
+                <section>
+                    <h2>8. Compétences Acquises</h2>
+                </section>
+                
+                <section>
+                    <h3>Compétences techniques</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left;">
+                        <div>
+                            <h4>Backend</h4>
+                            <ul style="font-size: 0.85em;">
+                                <li>Architecture MVC</li>
+                                <li>POO avancée</li>
+                                <li>PDO sécurisé</li>
+                                <li>API REST</li>
+                                <li>Sessions</li>
+                            </ul>
+                            <h4>Base de données</h4>
+                            <ul style="font-size: 0.85em;">
+                                <li>Conception normalisée</li>
+                                <li>SQL complexe</li>
+                                <li>Optimisation</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Frontend</h4>
+                            <ul style="font-size: 0.85em;">
+                                <li>JavaScript ES6+</li>
+                                <li>Modules</li>
+                                <li>Fetch API</li>
+                                <li>DOM</li>
+                            </ul>
+                            <h4>Sécurité</h4>
+                            <ul style="font-size: 0.85em;">
+                                <li>SQL/XSS/CSRF</li>
+                                <li>Authentification</li>
+                                <li>Hachage</li>
+                                <li>Validation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h3>Compétences transversales</h3>
+                    <ul>
+                        <li><strong>Gestion de projet</strong> : planification, délais</li>
+                        <li><strong>Autonomie</strong> : recherche, décisions</li>
+                        <li><strong>Communication</strong> : reporting, présentation</li>
+                        <li><strong>Rigueur</strong> : documentation, tests</li>
+                        <li><strong>Adaptabilité</strong> : face aux imprévus</li>
+                    </ul>
+                </section>
+            </section>
+            
+            <!-- SECTION 9 : BILAN -->
+            <section>
+                <section>
+                    <h2>9. Bilan</h2>
+                </section>
+                
+                <section>
+                    <h3>Objectifs atteints</h3>
+                    <ul>
+                        <li>✅ Configurateur visuel fonctionnel</li>
+                        <li>✅ Système de devis automatisé</li>
+                        <li>✅ Architecture MVC robuste</li>
+                        <li>✅ Sécurité renforcée</li>
+                        <li>✅ Documentation complète</li>
+                        <li>✅ Interface d'administration</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Apport pour l'entreprise</h3>
+                    <ul>
+                        <li>Outil moderne disponible <strong>24/7</strong></li>
+                        <li>Réduction du <strong>temps de traitement</strong></li>
+                        <li>Diminution des <strong>erreurs</strong></li>
+                        <li>Amélioration de l'<strong>expérience client</strong></li>
+                        <li>Meilleur <strong>suivi</strong> des demandes</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Évolutions possibles</h3>
+                    <p><strong>Court terme :</strong></p>
+                    <ul>
+                        <li>Export PDF des devis</li>
+                        <li>Notifications email</li>
+                        <li>Paiement en ligne</li>
+                    </ul>
+                    <p><strong>Long terme :</strong></p>
+                    <ul>
+                        <li>Application mobile</li>
+                        <li>Visualisation 3D</li>
+                        <li>IA pour recommandations</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Bilan personnel</h3>
+                    <p>Ce stage a été une <strong>expérience très enrichissante</strong> :</p>
+                    <ul>
+                        <li>Mise en pratique des connaissances</li>
+                        <li>Découverte du métier en entreprise</li>
+                        <li>Développement de l'autonomie</li>
+                        <li>Confirmation du choix de carrière</li>
+                    </ul>
+                    <p style="margin-top: 30px;"><strong>Je me sens prêt à exercer ce métier</strong></p>
+                </section>
+            </section>
+            
+            <!-- SLIDE FINAL -->
+            <section>
+                <h1>Merci de votre attention</h1>
+                <h3>Questions ?</h3>
+                <p style="margin-top: 80px;">
+                    <small>
+                        <strong>Sébastien SPIEGEL</strong><br>
+                        Candidat au Titre Professionnel DWWM<br>
+                        Session 2025
+                    </small>
+                </p>
+            </section>
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/zoom/zoom.js"></script>
+    
+    <script>
+        // Configuration Reveal.js
+        Reveal.initialize({
+            hash: true,
+            
+            // Navigation controls
+            controls: true,
+            progress: true,
+            center: true,
+            
+            // Slide number
+            slideNumber: 'c/t',
+            
+            // Transition
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            
+            // Plugins
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+        });
+    </script>
+</body>
+</html>

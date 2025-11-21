@@ -1,4 +1,12 @@
-// assets/js/datasets/barriere-piscine/steps.js
+/**
+ * ============================================================================
+ * datasets/barriere-piscine/steps.js — Configuration pour barrières de piscine
+ * ============================================================================
+ * 
+ * 🎯 RÔLE : Configuration pour barrières de sécurité piscine (normes NF P90-306)
+ * 📚 SPÉCIFICITÉS : Uniquement forme droite, hauteur minimale 110cm obligatoire
+ * 💡 SÉCURITÉ : Barrière conforme aux normes françaises de sécurité piscine
+ */
 
 export default [
   // --------------------------------------------------------------------------
@@ -137,9 +145,6 @@ export default [
 function buildPreviewPath(selection) {
   if (!selection.type) return null;
   const type  = selection.type;
-  // const finition  = selection.finition;
   const forme = selection.forme || "droit";
-  // const pose  = selection.pose || "sol";
-  // const ancrage  = selection.ancrage;
   return `assets/images/configurateur/previews/barriere-piscine/${type}/barriere-piscine-${type}-${forme}.webp`;
 }
