@@ -1016,11 +1016,15 @@ export function renderNav({ containers, ctx }) {
             // Logger dans la console
             console.log("✅ Devis créé, id =", json.devisId, "— sélection:", selection);
 
+            // Construire l'URL de redirection vers la page du devis
+            const redirectUrl = '/auth/showDevis/' + json.devisId;
+
             // Afficher une notification de succès
             showToast(
               '✅ Votre Devis #' + json.devisId + ' a été créé avec succès !',
               4500,      // Durée en millisecondes
-              'success'  // Type de notification
+              'success',  // Type de notification
+              redirectUrl  // 👉 Nouvelle option : URL de redirection après succès
             );
 
           } catch (e) {
@@ -1115,8 +1119,9 @@ export function makePredicates({ selection, stepsArr, data, getCurrentIndex }) {
  * @param {string} message - Le message à afficher
  * @param {number} duration - Durée d'affichage en millisecondes
  * @param {string} type - Type de notification : 'success', 'error', ou 'info'
+ * @param {string} redirectUrl - (optionnel) URL vers laquelle rediriger en cas de succès
  */
-function showToast(message, duration, type) {
+function showToast(message, duration, type, redirectUrl) {
   try {
     // --------------------------------------------------------------------------
     // VALEURS PAR DÉFAUT
@@ -1185,7 +1190,8 @@ function showToast(message, duration, type) {
         // Si c'est un succès, recharger la page pour réinitialiser le configurateur
         if (type === 'success') {
           // location.reload() = recharger la page actuelle
-          window.location.reload();
+          // window.location.reload();
+          window.location.href = redirectUrl; // Rediriger l'utilisateur vers sont devis nouvellement crée !
         }
       }, 400);  // 400ms pour l'animation de sortie
     }, duration);  // Durée d'affichage

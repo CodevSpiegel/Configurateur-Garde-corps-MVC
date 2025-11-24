@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 18 nov. 2025 à 17:04
+-- Généré le : ven. 21 nov. 2025 à 20:24
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `cfg_devis` (
   KEY `idx_cfg_devis_ancrage_id` (`ancrage_id`),
   KEY `idx_cfg_devis_forme_id` (`forme_id`),
   KEY `idx_cfg_devis_verre_id` (`verre_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `cfg_devis`
@@ -136,7 +136,15 @@ INSERT INTO `cfg_devis` (`id`, `user_id`, `type_id`, `finition_id`, `forme_id`, 
 (59, 1, 13, 3, 4, 1, 1, 6, 210, 128, 220, 88, NULL, 1, 1, 1762828540, 1763070245),
 (60, 1, 1, 2, 1, 1, 2, NULL, 123, NULL, NULL, 100, NULL, 1, 3, 1762987581, 1763070686),
 (61, 1, 9, 3, 2, 2, 3, NULL, 125, 120, NULL, 98, 39, 1, 3, 1762987612, 1763069517),
-(64, 1, 8, 2, 3, 2, 2, NULL, 122, 122, NULL, 100, NULL, 1, 1, 1763408491, 1763408491);
+(64, 1, 8, 2, 3, 2, 2, NULL, 122, 122, NULL, 100, NULL, 1, 1, 1763408491, 1763408491),
+(65, 1, 28, NULL, 2, NULL, 1, 9, 123, 122, NULL, 100, 32, 1, 1, 1763728392, 1763728392),
+(66, 1, 19, NULL, 2, NULL, 5, 20, 123, 124, NULL, 100, 40, 1, 1, 1763729302, 1763729302),
+(67, 1, 35, 2, 4, 2, 2, NULL, 155, 210, 214, 90, NULL, 1, 1, 1763729638, 1763729638),
+(68, 1, 16, 3, 5, 2, 3, 5, 220, 123, 158, 110, NULL, 1, 1, 1763733257, 1763733257),
+(69, 1, 22, NULL, 3, NULL, 5, 12, 156, 149, NULL, 110, NULL, 1, 1, 1763735076, 1763735076),
+(70, 1, 28, NULL, 3, NULL, 1, 9, 112, 123, NULL, 110, NULL, 1, 1, 1763750023, 1763750023),
+(71, 1, 30, 2, 5, 2, 1, NULL, 112, 113, 114, 102, NULL, 1, 1, 1763750953, 1763750953),
+(72, 1, 34, 2, 2, 2, 2, NULL, 220, 200, NULL, 110, 48, 1, 1, 1763756620, 1763756620);
 
 -- --------------------------------------------------------
 
@@ -443,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_group_id`, `user_registered`, `user_last_visit`, `user_last_activity`, `user_activation_key`, `email_confirm_token`, `email_confirmed_at`, `reset_token`, `reset_expires`) VALUES
-(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1763074819, 1763480391, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
+(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1763074819, 1763756632, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
 (2, 'alex', 'alex@alex.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 3, 1759302900, 1762563940, 1762699543, '5b5db98ed68aa6222c8b3e6a1d70a7ec', NULL, 1762561413, '91aef643bb96493b1d4edc38b1ece7c2', 1762566094),
 (3, 'marie', 'marie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759392000, 1761410400, 1761747720, '44d0010532dcd54f2ab5e3c81bfdba23', NULL, NULL, NULL, NULL),
 (4, 'julien', 'julien@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1759474200, 1761675600, 1761747900, '549e9f18d6d29c897e0ae94f9e9b7b75', NULL, NULL, NULL, NULL),
