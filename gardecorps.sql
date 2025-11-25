@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 21 nov. 2025 à 20:24
+-- Généré le : mar. 25 nov. 2025 à 18:01
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `cfg_devis` (
   KEY `idx_cfg_devis_ancrage_id` (`ancrage_id`),
   KEY `idx_cfg_devis_forme_id` (`forme_id`),
   KEY `idx_cfg_devis_verre_id` (`verre_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `cfg_devis`
@@ -102,49 +102,52 @@ INSERT INTO `cfg_devis` (`id`, `user_id`, `type_id`, `finition_id`, `forme_id`, 
 (7, 11, 30, 1, 1, 2, 2, NULL, 123, NULL, NULL, 85, NULL, 1, 3, 1761515656, 1763059716),
 (34, 15, 1, 2, 1, 3, 3, NULL, 127, NULL, NULL, 100, 27, 1, 1, 1762025174, 1762025174),
 (24, 1, 28, NULL, 2, NULL, 6, 9, 100, 100, NULL, 100, 45, 1, 6, 1761654347, 1761935729),
-(62, 1, 2, 2, 2, 2, 2, NULL, 123, 111, NULL, 90, 47, 1, 1, 1763407778, 1763407778),
+(62, 2, 2, 2, 2, 2, 2, NULL, 123, 111, NULL, 90, 47, 1, 1, 1763407778, 1763407778),
 (28, 5, 7, 2, 1, 3, 1, NULL, 123, NULL, NULL, 145, 46, 1, 1, 1762003018, 1762003018),
 (33, 2, 12, 2, 2, 2, 2, 5, 142, 123, NULL, 112, 48, 1, 1, 1762024820, 1762024820),
 (26, 7, 34, 2, 5, 2, 2, NULL, 158, 123, 158, 88, NULL, 1, 3, 1761759118, 1761998143),
-(63, 1, 6, 3, 1, 3, 2, NULL, 112, NULL, NULL, 113, 49, 1, 1, 1763407847, 1763407847),
-(31, 1, 6, 3, 1, 3, 3, NULL, 156, NULL, NULL, 110, 36, 1, 4, 1762003148, 1762987691),
+(63, 4, 6, 3, 1, 3, 2, NULL, 112, NULL, NULL, 113, 49, 1, 1, 1763407847, 1763407847),
+(31, 6, 6, 3, 1, 3, 3, NULL, 156, NULL, NULL, 110, 36, 1, 4, 1762003148, 1762987691),
 (29, 7, 34, 3, 1, 2, 2, NULL, 158, NULL, NULL, 77, NULL, 1, 1, 1762003053, 1762003053),
 (35, 18, 6, 3, 1, 3, 1, NULL, 123, NULL, NULL, 144, 29, 1, 3, 1762025207, 1762025295),
 (36, 18, 30, 2, 2, 2, 3, NULL, 158, 145, NULL, 120, 59, 1, 1, 1762025377, 1762025377),
 (37, 5, 3, 2, 3, 2, 2, NULL, 125, 360, NULL, 122, NULL, 1, 4, 1762025583, 1762025624),
 (38, 2, 2, 2, 2, 1, 1, NULL, 126, 213, NULL, 114, 32, 1, 1, 1762027104, 1762027104),
 (39, 21, 1, 2, 1, 3, 3, NULL, 152, NULL, NULL, 100, 55, 1, 1, 1762030168, 1762030168),
-(40, 7, 25, NULL, 5, NULL, 6, 11, 123, 100, 159, 102, NULL, 1, 1, 1762032431, 1762032431),
+(40, 7, 25, NULL, 5, NULL, 6, 11, 123, 100, 159, 102, NULL, 1, 3, 1762032431, 1763995562),
 (41, 15, 15, 3, 2, 2, 2, 5, 203, 158, NULL, 110, 47, 1, 1, 1762032470, 1762032470),
 (42, 5, 27, NULL, 2, NULL, 6, 4, 145, 129, NULL, 140, 41, 1, 1, 1762032548, 1762032548),
 (43, 15, 1, 1, 1, 1, 1, NULL, 123, NULL, NULL, 55, NULL, 1, 1, 1762427038, 1762427038),
 (44, 5, 1, 1, 1, 2, 2, NULL, 200, NULL, NULL, 60, NULL, 1, 1, 1762430305, 1762430305),
-(45, 1, 10, 1, 1, 1, 2, NULL, 450, NULL, NULL, 120, NULL, 1, 1, 1762436758, 1762436758),
-(46, 1, 7, 1, 1, 3, 1, NULL, 564, NULL, NULL, 213, 55, 1, 2, 1762437798, 1762438081),
+(45, 16, 10, 1, 1, 1, 2, NULL, 450, NULL, NULL, 120, NULL, 1, 1, 1762436758, 1762436758),
+(46, 17, 7, 1, 1, 3, 1, NULL, 564, NULL, NULL, 213, 55, 1, 2, 1762437798, 1762438081),
 (47, 2, 10, 1, 1, 2, 2, NULL, 450, NULL, NULL, 130, NULL, 1, 1, 1762438365, 1762438365),
-(48, 1, 7, 1, 2, 2, 3, NULL, 210, 123, NULL, 108, 62, 1, 1, 1762450307, 1762450307),
+(48, 11, 7, 1, 2, 2, 3, NULL, 210, 123, NULL, 108, 62, 1, 1, 1762450307, 1762450307),
 (49, 22, 6, 3, 1, 3, 3, NULL, 127, NULL, NULL, 100, 27, 1, 1, 1762453845, 1762453845),
 (50, 24, 1, 2, 1, 3, 1, NULL, 120, NULL, NULL, 100, 45, 1, 1, 1762773897, 1762773897),
-(51, 1, 4, 2, 5, 2, 3, NULL, 125, 144, 155, 110, NULL, 1, 2, 1762811760, 1763069756),
+(51, 21, 4, 2, 5, 2, 3, NULL, 125, 144, 155, 110, NULL, 1, 2, 1762811760, 1763069756),
 (52, 24, 31, 2, 3, 2, 3, NULL, 111, 222, NULL, 98, NULL, 1, 3, 1762812059, 1762988767),
 (53, 24, 6, 3, 2, 2, 3, NULL, 125, 120, NULL, 80, 36, 1, 1, 1762812183, 1762812183),
 (54, 24, 5, 2, 1, 2, 2, NULL, 120, NULL, NULL, 89, NULL, 1, 1, 1762815879, 1762815879),
-(55, 1, 20, NULL, 1, NULL, 5, 11, 110, NULL, NULL, 80, NULL, 1, 1, 1762816417, 1762816417),
-(56, 1, 28, NULL, 2, NULL, 1, 9, 440, 125, NULL, 112, 40, 1, 1, 1762827970, 1762827970),
-(57, 1, 19, NULL, 5, NULL, 5, 7, 123, 124, 125, 100, NULL, 1, 1, 1762828173, 1762828173),
+(55, 22, 20, NULL, 1, NULL, 5, 11, 110, NULL, NULL, 80, NULL, 1, 1, 1762816417, 1762816417),
+(56, 18, 28, NULL, 2, NULL, 1, 9, 440, 125, NULL, 112, 40, 1, 1, 1762827970, 1762827970),
+(57, 2, 19, NULL, 5, NULL, 5, 7, 123, 124, 125, 100, NULL, 1, 1, 1762828173, 1762828173),
 (58, 1, 35, 2, 2, 2, 2, NULL, 133, 134, NULL, 89, 60, 1, 1, 1762828348, 1762828348),
-(59, 1, 13, 3, 4, 1, 1, 6, 210, 128, 220, 88, NULL, 1, 1, 1762828540, 1763070245),
-(60, 1, 1, 2, 1, 1, 2, NULL, 123, NULL, NULL, 100, NULL, 1, 3, 1762987581, 1763070686),
-(61, 1, 9, 3, 2, 2, 3, NULL, 125, 120, NULL, 98, 39, 1, 3, 1762987612, 1763069517),
-(64, 1, 8, 2, 3, 2, 2, NULL, 122, 122, NULL, 100, NULL, 1, 1, 1763408491, 1763408491),
-(65, 1, 28, NULL, 2, NULL, 1, 9, 123, 122, NULL, 100, 32, 1, 1, 1763728392, 1763728392),
-(66, 1, 19, NULL, 2, NULL, 5, 20, 123, 124, NULL, 100, 40, 1, 1, 1763729302, 1763729302),
-(67, 1, 35, 2, 4, 2, 2, NULL, 155, 210, 214, 90, NULL, 1, 1, 1763729638, 1763729638),
-(68, 1, 16, 3, 5, 2, 3, 5, 220, 123, 158, 110, NULL, 1, 1, 1763733257, 1763733257),
-(69, 1, 22, NULL, 3, NULL, 5, 12, 156, 149, NULL, 110, NULL, 1, 1, 1763735076, 1763735076),
-(70, 1, 28, NULL, 3, NULL, 1, 9, 112, 123, NULL, 110, NULL, 1, 1, 1763750023, 1763750023),
-(71, 1, 30, 2, 5, 2, 1, NULL, 112, 113, 114, 102, NULL, 1, 1, 1763750953, 1763750953),
-(72, 1, 34, 2, 2, 2, 2, NULL, 220, 200, NULL, 110, 48, 1, 1, 1763756620, 1763756620);
+(59, 15, 13, 3, 4, 1, 1, 6, 210, 128, 220, 88, NULL, 1, 1, 1762828540, 1763070245),
+(60, 15, 1, 2, 1, 1, 2, NULL, 123, NULL, NULL, 100, NULL, 1, 3, 1762987581, 1763070686),
+(61, 23, 9, 3, 2, 2, 3, NULL, 125, 120, NULL, 98, 39, 1, 3, 1762987612, 1763069517),
+(64, 12, 8, 2, 3, 2, 2, NULL, 122, 122, NULL, 100, NULL, 1, 1, 1763408491, 1763408491),
+(65, 8, 28, NULL, 2, NULL, 1, 9, 123, 122, NULL, 100, 32, 1, 1, 1763728392, 1763728392),
+(66, 11, 19, NULL, 2, NULL, 5, 20, 123, 124, NULL, 100, 40, 1, 1, 1763729302, 1763729302),
+(67, 9, 35, 2, 4, 2, 2, NULL, 155, 210, 214, 90, NULL, 1, 1, 1763729638, 1763729638),
+(68, 14, 16, 3, 5, 2, 3, 5, 220, 123, 158, 110, NULL, 1, 1, 1763733257, 1763733257),
+(69, 10, 22, NULL, 3, NULL, 5, 12, 156, 149, NULL, 110, NULL, 1, 1, 1763735076, 1763735076),
+(70, 9, 28, NULL, 3, NULL, 1, 9, 112, 123, NULL, 110, NULL, 1, 1, 1763750023, 1763750023),
+(71, 8, 30, 2, 5, 2, 1, NULL, 112, 113, 114, 102, NULL, 1, 3, 1763750953, 1763995550),
+(72, 7, 34, 2, 2, 2, 2, NULL, 220, 200, NULL, 110, 48, 1, 1, 1763756620, 1763756620),
+(73, 15, 1, 2, 5, 2, 2, NULL, 220, 123, 200, 59, NULL, 1, 3, 1763993644, 1763995584),
+(74, 15, 1, 2, 1, 2, 2, NULL, 120, NULL, NULL, 100, NULL, 1, 1, 1763993885, 1763993885),
+(75, 15, 2, 2, 3, 2, 2, NULL, 123, 145, NULL, 100, NULL, 1, 1, 1763994785, 1763994785);
 
 -- --------------------------------------------------------
 
@@ -433,9 +436,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_last_visit` int UNSIGNED NOT NULL,
   `user_last_activity` int UNSIGNED NOT NULL,
   `user_activation_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `email_confirm_token` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email_confirm_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `email_confirmed_at` int DEFAULT NULL,
-  `reset_token` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `reset_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `reset_expires` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_user_login_unique` (`user_login`),
@@ -451,12 +454,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_group_id`, `user_registered`, `user_last_visit`, `user_last_activity`, `user_activation_key`, `email_confirm_token`, `email_confirmed_at`, `reset_token`, `reset_expires`) VALUES
-(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1763074819, 1763756632, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
+(1, 'Admin', 'squalbass27@gmail.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 27, 1761219976, 1764073308, 1764076278, 'dfgdsfgs3d32132sdfhg315sdfh51', NULL, NULL, NULL, NULL),
 (2, 'alex', 'alex@alex.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 3, 1759302900, 1762563940, 1762699543, '5b5db98ed68aa6222c8b3e6a1d70a7ec', NULL, 1762561413, '91aef643bb96493b1d4edc38b1ece7c2', 1762566094),
 (3, 'marie', 'marie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759392000, 1761410400, 1761747720, '44d0010532dcd54f2ab5e3c81bfdba23', NULL, NULL, NULL, NULL),
 (4, 'julien', 'julien@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1759474200, 1761675600, 1761747900, '549e9f18d6d29c897e0ae94f9e9b7b75', NULL, NULL, NULL, NULL),
 (5, 'claire', 'claire@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759563000, 1761495300, 1761748020, 'ac9dc742028f23102f0c62238407e307', NULL, NULL, NULL, NULL),
-(6, 'thomas', 'thomas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759654800, 1761566400, 1761748200, '794282a0e17f283fa03c1b5fed1e1fd8', NULL, NULL, NULL, NULL),
+(6, 'thomas', 'thomas@example.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 3, 1759654800, 1763781050, 1763781085, '794282a0e17f283fa03c1b5fed1e1fd8', NULL, NULL, NULL, NULL),
 (7, 'sophie', 'sophie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1759752000, 1761684000, 1761748260, 'd2153cbd3e1578cd442fbe1b3e1e4c32', NULL, NULL, NULL, NULL),
 (8, 'lucas', 'lucas@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759814100, 1761678000, 1761748380, 'f5cdab89741b65a39e415ad783666d2e', NULL, NULL, NULL, NULL),
 (9, 'emma', 'emma@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1759905000, 1761725400, 1761748440, '67cd2b294d89d25419fcffee2d1693b1', NULL, NULL, NULL, NULL),
@@ -464,7 +467,7 @@ INSERT INTO `users` (`id`, `user_login`, `user_email`, `user_password`, `user_gr
 (11, 'lea', 'lea@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760082600, 1761729300, 1761748680, '2f214c0a76cc8d15d0bc6f07772a0d49', NULL, NULL, NULL, NULL),
 (12, 'quentin', 'quentin@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760166000, 1761649200, 1761748800, 'c1a5bdd1ac02f23dd240be1aab32da3f', NULL, NULL, NULL, NULL),
 (14, 'maxime', 'maxime@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760348700, 1761559200, 1761748920, '9dce3de905077b61fc919263b89adaac', NULL, NULL, NULL, NULL),
-(15, 'camille', 'camille@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1760439600, 1761672600, 1761748980, '1f2b3a35fa9356a12fff3e67bbea6065', NULL, NULL, NULL, NULL),
+(15, 'camille', 'camille@example.com', '$2y$10$WGXIo0B.Y6fpJ0Na4RZRb.3ba0K1HIXYkWrmcZPCmnkrnzwl4Aeki', 3, 1760439600, 1764081530, 1764082483, '1f2b3a35fa9356a12fff3e67bbea6065', NULL, NULL, NULL, NULL),
 (16, 'antoine', 'antoine@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760513100, 1761723600, 1761749040, '11a595f648ca5759a7ad128856f3b521', NULL, NULL, NULL, NULL),
 (17, 'julie', 'julie@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 3, 1760604000, 1761497100, 1761749100, '0a40c89f518865be3795b3f434653766', NULL, NULL, NULL, NULL),
 (18, 'paul', 'paul@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 2, 1760679000, 1761657000, 1761749160, '3853c4818b995bb39ae9b7c81ef66ad2', NULL, NULL, NULL, NULL),
@@ -509,25 +512,24 @@ INSERT INTO `user_groups` (`id`, `id_group`, `group_label`) VALUES
 
 DROP TABLE IF EXISTS `user_sessions`;
 CREATE TABLE IF NOT EXISTS `user_sessions` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `session_id` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `user_agent` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `session_id` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'Identifiant unique de session (64 caractères hex)',
+  `user_id` bigint UNSIGNED NOT NULL COMMENT 'ID utilisateur lié (0 = invité)',
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'Adresse IP (IPv4 ou IPv6)',
+  `user_agent` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'User-Agent ou info navigateur',
   `created_at` int NOT NULL,
   `expires_at` int NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `sid_unique` (`session_id`),
+  PRIMARY KEY (`session_id`),
   KEY `idx_user` (`user_id`),
   KEY `idx_user_sessions_user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `user_sessions`
 --
 
-INSERT INTO `user_sessions` (`id`, `user_id`, `session_id`, `ip_address`, `user_agent`, `created_at`, `expires_at`) VALUES
-(48, 1, '6adfeff0cc4856fa45fde2f73ec801421d3eae48ceb5e7203fe1058fe01e848e', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1763074819, 1765666819);
+INSERT INTO `user_sessions` (`session_id`, `user_id`, `ip_address`, `user_agent`, `created_at`, `expires_at`) VALUES
+('6adfeff0cc4856fa45fde2f73ec801421d3eae48ceb5e7203fe1058fe01e848e', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1763074819, 1765666819),
+('22ae593f54ca17ed7f28b29a99d68c8bf0178e09932fdf4ff3ea102eef923a03', 15, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 1764081530, 1766673530);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

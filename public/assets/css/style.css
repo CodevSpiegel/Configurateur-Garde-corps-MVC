@@ -130,14 +130,8 @@ p{ margin: 0 0 16px; color: var(--muted); }
     gap: 32px;
 }
 
-.hero-visual{
-    border: 1px dashed var(--border);
-    border-radius: var(--radius);
-    color:#6c757d;
-    font-weight: 600;
-}
-
 .hero-visual img {
+    border: 1px dashed var(--border);
     border-radius: var(--radius);
 }
 
