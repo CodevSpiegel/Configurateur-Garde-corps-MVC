@@ -139,6 +139,16 @@ p{ margin: 0 0 16px; color: var(--muted); }
     .hero-inner{
         flex-direction: column;
     }
+    .hero-desc {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    h1 {
+        font-size: 36px;
+    }
     .hero-visual img {
         width: 100%;
     }

@@ -144,11 +144,13 @@ class AuthController extends Controller
         if ($this->isPost()) {
             if (!$this->checkCsrf($_POST['csrf'] ?? '')) die('CSRF');
             $token = $_POST['token'] ?? '';
-            $new   = $_POST['password'] ?? '';
-            $newConfirm   = $_POST['passwordConfirm'] ?? '';
+            $password = $_POST['password'] ?? '';
+            $new   = $_POST['newpassword'] ?? '';
+            $newConfirm   = $_POST['newpasswordConfirm'] ?? '';
             if (strlen($new) < 6) { $error='Mot de passe trop court'; }
+            elseif ($new !== $newConfirm) { $error='Confirmation du mot de passe incorrect'; }
             else {
-                $ok = $this->auth->resetPassword($token, $new, $newConfirm);
+                $ok = $this->auth->resetPassword($token, $new);
                 $msg = $ok ? "Mot de passe réinitialisé, vous pouvez vous connecter." : "Token invalide/expiré";
             }
         }

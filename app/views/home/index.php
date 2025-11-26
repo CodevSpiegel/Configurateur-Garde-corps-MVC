@@ -8,7 +8,7 @@
 
 <section class="hero">
     <div class="container hero-inner">
-        <div>
+        <div class="hero-desc">
             <h1>Configurez votre garde‑corps inox sur mesure</h1>
             <p class="lead">Simulez vos options (câbles, barres, verre), visualisez le rendu et recevez un devis instantané.</p>
             <div class="header-buttons">
