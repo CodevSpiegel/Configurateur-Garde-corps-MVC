@@ -6,7 +6,7 @@
  * ✨ POINT D’ENTRÉE UNIQUE DU FRAMEWORK MVC ✨
  * 
  * ➤ Rôle :
- *    Ce fichier est le **premier** exécuté lorsqu’un visiteur arrive sur ton site.
+ *    Ce fichier est le **premier** exécuté lorsqu’un visiteur arrive sur le site.
  *    Il initialise la session, charge la configuration, le moteur de routage,
  *    puis transmet la requête (URL) au routeur.
  * 
